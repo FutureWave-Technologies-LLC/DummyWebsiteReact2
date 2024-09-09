@@ -1,0 +1,9 @@
+1. Download the latest version of node.js
+2. Go to your command terminal and change your directory
+    to the folder of where DummyReact2 is being stored.
+    Ex: C:\Users\alvaro\Documents\GitHub\DummyWebsiteReact2
+3. Do npm install axios
+4. To start the website do "npm start" this will take you to
+    the website, but you must also have the django server running
+    if you are running this locally."
+5. To leave the terminal do CTRL-C and type Y.
