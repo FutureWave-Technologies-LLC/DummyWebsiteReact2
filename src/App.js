@@ -6,7 +6,7 @@ function App() {
 
   // Function to fetch data from Django API
   const fetchData = () => {
-    axios.get('https://ip-172-31-28-218.us-east-2.compute.internal')  // Update with your Django API URL
+    axios.get('http://localhost:8000/api/dummy-data/')  // Update with your Django API URL
       .then((response) => {
         setData(response.data);  // Store the API response in the state
       })
