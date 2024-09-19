@@ -1,8 +1,7 @@
-//TODO: Make the table able to display DIFFERENT NUMBERS of data types
-//Using an array prop with labels, map each label to <th> tag
 function DataTable(props) {
     const {data} = props
     let fieldNamesArray = null
+    
     if (data[0]) {
         fieldNamesArray = Object.keys(data[0])
     } else {
@@ -12,7 +11,6 @@ function DataTable(props) {
     }
     return (
         <div>
-            {/* Display fetched data in a table */}
             <table>
                 <thead>
                     <tr>
