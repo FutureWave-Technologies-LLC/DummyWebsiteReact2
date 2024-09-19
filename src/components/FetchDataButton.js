@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-//TODO: Somehow print data to main App.js (done)
+
 function FetchDataButton(props) {
     const {buttonText, API_URL, setDataMethod} = props
-    //const [data, setData] = useState([]);  // State to store the fetched data
 
     // Function to fetch data from Django API
     const fetchData = () => {
