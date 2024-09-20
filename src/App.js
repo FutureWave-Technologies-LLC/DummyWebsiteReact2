@@ -13,7 +13,7 @@ function App() {
       <h1>Dummy Data from Django</h1>
       <FetchDataButton
         buttonText="Fetch user data"
-        API_URL="http://localhost:8000/api/users/"
+        API_URL="http://3.142.185.208:8000/api/users/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
       {/*<FetchDataButton
@@ -23,27 +23,27 @@ function App() {
       ></FetchDataButton>*/}
       <FetchDataButton
         buttonText="Fetch posts Data"
-        API_URL="http://localhost:8000/api/posts/"
+        API_URL="http://3.142.185.208:8000/api/posts/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
       <FetchDataButton
         buttonText="Fetch personal_pages data"
-        API_URL="http://localhost:8000/api/personal_pages/"
+        API_URL="http://3.142.185.208:8000/api/personal_pages/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
       <FetchDataButton
         buttonText="Fetch comments data"
-        API_URL="http://localhost:8000/api/comments/"
+        API_URL="http://3.142.185.208:8000/api/comments/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
       <FetchDataButton
         buttonText="Fetch replies data"
-        API_URL="http://localhost:8000/api/replies/"
+        API_URL="http://3.142.185.208:8000/api/replies/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
       <FetchDataButton
         buttonText="Fetch messages data"
-        API_URL="http://localhost:8000/api/messages/"
+        API_URL="http://3.142.185.208:8000/api/messages/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
       {/*<PostDataButton
