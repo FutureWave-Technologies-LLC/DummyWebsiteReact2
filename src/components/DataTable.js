@@ -1,7 +1,7 @@
 function DataTable(props) {
     const {data} = props
     let fieldNamesArray = null
-    
+
     if (data[0]) {
         fieldNamesArray = Object.keys(data[0])
     } else {
