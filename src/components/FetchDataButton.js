@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-
+// buttonText: The text on the button
+// API_URL: Django API URL used to fetch data with
+// setDataMethod: useState's setterMethod
 function FetchDataButton(props) {
     const {buttonText, API_URL, setDataMethod} = props
 
