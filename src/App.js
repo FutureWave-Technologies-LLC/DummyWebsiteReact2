@@ -5,15 +5,14 @@ import FetchDataButton from './components/FetchDataButton.js';
 import DataTable from './components/DataTable.js';
 
 function App() {
-  const [client_info, setClientInfo] = useState([]);  // State to store the fetched data
-  const [likes, setlikes] = useState([]);  // State to store the fetched data
+  const [displayedData, setDisplayedData] = useState([])
+  //??
   const data = {
     email: 'email@gmial.com'
   };
 
-  // Function to fetch data from Django API
-  const fetchData = () => {
-    axios.get('http://localhost:8000/api/dummy-data/')  // Update with your Django API URL
+  const fetch_update_likes = () => {
+    axios.post('http://localhost:8000/api/update_likes/', data)
       .then((response) => {
         console.log(response.data)
       })
@@ -26,12 +25,18 @@ function App() {
     <div className="App">
       <h1>Dummy Data from Django</h1>
       <FetchDataButton
-        buttonText="Fetch Data here"
-        API_URL="http://localhost:8000/api/dummy-data/"
-        setDataMethod={setData}
+        buttonText="Fetch client-info Data"
+        API_URL="http://localhost:8000/api/client-info/"
+        setDataMethod={setDisplayedData}
       ></FetchDataButton>
+      <FetchDataButton
+        buttonText="Fetch likes Data"
+        API_URL="http://localhost:8000/api/likes/"
+        setDataMethod={setDisplayedData}
+      ></FetchDataButton>
+      <button onClick={fetch_update_likes}>Update Likes</button>
       
-      <DataTable data={data}></DataTable>
+      <DataTable data={displayedData}></DataTable>
     </div>
   );
 }
