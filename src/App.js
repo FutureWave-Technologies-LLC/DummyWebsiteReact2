@@ -16,13 +16,11 @@ function App() {
         API_URL="http://localhost:8000/api/users/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
-
-      <FetchDataButton
+      {/*<FetchDataButton
         buttonText="Fetch likes Data"
         API_URL="http://localhost:8000/api/likes/"
         setDataMethod={setDisplayedData}
-      ></FetchDataButton>
-
+      ></FetchDataButton>*/}
       <FetchDataButton
         buttonText="Fetch posts Data"
         API_URL="http://localhost:8000/api/posts/"
@@ -48,14 +46,13 @@ function App() {
         API_URL="http://localhost:8000/api/messages/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
-
-      <PostDataButton
+      {/*<PostDataButton
         buttonText="Update Likes"
         API_URL="http://localhost:8000/api/update_likes/"
         dataToPost={{
           email: 'email@gmial.com'
         }}
-      ></PostDataButton>
+      ></PostDataButton>*/}
       {/* <button onClick={fetch_update_likes}>Update Likes</button> */}
       
       <DataTable data={displayedData}></DataTable>
