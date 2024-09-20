@@ -11,7 +11,6 @@ function App() {
   return (
     <div className="App">
       <h1>Dummy Data from Django</h1>
-      <h1>Dummy Data from Django</h1>
       <FetchDataButton
         buttonText="Fetch user data"
         API_URL="http://3.142.185.208:8000/api/users/"
@@ -55,7 +54,6 @@ function App() {
           email: 'email@gmial.com'
         }}
       ></PostDataButton>
-      {/* <button onClick={fetch_update_likes}>Update Likes</button> */}
       
       <DataTable data={displayedData}></DataTable>
     </div>
