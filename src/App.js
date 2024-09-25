@@ -52,13 +52,11 @@ function App() {
       ></FetchDataButton>
       {/*<PostDataButton
         buttonText="Update Likes"
-        API_URL="http://localhost:8000/api/update_likes/"
+        API_URL="http://3.142.185.208:8000/api/update_likes/"
         dataToPost={{
           email: 'email@gmial.com'
         }}
-      ></PostDataButton>*/}
-      {/* <button onClick={fetch_update_likes}>Update Likes</button> */}
-      
+
       <DataTable data={displayedData}></DataTable>
     </div>
   );
