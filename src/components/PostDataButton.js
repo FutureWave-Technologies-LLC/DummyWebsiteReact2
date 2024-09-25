@@ -1,5 +1,5 @@
 import axios from 'axios';
-import "./../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+
 
 // buttonText: The text on the button
 // API_URL: Django API URL used to post data with

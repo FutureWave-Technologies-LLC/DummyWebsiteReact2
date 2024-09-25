@@ -50,13 +50,13 @@ function App() {
         API_URL="http://3.142.185.208:8000/api/messages/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
-      {/*<PostDataButton
+      <PostDataButton
         buttonText="Update Likes"
         API_URL="http://3.142.185.208:8000/api/update_likes/"
         dataToPost={{
           email: 'email@gmial.com'
         }}
-
+      ></PostDataButton>
       <DataTable data={displayedData}></DataTable>
     </div>
   );
