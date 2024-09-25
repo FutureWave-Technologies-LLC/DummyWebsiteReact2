@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import axios from 'axios';
 //import "./../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
+//Pages
+import DummyDataPage from './pages/DummyDataPage.js';
+import SignUpPage from './pages/SignUpPage.js';
+
 import './components/customButton.css';
-import FetchDataButton from './components/FetchDataButton.js';
-import PostDataButton from './components/PostDataButton.js';
-import DataTable from './components/DataTable.js';
 
 function App() {
   return (
