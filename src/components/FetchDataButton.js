@@ -1,4 +1,6 @@
 import axios from 'axios';
+import "./../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import './customButton.css';
 
 // buttonText: The text on the button
 // API_URL: Django API URL used to fetch data with
@@ -17,7 +19,7 @@ function FetchDataButton(props) {
         });
     };
     return (
-        <button onClick={fetchData}>{buttonText}</button>
+        <button className='btn custom-btn ' onClick={fetchData}>{buttonText}</button>
     )
 }
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
+import './components/customButton.css';
 import FetchDataButton from './components/FetchDataButton.js';
 import PostDataButton from './components/PostDataButton.js';
 import DataTable from './components/DataTable.js';
@@ -11,6 +13,8 @@ function App() {
   return (
     <div className="App">
       <h1>Dummy Data from Django</h1>
+
+      <button className='btn create-user-btn'> Create User</button>
       <FetchDataButton
         buttonText="Fetch user data"
         API_URL="http://3.142.185.208:8000/api/users/"
