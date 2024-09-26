@@ -50,10 +50,10 @@ function DummyDataPage() {
         }}
       ></PostDataButton>
 
-        <NavigateButton
-          buttonText="Sign Up here"
-          path="/sign-up"
-        ></NavigateButton>
+      <NavigateButton
+        buttonText="Sign Up here"
+        path="/sign-up"
+      ></NavigateButton>
       
       <DataTable data={displayedData}></DataTable>
     </div>
