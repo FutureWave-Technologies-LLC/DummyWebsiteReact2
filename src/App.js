@@ -8,6 +8,7 @@ import axios from 'axios';
 //Pages
 import DummyDataPage from './pages/DummyDataPage.js';
 import SignUpPage from './pages/SignUpPage.js';
+import SignInPage from './pages/SignInPage.js';
 
 import './components/customButton.css';
 
@@ -18,6 +19,7 @@ function App() {
     <Routes>
           <Route path="/" element={<DummyDataPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/sign-in" element={<SignInPage />} />
     </Routes>
   )
 }

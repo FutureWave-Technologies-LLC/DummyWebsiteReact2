@@ -54,6 +54,13 @@ function DummyDataPage() {
           buttonText="Sign Up here"
           path="/sign-up"
         ></NavigateButton>
+
+        <NavigateButton
+          buttonText="Sign In"
+          path="/sign-in"
+        ></NavigateButton>
+
+        
       
       <DataTable data={displayedData}></DataTable>
     </div>
