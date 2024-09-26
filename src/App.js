@@ -1,8 +1,11 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 //Pages
 import DummyDataPage from './pages/DummyDataPage.js';
 import SignUpPage from './pages/SignUpPage.js';
+import SignInPage from './pages/SignInPage.js';
 
 //css
 import './components/customButton.css';
@@ -15,6 +18,7 @@ function App() {
     <Routes>
           <Route path="/" element={<DummyDataPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/sign-in" element={<SignInPage />} />
     </Routes>
   )
 }
