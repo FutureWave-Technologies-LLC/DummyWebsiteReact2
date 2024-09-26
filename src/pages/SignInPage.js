@@ -12,21 +12,21 @@ const SignInPage = () => {
 
     return (
         <div className="signin-container">
-            <h2>Sign In</h2>
+            <h2>Welcome Back!</h2>
             <form className="signin-form">
-                <label htmlFor="username">Username:</label>
                 <input
                     type="text"
                     id="username"
                     value={username}
+                    placeholder="Username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
 
-                <label htmlFor="password">Password:</label>
                 <input
                     type="password"
                     id="password"
                     value={password}
+                    placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
