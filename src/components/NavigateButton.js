@@ -15,7 +15,7 @@ function NavigateButton(props) {
   };
 
   return (
-    <button onClick={handleClick}>
+    <button className="create-user-btn" onClick={handleClick}>
           {buttonText}
     </button>
   )

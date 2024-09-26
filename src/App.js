@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-import axios from 'axios';
-//import "./../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 //Pages
 import DummyDataPage from './pages/DummyDataPage.js';
 import SignUpPage from './pages/SignUpPage.js';
 
+//css
 import './components/customButton.css';
+import './App.css'
 
 function App() {
   return (
