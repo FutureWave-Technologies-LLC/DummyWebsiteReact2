@@ -8,6 +8,7 @@ function SignUpPage() {
     const [lname, setlName] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
 
     function hasNoWhiteSpace(s) {
         return !(s.indexOf(' ') >= 0)
@@ -25,10 +26,17 @@ function SignUpPage() {
                 //TODO: key-values for fname and lname
             })
                 .then((response) => {
-                    console.log(response.data)
+                    if (response.data.error == true){
+                        console.log(response.data.response)
+                        setError(response.data.response)
+                    }
+                    else {
+                        window.location.href = 'http://18.222.224.80:3000/sign-in/?response=Created'
+                    }
                 })
                 .catch((error) => {
                     console.error('Error posting data:', error);
+                    setError('Unable to create user')
                 });
         } else {
             alert ("no whitespace")
@@ -66,7 +74,7 @@ function SignUpPage() {
                     placeHolder="Password"
                 ></CredentialInput>
             </div>
-
+            {error && <h3 style = {{color:"red"}}>{error}</h3>}
             <button onClick={submitCredentials}>Sign Up</button>
         </div>
     )
