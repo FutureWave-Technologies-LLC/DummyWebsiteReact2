@@ -15,10 +15,13 @@ function SignUpPage() {
 
     function submitCredentials() {
         
-        if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)) {
+        if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
+             && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
             axios.post("http://3.142.185.208:8000/api/users/", {
                 username: username,
                 password: password,
+                first_name: fname,
+                last_name: lname,
                 //TODO: key-values for fname and lname
             })
                 .then((response) => {
