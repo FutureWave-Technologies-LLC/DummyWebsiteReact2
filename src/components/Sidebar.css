@@ -1,0 +1,16 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+
+    height: 90%;
+    width: 15%; 
+
+    position: absolute;
+    left: 0; 
+    bottom: 0;
+
+    border-right: 5px solid;
+    background-color: #FFFFFF;
+    border-color: #ECD6FA;
+}
+
