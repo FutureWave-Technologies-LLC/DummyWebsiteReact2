@@ -3,22 +3,20 @@
 }
 
 button {
-  background-color: rgb(60, 81, 220);
-  color: white;
   padding: 10px 20px;
   border-radius: 5px;
-  margin: 5px;
   cursor: pointer;
 }
 
+button:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+
 input {
+  background-color: #F3EDF7;
+  border-color: #ECD6FA;
   padding: 10px 20px;
   border-radius: 5px;
   margin: 5px;
-}
-
-.flexbox {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
 }
