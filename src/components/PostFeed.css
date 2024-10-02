@@ -1,0 +1,17 @@
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:center;
+
+    width: 70%;
+    height: 90%;
+
+    position: absolute;
+    left: 15%; 
+    bottom: 0;
+    
+    overflow-y: auto;
+    border-right: 5px solid;
+    border-color: #ECD6FA;
+}   
