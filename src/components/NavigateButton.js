@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 function NavigateButton(props) {
-  const {buttonText, path} = props
+  const {buttonText, path, bootstrap} = props
   
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ function NavigateButton(props) {
   };
 
   return (
-    <button className="create-user-btn" onClick={handleClick}>
+    <button className={bootstrap} onClick={handleClick}>
           {buttonText}
     </button>
   )
