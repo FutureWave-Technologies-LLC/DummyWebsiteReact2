@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import CredentialInput from '../components/CredentialInput';
-
 function SignUpPage() {
     const [fname, setfName] = useState("")
     const [lname, setlName] = useState("")
@@ -23,7 +21,6 @@ function SignUpPage() {
                 password: password,
                 first_name: fname,
                 last_name: lname,
-                //TODO: key-values for fname and lname
             })
                 .then((response) => {
                     if (response.data.error == true){
@@ -47,32 +44,36 @@ function SignUpPage() {
         <div className="App">
             <h1>Sign Up</h1>
             <div>
-                <CredentialInput
+                <input
                     type="text"
-                    setterMethod={setfName}
-                    stateValue={fname}
-                    placeHolder="First Name"
-                ></CredentialInput>
-                <CredentialInput
+                    id="firstname"
+                    value={fname}
+                    placeholder="First Name"
+                    onChange={(e) => setfName(e.target.value)}
+                />
+                <input
                     type="text"
-                    setterMethod={setlName}
-                    stateValue={lname}
-                    placeHolder="Last Name"
-                ></CredentialInput>
+                    id="lastname"
+                    value={lname}
+                    placeholder="Last Namea"
+                    onChange={(e) => setlName(e.target.value)}
+                />
             </div>
             <div>
-                <CredentialInput
+                <input
                     type="text"
-                    setterMethod={setUsername}
-                    stateValue={username}
-                    placeHolder="Username"
-                ></CredentialInput>
-                <CredentialInput
+                    id="username"
+                    value={username}
+                    placeholder="Username"
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <input
                     type="password"
-                    setterMethod={setPassword}
-                    stateValue={password}
-                    placeHolder="Password"
-                ></CredentialInput>
+                    id="password"
+                    value={password}
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                />
             </div>
             {error && <h3 style = {{color:"red"}}>{error}</h3>}
             <button onClick={submitCredentials}>Sign Up</button>
