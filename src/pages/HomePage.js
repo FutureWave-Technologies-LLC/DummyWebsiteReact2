@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar"
 import SideBar from "../components/Sidebar"
-import PostFeed from "../components/PostFeed"
 import NotificationBar from "../components/NotificationBar"
+import PostFeed from "../components/PostFeed"
 
 function HomePage() {
     return (
