@@ -1,0 +1,27 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 97%;
+    background: #ECD6FA;
+    padding: 10px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+
+}
+
+.mini {
+}
+
+.main {
+    width: 60%;
+    height: 90%;
+    padding: 20px;
+    margin-bottom: 0px;
+
+    position: absolute;
+    left: 18%; 
+    bottom: 0;
+
+}
