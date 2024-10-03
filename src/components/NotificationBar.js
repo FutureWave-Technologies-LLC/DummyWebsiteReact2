@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Notification from "./Notification"
 
 import "./NotificationBar.css"
 
@@ -18,10 +17,9 @@ function NotificationBar() {
     return (
         <div className="notification-bar">
             {notificationFeed.map(notification => (
-                <Notification
-                    user={notification.user}
-                    text={notification.text}
-                ></Notification>
+                <button className="notification">
+                    {notification.user} {notification.text}
+                </button>
             ))}
         </div>
     )
