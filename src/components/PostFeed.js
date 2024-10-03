@@ -1,5 +1,5 @@
 import { useState } from "react"
-import MiniPost from "./MiniPost"
+import Post from "./Post"
 
 import "./PostFeed.css"
 
@@ -43,13 +43,14 @@ function PostFeed() {
     return (
         <div className="feed-container">
             {postFeed.map(post => (
-                <MiniPost
+                <Post
+                    is_mini={true}
                     post_id={post.post_id}
                     user={post.user}
                     media={post.media}
                     title={post.title}
                     description={post.text}
-                ></MiniPost>
+                ></Post>
             ))}
         </div> 
     )
