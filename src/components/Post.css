@@ -11,11 +11,16 @@
 
 }
 
-.mini {
+.post:hover {
+    background-color: #e8c4ff;
 }
 
-.main {
-    width: 60%;
+.mini {
+    border: 0;
+}
+
+.normal {
+    width: 37%;
     height: 90%;
     padding: 20px;
     margin-bottom: 0px;
@@ -24,4 +29,5 @@
     left: 18%; 
     bottom: 0;
 
+    overflow-y: auto;
 }
