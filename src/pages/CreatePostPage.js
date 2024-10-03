@@ -3,11 +3,13 @@ import Navbar from "../components/Navbar";
 import SideBar from "../components/Sidebar";
 import NotificationBar from "../components/NotificationBar";
 import './CreatePostPage.css'; 
+import axios from 'axios';
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
-    const [media, setMedia] = useState(null);
+    const [media, setMedia] = useState('');
     const [postText, setPostText] = useState('');
+    const [error, setError] = useState("")
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -27,6 +29,11 @@ const CreatePostPage = () => {
         console.log('Title:', title);
         console.log('Media:', media);
         console.log('Post Text:', postText);
+        axios.post("http://localhost:8000/api/recieving_posts/", {
+            title: title,
+            media: media,
+            postText: postText,
+        })
     };
 
     return (
@@ -34,7 +41,7 @@ const CreatePostPage = () => {
             <Navbar />
             <div className="main-content">
                 <SideBar /> 
-                <div className="create-post-container">
+                <div className="create-post-container">                          
                     <h1>Create New Post</h1>
                     <form className="create-post-form" onSubmit={handlePostSubmit}>
                         <input
