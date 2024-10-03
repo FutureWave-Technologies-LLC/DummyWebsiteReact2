@@ -16,7 +16,7 @@ function SideBar() {
             ></NavigateButton>
             <NavigateButton
                 buttonText="Create Post"
-                path="/"
+                path="/CreatePost"
                 bootstrap="border border-opacity-100"
             ></NavigateButton>
         </div>
