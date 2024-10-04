@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
+import AuthProvider from './hooks/AuthProvider.js';
+import PrivateRoute from './router/PrivateRoute.js';
+
 //Pages
 import DummyDataPage from './pages/DummyDataPage.js';
 import SignUpPage from './pages/SignUpPage.js';
@@ -14,15 +17,24 @@ import './App.css'
 function App() {
   return (
     //Establish routes to be used for navigating
-    //https://www.codeconcisely.com/posts/react-navigation/
-    <Routes>
-          <Route path="/" element={<DummyDataPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path="/sign-in" element={<SignInPage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/create-post" element={<CreatePostPage />} />
-          <Route path="/post" element={<PostPage />} />
-    </Routes>
+    <div className="App">
+      <AuthProvider>
+        <Routes>
+            <Route path="/" element={<DummyDataPage />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/sign-in" element={<SignInPage />} />
+
+            {/* These routes are protected via AuthProvider for authentication */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/create-post" element={<CreatePostPage />} />
+              <Route path="/post" element={<PostPage />} />
+            </Route>
+        </Routes>
+      </AuthProvider>
+    </div>
+    
+    
   )
 }
 
