@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: flex-start;
 
-    height: 90%;
     width: 15%; 
+    height: 90%;
 
     position: absolute;
     right: 0; 
