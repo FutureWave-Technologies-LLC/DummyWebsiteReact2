@@ -32,3 +32,13 @@
     margin: 10px 0;
     width: 100%;
 }
+
+.notification {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    text-align: center;
+}
