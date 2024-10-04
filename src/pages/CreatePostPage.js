@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import SideBar from "../components/Sidebar";
 import NotificationBar from "../components/NotificationBar";
 import './CreatePostPage.css'; 
+import axios from 'axios';
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
@@ -27,6 +28,11 @@ const CreatePostPage = () => {
         console.log('Title:', title);
         console.log('Media:', media);
         console.log('Post Text:', postText);
+        axios.post("http://3.142.185.208:8000/api/recieving_posts/", {
+            title: title,
+            media: media,
+            postText: postText,
+        })
     };
 
     return (

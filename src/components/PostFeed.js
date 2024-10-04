@@ -30,7 +30,7 @@ function PostFeed() {
               <Post
                   is_mini={true}
                   post_id={post.post_id}
-                  user={post.user}
+                  user={post.username}
                   media={post.media}
                   title={post.title}
                   description={post.text}
