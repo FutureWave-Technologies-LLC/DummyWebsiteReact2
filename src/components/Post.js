@@ -5,11 +5,25 @@ function Post(props) {
 
     //Mini Post is a button
     if (is_mini) {
+        var charLimit = 50;
+        //shorten description if it exceeds char limit
+        function shortDescription(descriptionText) {
+            let newDescriptionText = descriptionText
+            if (descriptionText.length > charLimit) {
+                newDescriptionText = descriptionText.substring(0, charLimit) + "..."
+            }
+            return newDescriptionText
+        }
+
+        function navigateToPost() {
+            //TODO: Navigate to Post page filled with respective post info
+        }
+
         return (
-            <button className="mini post" id={post_id}>
+            <button onClick={navigateToPost} className="mini post" id={post_id}>
                 <h2>{title}</h2>
                 <p>Posted by: {user}</p>
-                <p>{description}</p>
+                <p>{shortDescription(description)}</p>
             </button>
         )
     //Normal post is div container
