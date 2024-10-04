@@ -1,6 +1,9 @@
 import './Navbar.css'
 
+import { useAuth } from "../hooks/AuthProvider"
+
 function Navbar() {
+    const user = useAuth()
     return (
         <div className="navbar">
             <h2>New Space</h2>
@@ -8,7 +11,10 @@ function Navbar() {
                 className="search-bar"
                 placeholder="Search">
             </input>
-            <h2>Hello, User!</h2>
+            { user && (
+                <h2>Hello, {user.username}!</h2>
+            )}
+            
         </div>
     )
 }
