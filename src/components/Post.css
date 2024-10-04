@@ -1,0 +1,33 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 97%;
+    background: #ECD6FA;
+    padding: 10px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+
+}
+
+.post:hover {
+    background-color: #e8c4ff;
+}
+
+.mini {
+    border: 0;
+}
+
+.normal {
+    width: 37%;
+    height: 90%;
+    padding: 20px;
+    margin-bottom: 0px;
+
+    position: absolute;
+    left: 18%; 
+    bottom: 0;
+
+    overflow-y: auto;
+}

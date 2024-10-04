@@ -12,6 +12,6 @@
     bottom: 0;
     
     overflow-y: auto;
-    border-right: 5px solid;
+    border-radius: 10px;
     border-color: #ECD6FA;
 }   

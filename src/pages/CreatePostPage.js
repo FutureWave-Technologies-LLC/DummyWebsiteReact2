@@ -29,7 +29,7 @@ const CreatePostPage = () => {
         console.log('Title:', title);
         console.log('Media:', media);
         console.log('Post Text:', postText);
-        axios.post("http://localhost:8000/api/recieving_posts/", {
+        axios.post("http://3.142.185.208:8000/api/recieving_posts/", {
             title: title,
             media: media,
             postText: postText,

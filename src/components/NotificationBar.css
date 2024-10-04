@@ -14,3 +14,10 @@
     border-right: 5px solid;
     border-color: #ECD6FA;
 }
+
+.notification {
+    text-align: center;
+    background: #ECD6FA;
+    padding: 10px;
+    border-radius: 15px;
+}

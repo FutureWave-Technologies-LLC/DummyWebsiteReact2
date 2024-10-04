@@ -10,14 +10,14 @@ function SideBar() {
                 bootstrap="border border-opacity-100"
             ></NavigateButton>
             <NavigateButton
-                buttonText="Messages"
-                path="/"
+                buttonText="Create Post"
+                path="/create-post"
                 bootstrap="border border-opacity-100"
             ></NavigateButton>
             <NavigateButton
-                buttonText="Create Post"
-                path="/CreatePost"
-                bootstrap="border border-opacity-100"
+                buttonText="Dummy page"
+                path="/"
+                bootstrap="border border-opacity-100 bg-danger"
             ></NavigateButton>
         </div>
     )

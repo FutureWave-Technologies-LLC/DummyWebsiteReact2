@@ -1,0 +1,27 @@
+.comments-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 25%;
+    height: 90%;
+
+    position: absolute;
+    right: 20%; 
+    bottom: 0;
+    
+    overflow-y: auto;
+    border-radius: 25px;
+    background-color: #e8c4ff;
+}
+
+.comment {
+    padding: 15px;
+    background-color: #d695ff;
+    margin: 10px;
+    border-radius: 25px;
+}
+
+h4 {
+    text-align: center;
+}
