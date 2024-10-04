@@ -5,7 +5,7 @@ import Post from "../components/Post"
 import CommentFeed from "../components/CommentFeed"
 
 function PostPage() {
-    //This object is ONLY here to visualize the comment feed
+    //This object is ONLY here to visualize the post and comment feed
     //Will be deleted later.
     const testPost = {
         post_id: 0,
