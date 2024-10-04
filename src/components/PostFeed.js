@@ -5,38 +5,8 @@ import Post from "./Post"
 import "./PostFeed.css"
 
 function PostFeed() {
+  const [hadFetchedData, setFetchedData] = useState(false)
   const [postFeed, setPostFeed] = useState([])
-  // const [postFeed, setPostFeed] = useState([
-  //     {
-  //       post_id: 1,
-  //       user: "Joe Roe",
-  //       media: "",
-  //       title: "This is a title.",
-  //       text: "A description goes here."
-        
-  //     },
-  //     {
-  //       post_id: 2,
-  //       user: "Joe Roe",
-  //       media: "",
-  //       title: "This is a title.",
-  //       text: "A description goes here2."
-  //     },
-  //     {
-  //       post_id: 3,
-  //       user: "Joe Roe",
-  //       media: "",
-  //       title: "This is a title.",
-  //       text: "A description goes here3."
-  //     },
-  //     {
-  //         post_id: 4,
-  //         user: "Joe Roe",
-  //         media: "",
-  //         title: "This is a title.",
-  //         text: "A description goes here4."
-  //       },
-  // ])
 
   const fetchPostData = () => {
     axios.get("http://3.142.185.208:8000/api/posts/")  // Update with your Django API URL
@@ -47,7 +17,12 @@ function PostFeed() {
         console.error('Error fetching post data:', error);
     });
   };
-  fetchPostData()
+  //Fetch data once; prevents multiple API calls
+  if (hadFetchedData == false) {
+    setFetchedData(true)
+    fetchPostData()
+  }
+  
 
   return (
       <div className="feed-container">
