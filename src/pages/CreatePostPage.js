@@ -7,9 +7,10 @@ import axios from 'axios';
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
-    const [media, setMedia] = useState('');
+    const [media, setMedia] = useState(null);
     const [postText, setPostText] = useState('');
-    const [error, setError] = useState("");
+    const [error, setError] = useState('');
+    const [notification, setNotification] = useState('');
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -32,14 +33,15 @@ const CreatePostPage = () => {
             formData.append('media', media);
             formData.append('postText', postText);
 
-            await axios.post('/api/posts/', formData);
+            await axios.post('http://3.142.185.208:8000/api/recieving_posts/', formData);
 
-            
             setTitle('');
-            setMedia('');
+            setMedia(null);
             setPostText('');
 
-            alert('Posted!');
+        
+            setNotification('Posted!');
+            setTimeout(() => setNotification(''), 3000); 
         } catch (error) {
             setError('Failed to post. Please try again.');
         }
@@ -82,6 +84,7 @@ const CreatePostPage = () => {
                         </button>
                     </form>
                     {error && <p className="error">{error}</p>}
+                    {notification && <div className="notification">{notification}</div>}
                 </div>
                 <NotificationBar /> 
             </div>
