@@ -7,6 +7,7 @@ import SignInPage from './pages/SignInPage.js';
 import HomePage from './pages/HomePage.js';
 import CreatePostPage from './pages/CreatePostPage.js';
 import PostPage from './pages/PostPage.js';
+import MessagesPage from './pages/MessagesPage.js';
 
 //css
 import './App.css'
