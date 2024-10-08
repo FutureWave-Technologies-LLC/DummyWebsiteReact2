@@ -20,7 +20,6 @@ function PostFeed() {
           console.error('Error fetching post data:', error);
       });
     }
-    
   };
 
   fetchPostData()
