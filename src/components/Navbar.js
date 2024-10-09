@@ -3,6 +3,7 @@ import './Navbar.css'
 import { useAuth } from "../hooks/AuthProvider"
 
 function Navbar() {
+    const token = JSON.parse(localStorage.getItem("future-token"))
     const user = useAuth()
     return (
         <div className="navbar">
@@ -12,7 +13,7 @@ function Navbar() {
                 placeholder="Search">
             </input>
             { user && (
-                <h2>Hello, {user.username}!</h2>
+                <h2>Hello, {token.username}!</h2>
             )}
             
         </div>
