@@ -7,7 +7,6 @@ const AuthContext = createContext();
 
 //Protects the routes(children) that it wraps in App.js
 const AuthProvider = ({ children }) => {
-    const [username, setUsername] = useState(null)
     const [token, setToken] = useState(localStorage.getItem("future-token") || "")
     const navigate = useNavigate()
 
@@ -22,12 +21,9 @@ const AuthProvider = ({ children }) => {
               console.log(response.data.response)
           }
           else {
-              //set auth related values
-              //This might be the solution to create unique user sessions?
-              setUsername(response.data.username);
-              //Get and store token in user's localStorage
-              setToken(response.data.token);
-              localStorage.setItem("future-token", response.data.token);
+              //Get data response and store it to user's localStorage as token
+              localStorage.setItem("future-token", JSON.stringify(response.data));
+              setToken(localStorage.getItem("future-token"))
               navigate("/home");
               return;
           }
@@ -38,7 +34,6 @@ const AuthProvider = ({ children }) => {
     }
 
     const logOut = () => {
-      setUsername(null);
       setToken("");
       localStorage.removeItem("future-token");
       navigate("/sign-in");
@@ -47,7 +42,7 @@ const AuthProvider = ({ children }) => {
     //AuthContext.Provider makes token, user, and above functions accessible
     //to the children components that AuthProvider wraps
     return (
-      <AuthContext.Provider value={{ token, username, loginAction, logOut }}>
+      <AuthContext.Provider value={{ token, loginAction, logOut }}>
         {children}
       </AuthContext.Provider>
     )
