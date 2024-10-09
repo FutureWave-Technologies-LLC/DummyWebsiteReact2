@@ -23,6 +23,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/create-post" element={<CreatePostPage />} />
           <Route path="/post" element={<PostPage />} />
+          <Route path="/messages" element={<MessagesPage />} />
     </Routes>
   )
 }
