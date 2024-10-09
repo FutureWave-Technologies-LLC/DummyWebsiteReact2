@@ -13,18 +13,6 @@
     padding-top: 20px; 
 }
 
-/* Sidebar for the main navigation */
-.sidebar {
-    width: 15%;
-    border-right: 1px solid #ccc;
-    overflow-y: auto;
-    padding: 10px;
-    position: absolute;
-    left: 0;
-    top: 10%; 
-    bottom: 0;
-}
-
 /* Conversation list container */
 .conversation-list {
     width: 25%;
