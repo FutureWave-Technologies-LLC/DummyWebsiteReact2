@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import './SignInPage.css'; 
 import axios from 'axios';
 import { useAuth } from "../hooks/AuthProvider";
@@ -9,7 +9,15 @@ const SignInPage = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
+    const navigate = useNavigate()
     const auth = useAuth()
+
+    useEffect(() => {
+        if (auth.token) {
+            navigate("/home")
+        }
+    }, [navigate])
+
     const handleSignIn = async (e) => {
         e.preventDefault()
         axios.post("http://3.142.185.208:8000/api/login_page/", {
