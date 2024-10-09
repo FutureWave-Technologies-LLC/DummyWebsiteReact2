@@ -55,7 +55,7 @@ function SignUpPage() {
                     type="text"
                     id="lastname"
                     value={lname}
-                    placeholder="Last Namea"
+                    placeholder="Last Name"
                     onChange={(e) => setlName(e.target.value)}
                 />
             </div>

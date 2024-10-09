@@ -1,0 +1,115 @@
+/* Container for the entire messages page */
+.messages-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Container for the main content below the navbar */
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 15%; 
+    padding-top: 20px; 
+}
+
+/* Sidebar for the main navigation */
+.sidebar {
+    width: 15%;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    top: 10%; 
+    bottom: 0;
+}
+
+/* Conversation list container */
+.conversation-list {
+    width: 25%;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Conversation list header */
+.conversation-list-header {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+}
+
+/* Conversation list item styling */
+.conversation-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.conversation-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Main chat area container */
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    padding-top: 70px; 
+}
+
+/* Chat header */
+.chat-header {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Chat messages container */
+.chat-messages {
+    width: 100%;
+    height: 70%;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Individual message styling */
+.message {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.message.sent {
+    text-align: right;
+}
+
+.message.received {
+    text-align: left;
+}
+
+/* Input field for new messages */
+.message-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.message-input input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.message-input button {
+    padding: 10px 20px;
+}

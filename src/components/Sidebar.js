@@ -13,6 +13,11 @@ function SideBar() {
                 bootstrap="border border-opacity-100"
             ></NavigateButton>
             <NavigateButton
+                buttonText="Messages"
+                path="/messages"
+                bootstrap="border border-opacity-100"
+            ></NavigateButton>
+            <NavigateButton
                 buttonText="Create Post"
                 path="/create-post"
                 bootstrap="border border-opacity-100"
