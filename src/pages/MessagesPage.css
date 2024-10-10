@@ -75,14 +75,20 @@
 .message {
     padding: 10px;
     border-bottom: 1px solid #eee;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .message.sent {
     text-align: right;
+    background-color: #ECD6FA; 
+    border-bottom-right-radius: 0;
 }
 
 .message.received {
     text-align: left;
+    background-color: #b8b8b8;
+    border-bottom-left-radius: 0;
 }
 
 /* Input field for new messages */
