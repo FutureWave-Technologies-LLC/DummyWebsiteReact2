@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import axios from 'axios';
 import "./MessagesPage.css"; 
-import { useAuth } from "../hooks/AuthProvider"
 
 function MessagesPage() {
-    const token = JSON.parse(localStorage.getItem("future-token"))
     const [message, setMessage] = useState("");
     const [selectedChat, setSelectedChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
-    const websocketRef = useRef(null);  // WebSocket reference
+    const [selectedUser, setSelectedUser] = useState(null);  // Store the selected user for creating chat
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/')
@@ -24,57 +21,77 @@ function MessagesPage() {
             });
     }, []);
 
-    // Handle WebSocket connection
-    const connectWebSocket = (chatId) => {
-        const wsUrl = `ws://localhost:8000/ws/chat/${chatId}/`;
-        websocketRef.current = new WebSocket(wsUrl);
-
-        websocketRef.current.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            setMessages((prevMessages) => [...prevMessages, { text: data.message, type: 'received' }]);
-        };
-
-        websocketRef.current.onclose = () => {
-            console.log("WebSocket connection closed");
-        };
-    };
-
     // Handle message input change
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
     };
 
-    // Send a message via WebSocket
+    // Send a message via the selected chat
     const handleSendMessage = () => {
-        if (websocketRef.current && selectedChat) {
-            websocketRef.current.send(JSON.stringify({
-                'message': message
-            }));
-            setMessages([...messages, { text: message, type: 'sent' }]);
-            setMessage("");  // Clear the message input
+        if (selectedChat) {
+            axios.post('http://localhost:8000/api/messages/send/', {
+                chat: selectedChat,
+                text: message,
+                receiver: selectedUser.id,  // Adjust the receiver as needed
+            })
+            .then((response) => {
+                setMessages([...messages, { text: message, type: 'sent' }]);
+                setMessage("");  // Clear the message input
+            })
+            .catch((error) => {
+                console.error("Error sending message:", error);
+            });
         }
     };
 
-    // Handle user click: Get chat info or create chat if not found
+    // Handle user click: Get chat info or prompt to create chat if not found
     const handleUserClick = (user) => {
-        setSelectedUser(user);
+        setSelectedUser(user);  // Set selected user to send messages later
 
-        axios.post('http://localhost:8000/api/chat_get/', {
-            user1_id: token.token_id,  // Replace with actual logged-in user ID
+        axios.post('http://localhost:8000/api/chat/get/', {
+            user1_id: 1,  // Replace with actual logged-in user ID
             user2_id: user.id,  // Selected user ID
         })
         .then((response) => {
             const chatId = response.data.chat_id;
-            connectWebSocket(chatId);  // Connect to WebSocket
-            setSelectedChat(chatId);  // Store the chat ID
+            // Fetch messages for the chat
+            axios.get(`http://localhost:8000/api/messages/chat/${chatId}/`)
+                .then((response) => {
+                    setMessages(response.data.response);  // Set messages from API
+                    setSelectedChat(chatId);  // Store the chat ID
+                })
+                .catch((error) => {
+                    console.error("Error fetching messages:", error);
+                });
         })
         .catch((error) => {
             if (error.response && error.response.status === 404) {
+                console.log("No chat found, user can create a new chat.");
+                // No chat found, prompt the user to create a new chat
                 setSelectedChat(null);  // No chat exists yet
             } else {
                 console.error("Error fetching chat info:", error);
             }
         });
+    };
+
+    // Handle creating a new chat
+    const handleCreateChat = () => {
+        if (selectedUser) {
+            axios.post('http://localhost:8000/api/chat/create/', {
+                user1_id: 1,  // Replace with actual logged-in user ID
+                user2_id: selectedUser.id,  // Selected user ID
+            })
+            .then((response) => {
+                const chatId = response.data.chat_id;
+                setSelectedChat(chatId);  // Set the newly created chat ID
+                setMessages([]);  // Start with no messages in the new chat
+                console.log("Chat created successfully:", chatId);
+            })
+            .catch((error) => {
+                console.error("Error creating chat:", error);
+            });
+        }
     };
 
     return (
@@ -93,6 +110,12 @@ function MessagesPage() {
                     </ul>
                 </div>
                 <div className="chat-area">
+                    {selectedUser && !selectedChat && (
+                        <div className="create-chat">
+                            <h3>No chat found with {selectedUser.name}. Would you like to create a new chat?</h3>
+                            <button onClick={handleCreateChat}>Create Chat</button>
+                        </div>
+                    )}
                     {selectedChat && (
                         <>
                             <div className="chat-header">
