@@ -3,8 +3,10 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import axios from 'axios';
 import "./MessagesPage.css"; 
+import { useAuth } from "../hooks/AuthProvider"
 
 function MessagesPage() {
+    const token = JSON.parse(localStorage.getItem("future-token"))
     const [message, setMessage] = useState("");
     const [selectedChat, setSelectedChat] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -57,8 +59,8 @@ function MessagesPage() {
     const handleUserClick = (user) => {
         setSelectedUser(user);
 
-        axios.post('http://localhost:8000/api/chat/get/', {
-            user1_id: 1,  // Replace with actual logged-in user ID
+        axios.post('http://localhost:8000/api/chat_get/', {
+            user1_id: token.token_id,  // Replace with actual logged-in user ID
             user2_id: user.id,  // Selected user ID
         })
         .then((response) => {
