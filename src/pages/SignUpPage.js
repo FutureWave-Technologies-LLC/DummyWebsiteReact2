@@ -16,7 +16,7 @@ function SignUpPage() {
         
         if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
              && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
-            axios.post("http://3.142.185.208:8000/api/users/", {
+            axios.post("http://localhost:8000/api/users/", {
                 username: username,
                 password: password,
                 first_name: fname,
@@ -28,7 +28,7 @@ function SignUpPage() {
                         setError(response.data.response)
                     }
                     else {
-                        window.location.href = 'http://18.222.224.80:3000/sign-in/?response=Created'
+                        window.location.href = 'http://localhost:3000/sign-in/?response=Created'
                     }
                 })
                 .catch((error) => {
