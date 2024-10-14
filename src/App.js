@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage.js';
 import CreatePostPage from './pages/CreatePostPage.js';
 import PostPage from './pages/PostPage.js';
 import MessagesPage from './pages/MessagesPage.js';
+import ProfilePage from './pages/ProfilePage.js';
 
 //css
 import './App.css'
@@ -31,6 +32,7 @@ function App() {
               <Route path="/create-post" element={<CreatePostPage />} />
               <Route path="/post" element={<PostPage />} />
               <Route path="/messages" element={<MessagesPage />} />
+              <Route path="/profile" component={<ProfilePage />} />
             </Route>
         </Routes>
       </AuthProvider>
