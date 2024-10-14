@@ -5,7 +5,7 @@ import axios from "axios";
 //Creates context for managing authentication state
 const AuthContext = createContext();
 
-//Protects the routes(children) that it wraps in App.js
+//Wraps the routes in App.js
 const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("future-token") || "")
     const navigate = useNavigate()
