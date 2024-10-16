@@ -20,7 +20,7 @@ const SignInPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.post("http://3.142.185.208:8000/api/login_page/", {
+        axios.post("http://3.142.185.208:8000/api/login_user/", {
             username: username,
             password: password,
         })
