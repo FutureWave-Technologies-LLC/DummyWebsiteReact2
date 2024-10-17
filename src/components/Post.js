@@ -1,7 +1,7 @@
 import "./Post.css"
 
 function Post(props) {
-    const {is_mini, post_id, user, media, title, description} = props
+    const {is_mini, post_id, username, media, title, description} = props
 
     //Mini Post is a button
     if (is_mini) {
@@ -22,7 +22,7 @@ function Post(props) {
         return (
             <button onClick={navigateToPost} className="mini post" id={post_id}>
                 <h2>{title}</h2>
-                <p>Posted by: {user}</p>
+                <p>Posted by: {username}</p>
                 <p>{shortDescription(description)}</p>
             </button>
         )
@@ -32,7 +32,7 @@ function Post(props) {
             <div>
                 <div className="normal post" id={post_id}>
                     <h2>{title}</h2>
-                    <p>Posted by: {user}</p>
+                    <p>Posted by: {username}</p>
                     <p>{description}</p>
                 </div>
             </div>
