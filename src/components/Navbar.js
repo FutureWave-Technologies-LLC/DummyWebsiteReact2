@@ -30,13 +30,12 @@ function Navbar() {
                 onChange={(event) => setSearchQuery(event.target.value)}
             ></input>
             <button 
-                className="search-btn" 
+                className="search-btn border border-opacity-100" 
                 type="submit"
             >Search</button>
             { user && (
                 <h2>Hello, {token.username}!</h2>
             )}
-            
         </form>
     )
 }
