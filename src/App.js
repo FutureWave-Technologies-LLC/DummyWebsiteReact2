@@ -12,6 +12,7 @@ import CreatePostPage from './pages/CreatePostPage.js';
 import PostPage from './pages/PostPage.js';
 import MessagesPage from './pages/MessagesPage.js';
 import SearchPage from './pages/SearchPage.js';
+import ProfilePage from './pages/ProfilePage.js';
 
 //css
 import './App.css'
@@ -30,6 +31,7 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="/home" element={<HomePage />} />
               <Route path="/create-post" element={<CreatePostPage />} />
+              <Route path="/profile/:userId" element={<ProfilePage/>}/>
               <Route path="/post" element={<PostPage />} />
               <Route path="/messages" element={<MessagesPage />} />
               <Route path="/search" element={<SearchPage />} />
