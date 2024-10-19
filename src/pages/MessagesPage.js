@@ -36,7 +36,7 @@ function MessagesPage() {
     return (
         <div className="messages-page">
             <Navbar />
-            <Sidebar className="sidebar" />
+            <Sidebar />
             <div className="main-content">
                 <div className="conversation-list">
                     <div className="conversation-list-header">Conversations</div>
