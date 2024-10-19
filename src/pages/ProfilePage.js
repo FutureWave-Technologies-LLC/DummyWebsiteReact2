@@ -35,16 +35,17 @@ function ProfilePage() {
         })
 
         //get list of follower that follow user
-        axios.get("", {
+        axios.get("http://localhost:8000/api/followers/", {
             params: {
                 user_id: userId,
             }
         })
         .then((response) => {
-            setFollowers(response.data)
+            console.log(response.data)
+            // setFollowers(response.data)
         })
         .catch((error) => {
-            console.error('Error fetching user data:', error)
+            console.error('Error fetching followers data:', error)
         })
 
     }, [])
