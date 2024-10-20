@@ -1,0 +1,21 @@
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 60px; 
+    margin-left: 220px; 
+    padding: 16px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.user-name {
+    flex: 1;
+}
