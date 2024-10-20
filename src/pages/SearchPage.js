@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
 import Navbar from "../components/Navbar"
 import SideBar from "../components/Sidebar"
-import NotificationBar from "../components/NotificationBar"
+import './SearchPage.css';
 import axios from 'axios'
 import { useAuth } from "../hooks/AuthProvider" // Assuming you have an AuthProvider hook
 

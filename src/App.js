@@ -26,7 +26,7 @@ function App() {
             <Route path="/" element={<DummyDataPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
             <Route path="/sign-in" element={<SignInPage />} />
-
+      
             {/* These routes are protected via PrivateRoute for authentication */}
             <Route element={<PrivateRoute />}>
               <Route path="/home" element={<HomePage />} />
