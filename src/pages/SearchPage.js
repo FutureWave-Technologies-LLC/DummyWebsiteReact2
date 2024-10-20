@@ -82,6 +82,15 @@ function Search() {
                     </button>
                 </div>
             ))) || <p>{queryResult.Response}</p>}
+
+            {/* {filteredUsers.map(user => (
+                <div key={user.id} className="user-item">
+                    <p className="user-name">{user.name}</p>
+                    <button onClick={() => handleFollow(user.id)}>
+                            {followedUsers.includes(user.id) ? 'Following' : 'Follow'}
+                    </button>
+                </div>
+            ))} */}
             
             <NotificationBar></NotificationBar>
         </div>
