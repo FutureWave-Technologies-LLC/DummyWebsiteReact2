@@ -10,52 +10,49 @@ function ProfilePage() {
     const { userId } = useParams()
     const [loading, IsLoading] = useState(true)
     const [user, setUser] = useState(null)
-    const [followers, setFollowers] = useState([
-        {username: "follower1"},
-        {username: "follower2"}
-    ])
+    const [followers, setFollowers] = useState([])
 
     useEffect(() => {
         //get user's data based on id
-        axios.get("http://localhost:8000/api/get_user_data/", {
+        axios.get("http://3.142.185.208:8000/api/get_user_data/", {
             params: {
                 user_id: userId,
             }
         })
         .then((response) => {
             //setUser only if request returns a user
-            if (response.data[0]) {
+            if (response.data) {
                 setUser(response.data)
+                // //get list of the user's followers
+                axios.get("http://3.142.185.208:8000/api/get_followers/", {
+                    params: {
+                        user_id: response.data.user_id,
+                    }
+                })
+                .then((response) => {
+                    console.log(response.data)
+                    setFollowers(response.data)
+                })
+                .catch((error) => {
+                    console.error('Error fetching followers data:', error)
+                })
             }
+            
             IsLoading(false)
         })
         .catch((error) => {
             console.error('Error fetching user data:', error)
             IsLoading(false)
         })
-
-        //get list of follower that follow user
-        axios.get("http://localhost:8000/api/followers/", {
-            params: {
-                user_id: userId,
-            }
-        })
-        .then((response) => {
-            console.log(response.data)
-            // setFollowers(response.data)
-        })
-        .catch((error) => {
-            console.error('Error fetching followers data:', error)
-        })
-
     }, [])
+
     return (
         <div>
             <Navbar></Navbar>
             <SideBar></SideBar>
             {(user && 
                 <div className="profile-container">
-                    <h1>{user[0].username}</h1>
+                    <h1>{user.username}</h1>
                     <h2>Followers:</h2>
                     {followers.map((follower) => (
                             <p>{follower.username}</p>
