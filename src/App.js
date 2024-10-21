@@ -6,7 +6,7 @@ import PrivateRoute from './router/PrivateRoute.js';
 //Pages
 import DummyDataPage from './pages/DummyDataPage.js';
 import SignUpPage from './pages/SignUpPage.js';
-import SignInPage from './pages/SignInPage.js';
+import LoginPage from './pages/LoginPage.js';
 import HomePage from './pages/HomePage.js';
 import CreatePostPage from './pages/CreatePostPage.js';
 import PostPage from './pages/PostPage.js';
@@ -25,7 +25,7 @@ function App() {
         <Routes>
             <Route path="/" element={<DummyDataPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
-            <Route path="/sign-in" element={<SignInPage />} />
+            <Route path="/login" element={<LoginPage />} />
       
             {/* These routes are protected via PrivateRoute for authentication */}
             <Route element={<PrivateRoute />}>
