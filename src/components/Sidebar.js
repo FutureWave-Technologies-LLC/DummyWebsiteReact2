@@ -22,6 +22,11 @@ function SideBar() {
                 path="/create-post"
                 bootstrap="border border-opacity-100"
             ></NavigateButton>
+            <NavigateButton
+                buttonText="Profile"
+                path="/profile/:userId"
+                bootstrap="border border-opacity-100"
+            ></NavigateButton>
             <button 
                 onClick={() => auth.logOut()} 
                 className="log-out border border-opacity-100"
