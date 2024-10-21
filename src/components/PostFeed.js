@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from 'axios'
 
 import Post from "./Post"
@@ -6,11 +6,9 @@ import Post from "./Post"
 import "./PostFeed.css"
 
 function PostFeed() {
-  var [hasFetchedData, setHasFetchedData] = useState(false)
   const [postFeed, setPostFeed] = useState([])
 
-  if (hasFetchedData === false) {
-    setHasFetchedData(true)
+  useEffect(() => {
     axios.get("http://3.142.185.208:8000/api/posts/")  
     .then((response) => {
       setPostFeed(response.data)
@@ -18,7 +16,7 @@ function PostFeed() {
     .catch((error) => {
         console.error('Error fetching post data:', error);
     })
-  }
+  }, [])
 
   return (
       <div className="feed-container">
