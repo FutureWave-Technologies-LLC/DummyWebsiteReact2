@@ -12,7 +12,7 @@ function SearchFeed() {
     //Fetch data once; don't call API multiple times
     if (hasFetchedData == false) {
       setHasFetchedData(true)
-      axios.get("http://localhost:8000/api/search_user/")  // Update with your Django API URL
+      axios.get("http://3.142.185.208:8000/api/search_user/")  // Update with your Django API URL
       .then((response) => {
         setSearchFeed(response.data);  // Store the API response in the state
       })
