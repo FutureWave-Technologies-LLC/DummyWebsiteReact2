@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const loginAction = (input) => {
       //use username and password to authenticate
-      axios.post("http://localhost:8000/api/authenticate_user/", {
+      axios.post("http://3.142.185.208:8000/api/authenticate_user/", {
           username: input.username,
           password: input.password
       })
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
     const logOut = () => {
       setToken("");
       localStorage.removeItem("future-token");
-      navigate("/sign-in");
+      navigate("/login");
     };
 
     //AuthContext.Provider makes token, user, and above functions accessible
