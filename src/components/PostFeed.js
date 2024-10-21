@@ -11,7 +11,7 @@ function PostFeed() {
 
   if (hasFetchedData === false) {
     setHasFetchedData(true)
-    axios.get("http://localhost:8000/api/posts/")  
+    axios.get("http://3.142.185.208:8000/api/posts/")  
     .then((response) => {
       setPostFeed(response.data)
     })
