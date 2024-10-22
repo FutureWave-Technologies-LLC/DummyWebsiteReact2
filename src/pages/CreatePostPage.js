@@ -32,13 +32,6 @@ const CreatePostPage = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Handle post submission logic here
-            // const formData = new FormData();
-            // formData.append('title', title);
-            // formData.append('media', media);
-            // formData.append('postText', postText);
-            // formData.append('username', token.username);
-
             await axios.post('http://3.142.185.208:8000/api/recieving_posts/', {
                 title: title,
                 media: media,
