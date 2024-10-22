@@ -72,13 +72,13 @@ function ProfilePage() {
                             <h2>Followers:</h2>
                             {followers.map((follower) => (
                                     <p>{follower.username}</p>
-                            ))}
+                            )).reverse()}
                         </div>
                         <div className="followees-container">
                             <h2>Following:</h2>
                             {followees.map((followee) => (
                                     <p>{followee.username}</p>
-                            ))}
+                            )).reverse()}
                         </div>
                     </div>
                     
