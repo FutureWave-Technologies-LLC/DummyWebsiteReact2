@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './SignInPage.css'; 
+import './LoginPage.css'; 
 import axios from 'axios';
 import { useAuth } from "../hooks/AuthProvider";
 
-const SignInPage = () => {
+const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -20,9 +20,11 @@ const SignInPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.post("http://3.142.185.208:8000/api/login_page/", {
-            username: username,
-            password: password,
+        axios.get("http://3.142.185.208:8000/api/login/", {
+            params: {
+                username: username,
+                password: password,
+            }
         })
         .then((response) => {
             if (response.data.error === true){
@@ -77,4 +79,4 @@ const SignInPage = () => {
     );
 };
 
-export default SignInPage;
+export default LoginPage;

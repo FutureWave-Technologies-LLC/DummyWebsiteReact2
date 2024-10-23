@@ -57,7 +57,7 @@ function DummyDataPage() {
 
         <NavigateButton
           buttonText="Sign In"
-          path="/sign-in"
+          path="/login"
         ></NavigateButton>
 
         

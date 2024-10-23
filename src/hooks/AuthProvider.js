@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
     const logOut = () => {
       setToken("");
       localStorage.removeItem("future-token");
-      navigate("/sign-in");
+      navigate("/login");
     };
 
     //AuthContext.Provider makes token, user, and above functions accessible

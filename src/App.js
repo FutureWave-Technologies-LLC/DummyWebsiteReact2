@@ -6,11 +6,12 @@ import PrivateRoute from './router/PrivateRoute.js';
 //Pages
 import DummyDataPage from './pages/DummyDataPage.js';
 import SignUpPage from './pages/SignUpPage.js';
-import SignInPage from './pages/SignInPage.js';
+import LoginPage from './pages/LoginPage.js';
 import HomePage from './pages/HomePage.js';
 import CreatePostPage from './pages/CreatePostPage.js';
 import PostPage from './pages/PostPage.js';
 import MessagesPage from './pages/MessagesPage.js';
+import SearchPage from './pages/SearchPage.js';
 import ProfilePage from './pages/ProfilePage.js';
 
 //css
@@ -24,15 +25,16 @@ function App() {
         <Routes>
             <Route path="/" element={<DummyDataPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
-            <Route path="/sign-in" element={<SignInPage />} />
-
-            {/* These routes are protected via AuthProvider for authentication */}
+            <Route path="/login" element={<LoginPage />} />
+      
+            {/* These routes are protected via PrivateRoute for authentication */}
             <Route element={<PrivateRoute />}>
               <Route path="/home" element={<HomePage />} />
               <Route path="/create-post" element={<CreatePostPage />} />
+              <Route path="/profile/:userId" element={<ProfilePage/>}/>
               <Route path="/post" element={<PostPage />} />
               <Route path="/messages" element={<MessagesPage />} />
-              <Route path="/profile" component={<ProfilePage />} />
+              <Route path="/search" element={<SearchPage />} />
             </Route>
         </Routes>
       </AuthProvider>

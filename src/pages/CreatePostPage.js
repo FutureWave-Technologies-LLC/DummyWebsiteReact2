@@ -5,12 +5,17 @@ import NotificationBar from "../components/NotificationBar";
 import './CreatePostPage.css'; 
 import axios from 'axios';
 
+import { useAuth } from "../hooks/AuthProvider"
+
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
     const [media, setMedia] = useState(null);
     const [postText, setPostText] = useState('');
     const [error, setError] = useState('');
     const [notification, setNotification] = useState('');
+
+    const token = JSON.parse(localStorage.getItem("future-token"))
+    const user = useAuth()
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -27,13 +32,12 @@ const CreatePostPage = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Handle post submission logic here
-            const formData = new FormData();
-            formData.append('title', title);
-            formData.append('media', media);
-            formData.append('postText', postText);
-
-            await axios.post('http://3.142.185.208:8000/api/recieving_posts/', formData);
+            await axios.post('http://3.142.185.208:8000/api/recieving_posts/', {
+                title: title,
+                media: media,
+                postText: postText,
+                username: token.username
+            })
 
             setTitle('');
             setMedia(null);
@@ -61,14 +65,14 @@ const CreatePostPage = () => {
                             value={title}
                             placeholder="Title"
                             className="form-control rounded"
-                            onChange={handleTitleChange}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
 
                         <input
                             type="file"
                             id="media"
                             className="form-control rounded"
-                            onChange={handleMediaChange}
+                            onChange={(e) => setMedia(e.target.files[0])}
                         />
 
                         <textarea
@@ -76,7 +80,7 @@ const CreatePostPage = () => {
                             value={postText}
                             placeholder="Post Text"
                             className="form-control rounded"
-                            onChange={handlePostTextChange}
+                            onChange={(e) => setPostText(e.target.value)}
                         />
 
                         <button type="submit" className="btn btn-primary rounded">
