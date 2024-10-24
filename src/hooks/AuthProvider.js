@@ -13,23 +13,23 @@ const AuthProvider = ({ children }) => {
     const loginAction = (input) => {
       //use username and password to authenticate
       axios.post("http://localhost:8000/api/authenticate_user/", {
-          username: input.username,
-          password: input.password
+        username: input.username,
+        password: input.password
       })
       .then((response) => {
           if (response.data.error === true){
-              console.log(response.data.response)
+            console.log(response.data.response)
           }
           else {
-              //Get data response and store it to user's localStorage as token
-              localStorage.setItem("future-token", JSON.stringify(response.data));
-              setToken(localStorage.getItem("future-token"))
-              navigate("/home");
-              return;
-          }
+            //Get data response and store it to user's localStorage as token
+            localStorage.setItem("future-token", JSON.stringify(response.data));
+            setToken(localStorage.getItem("future-token"))
+            navigate("/home");
+            return;
+        }
       })
-      .catch((error) => {
-          console.error('Error with authenticating:', error);
+        .catch((error) => {
+        console.error('Error with authenticating:', error);
       });
     }
 

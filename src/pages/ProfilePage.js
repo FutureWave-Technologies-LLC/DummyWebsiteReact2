@@ -1,30 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-
 import Navbar from "../components/Navbar";
 import SideBar from "../components/Sidebar";
 import NotificationBar from "../components/NotificationBar";
-import Modal from '../components/Modal'; 
+import Modal from '../components/Modal';
+import Post from '../components/Post'; // Import the Post component
 
 import './ProfilePage.css';
 
-
 function ProfilePage() {
-    const { userId } = useParams();
+    const { userId } = useParams();  // Get the userId from the route params if any
     const [loading, IsLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [followers, setFollowers] = useState([]);
     const [followees, setFollowees] = useState([]);
+    const [posts, setPosts] = useState([]);  // State to hold the posts
     const [showFollowers, setShowFollowers] = useState(false);
     const [showFollowees, setShowFollowees] = useState(false);
 
+    // Retrieve the token from localStorage
+    const token = JSON.parse(localStorage.getItem("future-token"));
+
+    // Get the logged-in user's user_id from the token
+    const loggedInUserId = token?.user_id;
+
     useEffect(() => {
+        const profileUserId = userId || loggedInUserId;  // Fallback to loggedInUserId if userId is undefined
+
+        if (!profileUserId) {
+            console.error('No valid userId available');
+            IsLoading(false);
+            return;
+        }
+
         // Fetch user's data
         axios.get("http://localhost:8000/api/get_user_data/", {
-            params: {
-                user_id: userId,
-            }
+            params: { user_id: profileUserId },
         })
         .then((response) => {
             if (response.data.error === false) {
@@ -32,7 +44,7 @@ function ProfilePage() {
 
                 // Fetch followers
                 axios.get("http://localhost:8000/api/get_followers/", {
-                    params: { user_id: response.data.user_id }
+                    params: { user_id: response.data.user_id },
                 })
                 .then((response) => {
                     setFollowers(response.data);
@@ -41,12 +53,21 @@ function ProfilePage() {
 
                 // Fetch followees (users this user is following)
                 axios.get("http://localhost:8000/api/following/", {
-                    params: { user_id: response.data.user_id }
+                    params: { user_id: response.data.user_id },
                 })
                 .then(response => {
                     setFollowees(response.data);
                 })
                 .catch(err => console.error("Error fetching followees data:", err));
+
+                // Fetch the user's posts using the username
+                axios.get("http://localhost:8000/api/profile_posts/", {
+                    params: { username: response.data.username },
+                })
+                .then((response) => {
+                    setPosts(response.data);  // Store the posts in state
+                })
+                .catch(err => console.error("Error fetching posts data:", err));
             } else {
                 console.log(response.data.response);
             }
@@ -57,7 +78,7 @@ function ProfilePage() {
             console.error('Error fetching user data:', error);
             IsLoading(false);
         });
-    }, [userId]);
+    }, [userId, loggedInUserId]);
 
     return (
         <div className="profile-container">
@@ -100,6 +121,26 @@ function ProfilePage() {
                             ))}
                         </Modal>
                     )}
+
+                    {/* Display User Posts */}
+                    <div className="profile-posts">
+                        <h2>{user.username}'s Posts</h2>
+                        {posts.length > 0 ? (
+                            posts.map((post) => (
+                                <Post
+                                    key={post.post_id}
+                                    post_id={post.post_id}
+                                    username={post.username}
+                                    media={post.media}
+                                    title={post.title}
+                                    description={post.text}
+                                    is_mini={true}
+                                />
+                            ))
+                        ) : (
+                            <p>No posts to display.</p>
+                        )}
+                    </div>
                 </div>
             ) : loading ? (
                 <p>Loading data...</p>
@@ -111,7 +152,4 @@ function ProfilePage() {
     );
 }
 
-export default ProfilePage
-
-
-
+export default ProfilePage;
