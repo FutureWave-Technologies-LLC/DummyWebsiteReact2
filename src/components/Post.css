@@ -11,12 +11,12 @@
 
 }
 
-.post:hover {
-    background-color: #e8c4ff;
-}
-
 .mini {
     border: 0;
+}
+
+.mini:hover {
+    background-color: #e8c4ff;
 }
 
 .normal {
