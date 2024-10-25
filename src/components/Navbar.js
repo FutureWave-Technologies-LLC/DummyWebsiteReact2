@@ -26,7 +26,8 @@ function Navbar() {
             <h2>New Space</h2>
             <input
                 className="search-bar"
-                placeholder="Search"
+                placeholder="Search A User"
+                value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
             ></input>
             <button 
