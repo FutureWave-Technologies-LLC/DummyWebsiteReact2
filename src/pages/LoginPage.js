@@ -20,7 +20,7 @@ const LoginPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.get("http://localhost:8000/api/login/", {
+        axios.get("http://3.142.185.208:8000/api/login/", {
             params: {
                 username: username,
                 password: password,

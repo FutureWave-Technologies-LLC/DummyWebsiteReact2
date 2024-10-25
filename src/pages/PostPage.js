@@ -23,7 +23,7 @@ function PostPage() {
     useEffect(() => {
         //get post info based on postId
          // Fetch followers
-         axios.get("http://localhost:8000/api/get_post/", {
+         axios.get("http://3.142.185.208:8000/api/get_post/", {
             params: { post_id: postId },
         })
         .then((response) => {
