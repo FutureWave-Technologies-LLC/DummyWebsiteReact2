@@ -10,6 +10,7 @@ function NavigateButton(props) {
       window.location.href = path
     } else {
       navigate(path);
+      window.location.reload();
     }
       
   };
