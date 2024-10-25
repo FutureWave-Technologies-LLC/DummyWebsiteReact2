@@ -5,8 +5,6 @@ import NotificationBar from "../components/NotificationBar";
 import './CreatePostPage.css'; 
 import axios from 'axios';
 
-import { useAuth } from "../hooks/AuthProvider"
-
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
     const [media, setMedia] = useState(null);
@@ -15,24 +13,11 @@ const CreatePostPage = () => {
     const [notification, setNotification] = useState('');
 
     const token = JSON.parse(localStorage.getItem("future-token"))
-    const user = useAuth()
-
-    const handleTitleChange = (e) => {
-        setTitle(e.target.value);
-    };
-
-    const handleMediaChange = (e) => {
-        setMedia(e.target.files[0]);
-    };
-
-    const handlePostTextChange = (e) => {
-        setPostText(e.target.value);
-    };
 
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://3.142.185.208:8000/api/recieving_posts/', {
+            await axios.post('http://localhost:8000/api/recieving_posts/', {
                 title: title,
                 media: media,
                 postText: postText,
@@ -54,8 +39,9 @@ const CreatePostPage = () => {
     return (
         <div className="create-post-page">
             <Navbar /> 
+            <SideBar /> 
             <div className="main-content">
-                <SideBar /> 
+                
                 <div className="create-post-container">
                     <h1>Create Post</h1>
                     <form className="create-post-form" onSubmit={handlePostSubmit}>
@@ -89,9 +75,9 @@ const CreatePostPage = () => {
                     </form>
                     {error && <p className="error">{error}</p>}
                     {notification && <div className="notification">{notification}</div>}
-                </div>
-                <NotificationBar /> 
+                </div> 
             </div>
+            <NotificationBar /> 
         </div>
     );
 };
