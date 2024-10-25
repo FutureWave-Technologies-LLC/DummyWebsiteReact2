@@ -72,7 +72,7 @@ function Search() {
     }
 
     return (
-        <div>
+        <div className="search-container">
             <Navbar></Navbar>
             <SideBar></SideBar>
             <div className="main-content">

@@ -3,9 +3,11 @@ import SideBar from "../components/Sidebar"
 import NotificationBar from "../components/NotificationBar"
 import PostFeed from "../components/PostFeed"
 
+import "./HomePage.css"
+
 function HomePage() {
     return (
-        <div className="home-page">
+        <div className="home-container">
             <Navbar></Navbar>
             <SideBar></SideBar>
             <PostFeed></PostFeed>
