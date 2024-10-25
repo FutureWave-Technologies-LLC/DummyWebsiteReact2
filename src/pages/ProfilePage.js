@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from "../components/Navbar";
 import SideBar from "../components/Sidebar";
 import NotificationBar from "../components/NotificationBar";
 import Modal from '../components/Modal';
-import Post from '../components/Post'; // Import the Post component
+import Post from '../components/Post';
+import NavigateButton from '../components/NavigateButton';
 
 import './ProfilePage.css';
 
@@ -35,7 +36,7 @@ function ProfilePage() {
         }
 
         // Fetch user's data
-        axios.get("http://localhost:8000/api/get_user_data/", {
+        axios.get("http://3.142.185.208:8000/api/get_user_data/", {
             params: { user_id: profileUserId },
         })
         .then((response) => {
@@ -43,7 +44,7 @@ function ProfilePage() {
                 setUser(response.data);
 
                 // Fetch followers
-                axios.get("http://localhost:8000/api/get_followers/", {
+                axios.get("http://3.142.185.208:8000/api/get_followers/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then((response) => {
@@ -52,7 +53,7 @@ function ProfilePage() {
                 .catch(err => console.error('Error fetching followers data:', err));
 
                 // Fetch followees (users this user is following)
-                axios.get("http://localhost:8000/api/following/", {
+                axios.get("http://3.142.185.208:8000/api/following/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then(response => {
@@ -61,7 +62,7 @@ function ProfilePage() {
                 .catch(err => console.error("Error fetching followees data:", err));
 
                 // Fetch the user's posts using the username
-                axios.get("http://localhost:8000/api/profile_posts/", {
+                axios.get("http://3.142.185.208:8000/api/profile_posts/", {
                     params: { username: response.data.username },
                 })
                 .then((response) => {
@@ -81,11 +82,11 @@ function ProfilePage() {
     }, [userId, loggedInUserId]);
 
     return (
-        <div className="profile-container">
+        <div className="profile-page">
             <Navbar />
             <SideBar />
             {user ? (
-                <div className="profile-content">
+                <div className="profile-container">
                     <div className="profile-header">
                         <h1>{user.username}</h1>
                         <div className="follow-info">
@@ -97,34 +98,36 @@ function ProfilePage() {
                             </span>
                         </div>
                     </div>
-
+                    
                     {/* Followers Modal */}
                     {showFollowers && (
                         <Modal onClose={() => setShowFollowers(false)}>
                             <h2>Followers</h2>
                             {followers.map((follower) => (
-                                <Link to={`/profile/${follower.user_id}`} key={follower.user_id} className="user-link">
-                                    <p>{follower.username}</p>
-                                </Link>
+                                <NavigateButton
+                                    buttonText={follower.username}
+                                    path= {"/profile/"+follower.user_id}
+                                    bootstrap="border border-opacity-100"
+                                ></NavigateButton>
                             ))}
                         </Modal>
                     )}
-
                     {/* Following Modal */}
                     {showFollowees && (
                         <Modal onClose={() => setShowFollowees(false)}>
                             <h2>Following</h2>
                             {followees.map((followee) => (
-                                <Link to={`/profile/${followee.user_id}`} key={followee.user_id} className="user-link">
-                                    <p>{followee.username}</p>
-                                </Link>
+                                <NavigateButton
+                                    buttonText={followee.username}
+                                    path= {"/profile/"+followee.user_id}
+                                    bootstrap="border border-opacity-100"
+                                ></NavigateButton>
                             ))}
                         </Modal>
                     )}
-
                     {/* Display User Posts */}
+                    <h2>{user.username}'s Recent Posts</h2>
                     <div className="profile-posts">
-                        <h2>{user.username}'s Posts</h2>
                         {posts.length > 0 ? (
                             posts.map((post) => (
                                 <Post
@@ -136,11 +139,12 @@ function ProfilePage() {
                                     description={post.text}
                                     is_mini={true}
                                 />
-                            ))
+                            )).reverse()
                         ) : (
-                            <p>No posts to display.</p>
+                            <p>{user.username} has not made any posts yet.</p>
                         )}
                     </div>
+                    
                 </div>
             ) : loading ? (
                 <p>Loading data...</p>
