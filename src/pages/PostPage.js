@@ -1,40 +1,54 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
 import Navbar from "../components/Navbar"
 import SideBar from "../components/Sidebar"
 import NotificationBar from "../components/NotificationBar"
 import Post from "../components/Post"
 import CommentFeed from "../components/CommentFeed"
 
-function PostPage() {
-    //This object is ONLY here to visualize the post and comment feed
-    //Will be deleted later.
-    const testPost = {
-        post_id: 0,
-        user: "Joe Roe",
-        media: "",
-        title: "This is a post",
-        description: "My description goes here.",
-        comments: [
-            {user: "Alice Roe", commentText: "Wow, so cool"},
-            {user: "Alice Roe", commentText: "Wow, so cool"},
-            {user: "Alice Roe", commentText: "Wow, so cool"},
-            {user: "Alice Roe", commentText: "Wow, so cool"},
-        ]
-    }
+import "./PostPage.css"
 
+function PostPage() {
+    const { postId } = useParams()
+    const [post, setPost] = useState()
+    const [comments, setComments] = useState([
+        {user: "Alice Roe", commentText: "Wow, so cool"},
+        {user: "Alice Roe", commentText: "Wow, so cool"},
+        {user: "Alice Roe", commentText: "Wow, so cool"},
+        {user: "Alice Roe", commentText: "Wow, so cool"},
+    ])
+
+    useEffect(() => {
+        //get post info based on postId
+         // Fetch followers
+         axios.get("http://localhost:8000/api/get_post/", {
+            params: { post_id: postId },
+        })
+        .then((response) => {
+            setPost(response.data)
+        })
+        .catch(err => console.error('Error fetching followers data:', err));
+    }, [postId]);
+
+    console.log(post)
     return (
-        <div>
+        <div className="post-page">
             <Navbar></Navbar>
             <SideBar></SideBar>
-            <Post
-                is_mini={false}
-                post_id={testPost.post_id}
-                user={testPost.user}
-                media={testPost.media}
-                title={testPost.title}
-                description={testPost.description}
-            ></Post>
+            { post && (
+                <Post
+                    is_mini={false}
+                    post_id={post.post_id}
+                    username={post.username}
+                    media={post.media}
+                    title={post.title}
+                    description={post.text}
+                ></Post>
+            )}
             <CommentFeed
-                commentArray={testPost.comments}
+                commentArray={comments}
             ></CommentFeed>
             <NotificationBar></NotificationBar>
         </div>
