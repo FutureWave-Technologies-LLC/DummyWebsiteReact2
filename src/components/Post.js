@@ -1,11 +1,15 @@
+import { useNavigate } from 'react-router-dom';
+
 import "./Post.css"
 
 function Post(props) {
     const {is_mini, post_id, username, media, title, description} = props
-
+    const navigate = useNavigate();
     //Mini Post is a button
     if (is_mini) {
-        var charLimit = 50;
+        
+        var charLimit = 80;
+        
         //shorten description if it exceeds char limit
         function shortDescription(descriptionText) {
             let newDescriptionText = descriptionText
@@ -16,7 +20,7 @@ function Post(props) {
         }
 
         function navigateToPost() {
-            //TODO: Navigate to Post page filled with respective post info
+            navigate("/post/"+post_id);
         }
 
         return (
