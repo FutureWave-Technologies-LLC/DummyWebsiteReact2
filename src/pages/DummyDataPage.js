@@ -49,18 +49,6 @@ function DummyDataPage() {
           email: 'email@gmial.com'
         }}
       ></PostDataButton>
-
-        <NavigateButton
-          buttonText="Sign Up here"
-          path="/sign-up"
-        ></NavigateButton>
-
-        <NavigateButton
-          buttonText="Sign In"
-          path="/login"
-        ></NavigateButton>
-
-        
       
       <DataTable data={displayedData}></DataTable>
     </div>
