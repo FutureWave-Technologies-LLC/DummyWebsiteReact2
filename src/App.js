@@ -13,6 +13,7 @@ import PostPage from './pages/PostPage.js';
 import MessagesPage from './pages/MessagesPage.js';
 import SearchPage from './pages/SearchPage.js';
 import ProfilePage from './pages/ProfilePage.js';
+import DefaultPage from './pages/DefaultPage.js';
 
 //css
 import './App.css'
@@ -23,7 +24,7 @@ function App() {
     <div className="App">
       <AuthProvider>
         <Routes>
-            <Route path="/" element={<DummyDataPage />} />
+            <Route path="/" element={<DefaultPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
             <Route path="/login" element={<LoginPage />} />
       
@@ -35,6 +36,7 @@ function App() {
               <Route path="/post/:postId" element={<PostPage />} />
               <Route path="/messages" element={<MessagesPage />} />
               <Route path="/search" element={<SearchPage />} />
+              <Route path="/dum" element={<DummyDataPage />} />
             </Route>
         </Routes>
       </AuthProvider>
