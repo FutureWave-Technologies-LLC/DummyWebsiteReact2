@@ -34,7 +34,7 @@ function SideBar() {
             >Log Out</button>
             <NavigateButton
                 buttonText="Dummy page"
-                path="/"
+                path="/dum"
                 bootstrap="border border-opacity-100 bg-danger"
             ></NavigateButton>
         </div>
