@@ -22,7 +22,6 @@ function PostPage() {
 
     useEffect(() => {
         //get post info based on postId
-         // Fetch followers
          axios.get("http://3.142.185.208:8000/api/get_post/", {
             params: { post_id: postId },
         })
@@ -32,7 +31,6 @@ function PostPage() {
         .catch(err => console.error('Error fetching followers data:', err));
     }, [postId]);
 
-    console.log(post)
     return (
         <div className="post-page">
             <Navbar></Navbar>
