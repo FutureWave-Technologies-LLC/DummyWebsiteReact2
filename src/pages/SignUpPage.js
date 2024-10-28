@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from "../hooks/AuthProvider";
 
 function SignUpPage() {
     const [fname, setfName] = useState("")
@@ -8,9 +10,18 @@ function SignUpPage() {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
 
+    const navigate = useNavigate()
+    const auth = useAuth()
+
+    useEffect(() => {
+        if (auth.token) {
+            navigate("/home")
+        }
+    }, [navigate])
+
     function hasNoWhiteSpace(s) {
         return !(s.indexOf(' ') >= 0)
-      }
+    }
 
     function submitCredentials() {
         
