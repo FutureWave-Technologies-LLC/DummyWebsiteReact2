@@ -1,7 +1,7 @@
-.comments-feed {
+.comments-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
 
     width: 25%;
     height: 90%;
@@ -9,19 +9,29 @@
     position: absolute;
     right: 20%; 
     bottom: 0;
-    
-    overflow-y: auto;
+
     border-radius: 25px;
     background-color: #e8c4ff;
 }
 
+.comments-feed {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+    overflow-y: auto;
+    height: 80%;
+
+}
+
 .comment {
     padding: 15px;
-    background-color: #d695ff;
     margin: 10px;
+
+    background-color: #d695ff;
     border-radius: 25px;
 }
 
-h4 {
-    text-align: center;
+.comment-btn {
+    border-radius: 25px;
 }
