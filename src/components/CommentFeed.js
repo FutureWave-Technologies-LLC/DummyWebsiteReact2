@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import "./CommentFeed.css"
 
 function CommentFeed(props) {
@@ -8,7 +10,9 @@ function CommentFeed(props) {
             <div className="comments-feed">
                 {commentFeed.map(comment => (
                     <div className="comment">
-                        <h5>{comment.username}</h5>
+                        <h5>
+                            <Link to={"/profile/"+comment.user_id}>{comment.username}</Link>
+                        </h5>
                         <p>{comment.comment}</p>
                     </div>
                 )).reverse()}
