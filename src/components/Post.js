@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import "./Post.css"
 
 function Post(props) {
-    const {is_mini, post_id, username, media, title, description} = props
+    const {is_mini, post_id, username, user_id, media, title, description} = props
     const navigate = useNavigate();
     //Mini Post is a button
     if (is_mini) {
@@ -36,7 +36,10 @@ function Post(props) {
             <div>
                 <div className="normal post" id={post_id}>
                     <h2>{title}</h2>
-                    <p>Posted by: {username}</p>
+                    <p>
+                        Posted by:{' '}
+                        <Link to={"/profile/"+user_id}>{username}</Link>
+                    </p>
                     <p>{description}</p>
                 </div>
             </div>
