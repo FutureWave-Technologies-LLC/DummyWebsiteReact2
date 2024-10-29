@@ -1,19 +1,21 @@
 import "./CommentFeed.css"
 
 function CommentFeed(props) {
-    const {commentArray} = props
+    const {commentFeed, openModalSetter} = props
 
     return (
-        <div className="comments-feed">
-            <h4>Comments</h4>
-            {commentArray.map(comment => (
-                <div className="comment">
-                    <h5>{comment.user}</h5>
-                    <p>{comment.commentText}</p>
-                </div>
-            ))}
-            
-        </div> 
+        <div className="comments-container">
+            <div className="comments-feed">
+                {commentFeed.map(comment => (
+                    <div className="comment">
+                        <h5>{comment.username}</h5>
+                        <p>{comment.comment}</p>
+                    </div>
+                )).reverse()}
+            </div> 
+            <button className="comment-btn" onClick={openModalSetter}>Comment</button>
+        </div>
+        
     )
 }
 
