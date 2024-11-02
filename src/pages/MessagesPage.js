@@ -18,7 +18,7 @@ function MessagesPage() {
         const fetchMessages = async () => {
             if (selectedUser) {
                 try {
-                    const response = await axios.get('http://localhost:8000/get_messages/', {
+                    const response = await axios.get('http://localhost:8000/api/test1', {
                         headers: {
                             Authorization: `Bearer ${token}`,  // Ensure token is correctly formatted
                         }
@@ -46,7 +46,7 @@ function MessagesPage() {
             console.log("Sending message to:", selectedUser.user_id, "Message content:", message);  // Debug log
             try {
                 const response = await axios.post(
-                    'http://localhost:8000/send_messages/',
+                    'http://localhost:8000/api/send_messages/',
                     {
                         reciever_id: selectedUser.user_id,
                         text: message,
