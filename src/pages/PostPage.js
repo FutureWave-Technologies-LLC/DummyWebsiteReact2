@@ -23,7 +23,7 @@ function PostPage() {
 
     useEffect(() => {
         //get post info based on postId
-        axios.get("http://localhost:8000/api/get_post/", {
+        axios.get("http://3.142.185.208:8000/api/get_post/", {
             params: { post_id: postId },
         })
         .then((response) => {
@@ -35,7 +35,7 @@ function PostPage() {
 
     function getCommentFeed() {
         //get comments for post based on postId
-        axios.get("http://localhost:8000/api/comments/", {
+        axios.get("http://3.142.185.208:8000/api/comments/", {
             params: { post_id: postId },
         })
         .then((response) => {
@@ -49,7 +49,7 @@ function PostPage() {
         if (comment.trim() != "") {
             console.log(comment)
             try {
-                await axios.post('http://localhost:8000/api/comments/', {
+                await axios.post('http://3.142.185.208:8000/api/comments/', {
                     user_id: token.user_id,
                     post_id: postId,
                     comment: comment
