@@ -64,25 +64,35 @@
 /* Chat messages container */
 .chat-messages {
     width: 100%;
-    height: 70%;
+    height: 50%;
     overflow-y: auto;
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 /* Individual message styling */
 .message {
     padding: 10px;
     border-bottom: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .message.sent {
     text-align: right;
+    background-color: #f7eaff;
+    border-bottom-right-radius: 0px;
 }
 
 .message.received {
     text-align: left;
+    background-color: #ceb0e1;
+    border-bottom-left-radius: 0px;
 }
 
 /* Input field for new messages */
