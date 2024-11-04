@@ -18,7 +18,7 @@ function MessagesPage() {
         const fetchMessages = async () => {
             if (selectedUser) {
                 try {
-                    const response = await axios.get('http://localhost:8000/api/messages', {
+                    const response = await axios.get('http://3.142.185.208:8000/api/messages', {
                         params: {
                                user_id: token.user_id,
                                reciever_id: selectedUser.user_id  // Ensure token is correctly formatted
@@ -48,7 +48,7 @@ function MessagesPage() {
             console.log("Sending message to:", selectedUser.user_id, "Message content:", message);  // Debug log
             try {
                 const response = await axios.post(
-                    'http://localhost:8000/api/messages/',
+                    'http://3.142.185.208:8000/api/messages/',
                     {
                         user_id: token.user_id,
                         reciever_id: selectedUser.user_id,
