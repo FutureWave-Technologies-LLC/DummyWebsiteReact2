@@ -8,7 +8,7 @@ import { useAuth } from "../hooks/AuthProvider";
 // nested within PrivatRoute component accessed via <Outlet />
 const PrivateRoute = () => {
   const user = useAuth()
-  if (!user.token) return <Navigate to="/sign-in" />
+  if (!user.token) return <Navigate to="/login" />
   return <Outlet />
 };
 
