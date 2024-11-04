@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from "../hooks/AuthProvider";
+import './SignUpPage.css'; 
 
 function SignUpPage() {
     const [fname, setfName] = useState("")
@@ -10,24 +10,15 @@ function SignUpPage() {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
 
-    const navigate = useNavigate()
-    const auth = useAuth()
-
-    useEffect(() => {
-        if (auth.token) {
-            navigate("/home")
-        }
-    }, [navigate])
-
     function hasNoWhiteSpace(s) {
         return !(s.indexOf(' ') >= 0)
-    }
+      }
 
     function submitCredentials() {
         
         if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
              && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
-            axios.post("http://3.142.185.208:8000/api/sign_up/", {
+            axios.post("http://3.142.185.208:8000/api/signup_user/", {
                 username: username,
                 password: password,
                 first_name: fname,
@@ -39,7 +30,7 @@ function SignUpPage() {
                         setError(response.data.response)
                     }
                     else {
-                        window.location.href = 'http://18.222.224.80:3000/login/?response=Created'
+                        window.location.href = 'http://18.222.224.80:3000/sign-in/?response=Created'
                     }
                 })
                 .catch((error) => {
@@ -52,9 +43,10 @@ function SignUpPage() {
     }
 
     return (
-        <div className="App">
-            <h1>Sign Up</h1>
-            <div>
+        <section>
+        <div className="signup-container">
+        <div className = "signup-form">
+            <h1 className = "logo">New Space</h1>
                 <input
                     type="text"
                     id="firstname"
@@ -69,8 +61,6 @@ function SignUpPage() {
                     placeholder="Last Name"
                     onChange={(e) => setlName(e.target.value)}
                 />
-            </div>
-            <div>
                 <input
                     type="text"
                     id="username"
@@ -85,10 +75,18 @@ function SignUpPage() {
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
-            </div>
             {error && <h3 style = {{color:"red"}}>{error}</h3>}
-            <button onClick={submitCredentials}>Sign Up</button>
+            <div className = "signup-form">
+            <button type ="signup-button" onClick={submitCredentials}>Sign Up</button>
+            </div>
+            <div className = "login-link">
+                Already have an account?{' '}
+                <Link to="/login">Log In</Link>
+                </div>
+            </div>
         </div>
+
+    </section>
     )
 }
 

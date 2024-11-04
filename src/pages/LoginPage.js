@@ -20,7 +20,7 @@ const LoginPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.get("http://3.142.185.208:8000/api/login/", {
+        axios.get("http://localhost:8000/api/login/", {
             params: {
                 username: username,
                 password: password,
@@ -46,10 +46,12 @@ const LoginPage = () => {
     const term = queryParams.get("response")
     // console.log(term)
     return (
+        <section>
+
         <div className="signin-container">
             {term &&<h3>User Created!</h3>}
-            <h2>Welcome Back!</h2>
             <form className="signin-form">
+            <h2>Welcome Back!</h2>
                 <input
                     type="text"
                     id="username"
@@ -66,17 +68,19 @@ const LoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 {error && <h3 style = {{color:"red"}}>{error}</h3>}
-                <button type="button" onClick={handleSignIn}>
+                <div className='signin-form'>
+                <button type="signin-button" onClick={handleSignIn}>
                     Sign In
                 </button>
-            </form>
-
-            <p>
+                </div>
+                <div className = "register-link">
                 Don't have an account?{' '}
-                <Link to="/sign-up">Create an account</Link>
-            </p>
+                <Link to="/sign-up">Register</Link>
+                </div>
+            </form>
         </div>
+        </section>
     );
 };
 
-export default LoginPage;
+export default LoginPage
