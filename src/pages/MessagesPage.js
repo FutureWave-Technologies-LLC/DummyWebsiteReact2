@@ -18,16 +18,22 @@ function MessagesPage() {
         const fetchMessages = async () => {
             if (selectedUser) {
                 try {
-                    const response = await axios.get('http://localhost:8000/api/test1', {
-                        headers: {
-                            Authorization: `Bearer ${token}`,  // Ensure token is correctly formatted
+                    const response = await axios.get('http://localhost:8000/api/messages', {
+                        params: {
+                               user_id: token.user_id,
+                               reciever_id: selectedUser.user_id  // Ensure token is correctly formatted
                         }
+                        // params: {
+                        //     Authorization: `Bearer ${token}`,  // Ensure token is correctly formatted
+                        // }
                     });
-                    const filteredMessages = response.data.filter(
-                        msg => 
-                            (msg.user === selectedUser.user_id && msg.reciever_id === token.user_id) ||
-                            (msg.user === token.user_id && msg.reciever_id === selectedUser.user_id)
-                    );
+                    const filteredMessages = response.data
+                    // const filteredMessages = response.data.filter(
+                    //     msg => 
+                    //         (msg.user === selectedUser.user_id && msg.reciever_id === token.user_id) ||
+                    //         (msg.user === token.user_id && msg.reciever_id === selectedUser.user_id)
+                    // );
+                    console.log(filteredMessages)
                     setMessages(filteredMessages);
                 } catch (error) {
                     console.error("Error fetching messages:", error);
@@ -35,7 +41,8 @@ function MessagesPage() {
             }
         };
         fetchMessages();
-    }, [selectedUser, token]);
+    }, []);
+    // }, [selectedUser, token]);
 
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
@@ -46,7 +53,7 @@ function MessagesPage() {
             console.log("Sending message to:", selectedUser.user_id, "Message content:", message);  // Debug log
             try {
                 const response = await axios.post(
-                    'http://localhost:8000/api/send_messages/',
+                    'http://localhost:8000/api/messages/',
                     {
                         reciever_id: selectedUser.user_id,
                         text: message,
