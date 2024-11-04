@@ -1,24 +1,24 @@
-import { useNavigate, useSearchParams } from "react-router-dom"
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import Navbar from "../components/Navbar"
-import SideBar from "../components/Sidebar"
-import NotificationBar from "../components/NotificationBar"
+import Navbar from "../components/Navbar";
+import SideBar from "../components/Sidebar";
+import NotificationBar from "../components/NotificationBar";
 
-import './SearchPage.css'
+import './SearchPage.css';
 
 function Search() {
-    const [searchParams] = useSearchParams()
-    const [queryResult, setQueryResult] = useState([])
-    const [followingStatus, setFollowingStatus] = useState([])
+    const [searchParams] = useSearchParams();
+    const [queryResult, setQueryResult] = useState([]);
+    const [followingStatus, setFollowingStatus] = useState([]);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const token = JSON.parse(localStorage.getItem("future-token"))
+    const token = JSON.parse(localStorage.getItem("future-token"));
 
     useEffect(() => {
-        //Fetch users that match with query
+        // Fetch users that match with query
         axios.get("http://3.142.185.208:8000/api/search_users/", {
             params: {
                 query: searchParams.get('q'),
@@ -26,9 +26,9 @@ function Search() {
         })
         .then((response) => {
             setQueryResult(response.data);
-            setFollowingStatus([])
+            setFollowingStatus([]);
 
-            //get users and their ids that this user is following and set to FollowingStatusState
+            // Get users and their IDs that this user is following and set to followingStatus state
             axios.get("http://3.142.185.208:8000/api/following/", {
                 params: {
                     user_id: token.user_id,
@@ -36,16 +36,16 @@ function Search() {
             })
             .then(response => {
                 response.data.forEach(following_user => {
-                    setFollowingStatus(prevState => [...prevState, following_user.username])
-                })
+                    setFollowingStatus(prevState => [...prevState, following_user.username]);
+                });
             })
             .catch(err => console.error("Error fetching ID:"+token.user_id+" followers:", err));
         
         })
         .catch((error) => {
-            console.error('Error fetchingaa query result:', error);
+            console.error('Error fetching query result:', error);
         });
-    }, [])
+    }, []);
 
     // Handles Follow and Unfollow
     function toggleFollow(usernameToFollow) {
@@ -55,9 +55,9 @@ function Search() {
         })
         .then(response => {
             if (response.data.Followed) {
-                setFollowingStatus(prevState => [...prevState, usernameToFollow])
+                setFollowingStatus(prevState => [...prevState, usernameToFollow]);
             } else {
-                setFollowingStatus(prevState => prevState.filter(i => i !== usernameToFollow))
+                setFollowingStatus(prevState => prevState.filter(i => i !== usernameToFollow));
             }
         })
         .catch(error => {
@@ -65,10 +65,15 @@ function Search() {
         });
     }
 
-    //Navigate to profile page
+    // Navigate to profile page
     function navigateToProfile(id) {
-        navigate("/profile/"+id)
-        console.log(id)
+        navigate("/profile/" + id);
+        console.log(id);
+    }
+
+    // Navigate to messages page to start a conversation
+    function navigateToMessages(user) {
+        navigate("/messages", { state: { userToMessage: user } });
     }
 
     return (
@@ -78,19 +83,23 @@ function Search() {
             <div className="main-content">
                 {(!queryResult.error && queryResult.map(user => (
                     <div key={user.user_id} className="user-item">
-                        <button className="user-name border border-opacity-100 " onClick={() => navigateToProfile(user.user_id)}>{user.username}</button>
-                        { user.username != token.username &&
-                            <button onClick={() => toggleFollow(user.username)}>
-                                {followingStatus.includes(user.username) ? 'Unfollow' : 'Follow'}
-                            </button>
-                        }
-                        
+                        <button className="user-name border border-opacity-100" onClick={() => navigateToProfile(user.user_id)}>{user.username}</button>
+                        {user.username !== token.username && (
+                            <>
+                                <button onClick={() => toggleFollow(user.username)}>
+                                    {followingStatus.includes(user.username) ? 'Unfollow' : 'Follow'}
+                                </button>
+                                <button onClick={() => navigateToMessages(user)}>
+                                    Message
+                                </button>
+                            </>
+                        )}
                     </div>
                 ))) || <p>{queryResult.Response}</p>}
             </div>
             <NotificationBar></NotificationBar>
         </div>
-    )
+    );
 }
 
 export default Search;
