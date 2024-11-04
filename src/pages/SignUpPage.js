@@ -39,7 +39,7 @@ function SignUpPage() {
                         setError(response.data.response)
                     }
                     else {
-                        window.location.href = 'http://18.222.224.80:3000/sign-in/?response=Created'
+                        window.location.href = 'http://18.222.224.80:3000/login/?response=Created'
                     }
                 })
                 .catch((error) => {
