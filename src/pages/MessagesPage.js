@@ -28,11 +28,6 @@ function MessagesPage() {
                         // }
                     });
                     const filteredMessages = response.data
-                    // const filteredMessages = response.data.filter(
-                    //     msg => 
-                    //         (msg.user === selectedUser.user_id && msg.reciever_id === token.user_id) ||
-                    //         (msg.user === token.user_id && msg.reciever_id === selectedUser.user_id)
-                    // );
                     console.log(filteredMessages)
                     setMessages(filteredMessages);
                 } catch (error) {
@@ -41,8 +36,8 @@ function MessagesPage() {
             }
         };
         fetchMessages();
-    }, []);
-    // }, [selectedUser, token]);
+    // }, []);
+    }, [selectedUser, token]);
 
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
@@ -55,14 +50,15 @@ function MessagesPage() {
                 const response = await axios.post(
                     'http://localhost:8000/api/messages/',
                     {
+                        user_id: token.user_id,
                         reciever_id: selectedUser.user_id,
                         text: message,
                     },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,  // Ensure token is correctly formatted
-                        }
-                    }
+                    // {
+                    //     headers: {
+                    //         Authorization: `Bearer ${token}`,  // Ensure token is correctly formatted
+                    //     }
+                    // }
                 );
                 console.log("Message sent successfully:", response.data);  // Debug log
                 setMessages([...messages, response.data]);  // Append the new message to the state
@@ -104,8 +100,8 @@ function MessagesPage() {
                             </div>
                             <div className="chat-messages">
                                 {messages.length > 0 ? messages.map((msg, index) => (
-                                    <div key={index} className={`message ${msg.user === token.user_id ? 'sent' : 'received'}`}>
-                                        {msg.text}
+                                    <div key={index} className={`message ${msg.user_id === token.user_id ? 'sent' : 'received'}`}>
+                                        {msg.user_id === token.user_id ? "You:": selectedUser.username+":"} {msg.text}
                                     </div>
                                 )) : <p>No messages yet</p>}
                             </div>
