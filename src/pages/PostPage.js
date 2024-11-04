@@ -7,46 +7,98 @@ import SideBar from "../components/Sidebar"
 import NotificationBar from "../components/NotificationBar"
 import Post from "../components/Post"
 import CommentFeed from "../components/CommentFeed"
+import Modal from '../components/Modal'
 
 import "./PostPage.css"
 
 function PostPage() {
     const { postId } = useParams()
     const [post, setPost] = useState()
-    const [comments, setComments] = useState([
-        {user: "Alice Roe", commentText: "Wow, so cool"},
-        {user: "Alice Roe", commentText: "Wow, so cool"},
-        {user: "Alice Roe", commentText: "Wow, so cool"},
-        {user: "Alice Roe", commentText: "Wow, so cool"},
-    ])
+    const [commentFeed, setCommentFeed] = useState([])
+    const [showCommentModal, setShowCommentModal] = useState(false)
+    const [comment, setComment] = useState("")
+    const [successPost, setSuccessPost] = useState()
+
+    const token = JSON.parse(localStorage.getItem("future-token"))
 
     useEffect(() => {
         //get post info based on postId
-         axios.get("http://3.142.185.208:8000/api/get_post/", {
+        axios.get("http://localhost:8000/api/get_post/", {
             params: { post_id: postId },
         })
         .then((response) => {
             setPost(response.data)
         })
         .catch(err => console.error('Error fetching followers data:', err));
+        getCommentFeed()
     }, [postId]);
+
+    function getCommentFeed() {
+        //get comments for post based on postId
+        axios.get("http://localhost:8000/api/comments/", {
+            params: { post_id: postId },
+        })
+        .then((response) => {
+            setCommentFeed(response.data)
+        })
+        .catch(err => console.error('Error fetching comment feed:', err));
+    }
+
+    const handleCommentSubmit = async (e) => {
+        e.preventDefault();
+        if (comment.trim() != "") {
+            console.log(comment)
+            try {
+                await axios.post('http://localhost:8000/api/comments/', {
+                    user_id: token.user_id,
+                    post_id: postId,
+                    comment: comment
+                })
+                setComment("")
+                getCommentFeed()
+                setSuccessPost(true)
+                setTimeout(() => setSuccessPost(), 3000); 
+            } catch (error) { setSuccessPost(false)}
+        } else {
+            setSuccessPost(false)
+        }
+        
+    };
 
     return (
         <div className="post-page">
             <Navbar></Navbar>
             <SideBar></SideBar>
+            {showCommentModal && (
+                <Modal onClose={() => setShowCommentModal(false)}>
+                    <form className='comment-modal' onSubmit={handleCommentSubmit}>
+                        <h2>Write Your Comment</h2>
+                        
+                        <input 
+                            placeholder="Type your comment here..."
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                        />
+                        <button type="submit">Comment</button>
+                        {successPost == false && <p className="error">Failed to submit your comment. Please try again.</p>}
+                        {successPost == true && <p className="success">Your comment has been successfully posted!</p>}
+                    </form>
+                </Modal>
+            )}
             { post && (
                 <Post
                     is_mini={false}
                     post_id={post.post_id}
                     username={post.username}
+                    user_id={post.user_id}
                     media={post.media}
                     title={post.title}
                     description={post.text}
                 ></Post>
             )}
             <CommentFeed
-                commentArray={comments}
+                commentFeed={commentFeed}
+                openModalSetter={() => setShowCommentModal(true)}
             ></CommentFeed>
             <NotificationBar></NotificationBar>
         </div>
