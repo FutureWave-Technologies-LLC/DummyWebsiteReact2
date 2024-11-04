@@ -11,6 +11,7 @@ function MessagesPage() {
     const [message, setMessage] = useState("");
     const [selectedUser, setSelectedUser] = useState(userToMessage || null);
     const [messages, setMessages] = useState([]);
+    const [canSendMessage, setCanSendMessage] = useState(true)
     const token = JSON.parse(localStorage.getItem("future-token"));
 
     // Fetch messages when a user is selected or userToMessage is passed
@@ -36,7 +37,6 @@ function MessagesPage() {
             }
         };
         fetchMessages();
-    // }, []);
     }, [selectedUser, token]);
 
     const handleMessageChange = (e) => {
@@ -44,7 +44,9 @@ function MessagesPage() {
     };
 
     const handleSendMessage = async () => {
+       
         if (selectedUser && message.trim()) {
+            setCanSendMessage(false)
             console.log("Sending message to:", selectedUser.user_id, "Message content:", message);  // Debug log
             try {
                 const response = await axios.post(
@@ -61,12 +63,13 @@ function MessagesPage() {
                     // }
                 );
                 console.log("Message sent successfully:", response.data);  // Debug log
-                setMessages([...messages, response.data]);  // Append the new message to the state
-                setMessage("");  // Clear the input field
+                setMessages([...messages, response.data])
+                setMessage("")
             } catch (error) {
-                console.error("Error sending message:", error);
-                alert("Failed to send the message. Please try again.");  // Display error to user
+                console.error("Error sending message:", error)
+                alert("Failed to send the message. Please try again.")
             }
+            setCanSendMessage(true)
         } else {
             console.log("Selected user or message is missing");  // Debug log
         }
@@ -112,7 +115,7 @@ function MessagesPage() {
                                     onChange={handleMessageChange}
                                     placeholder="Type your message..."
                                 />
-                                <button onClick={handleSendMessage}>Send</button>
+                                <button disabled={!canSendMessage} onClick={handleSendMessage}>Send</button>
                             </div>
                         </>
                     ) : (
