@@ -1,14 +1,13 @@
 import { useNavigate, Link } from 'react-router-dom';
 
-import "./Post.css"
+import "../css/components/Post.css"
 
 function Post(props) {
     const {is_mini, post_id, username, user_id, media, title, description} = props
     const navigate = useNavigate();
     //Mini Post is a button
     if (is_mini) {
-        
-        var charLimit = 80;
+        var charLimit = 90;
         
         //shorten description if it exceeds char limit
         function shortDescription(descriptionText) {
