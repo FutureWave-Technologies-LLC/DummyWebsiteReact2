@@ -23,7 +23,7 @@ function Navbar() {
 
     return (
         <form className="navbar" onSubmit={handleSubmit}>
-            <h2>New Space</h2>
+            <h2 className = "logo">New Space</h2>
             <input
                 className="search-bar"
                 placeholder="Search A User"

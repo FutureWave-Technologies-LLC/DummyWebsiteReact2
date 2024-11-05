@@ -13,16 +13,16 @@ section{
     width: 100%;
     height: 100vh;
     background-position: top;
-    background: linear-gradient(to bottom, #737DFE, #FFCAC9);
+    background: url(login.png) no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     animation: animateBg 5s linear infinite;
 }
-/* @keyframes animateBg{
+@keyframes animateBg{
     1000%{
         filter: hue-rotate(360deg);
     }
-} */
+} 
 .logo{
     font-family: "Pacifico", cursive;
     font-size: 3em;
