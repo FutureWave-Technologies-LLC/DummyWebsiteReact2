@@ -41,7 +41,6 @@ function DummyDataPage() {
         API_URL="http://3.142.185.208:8000/api/messages/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
-
       <PostDataButton
         buttonText="Update Likes"
         API_URL="http://3.142.185.208:8000/api/update_likes/"
@@ -49,6 +48,12 @@ function DummyDataPage() {
           email: 'email@gmial.com'
         }}
       ></PostDataButton>
+      <NavigateButton
+                buttonText="Home"
+                path="/home"
+                bootstrap="border border-opacity-100"
+                iconClass="uil uil-home"
+      />
       
       <DataTable data={displayedData}></DataTable>
     </div>
