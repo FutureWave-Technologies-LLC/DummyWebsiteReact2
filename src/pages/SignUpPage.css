@@ -23,14 +23,6 @@ section{
         filter: hue-rotate(360deg);
     }
 } 
-.logo{
-    font-family: "Pacifico", cursive;
-    font-size: 3em;
-    color: black;
-    font-weight: 600;
-    text-align: center;
-}
-
 .signup-container{
     position: relative;
     width: 400px;

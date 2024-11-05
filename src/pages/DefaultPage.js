@@ -10,7 +10,7 @@ function DefaultPage () {
             ></NavigateButton>
 
             <NavigateButton
-                buttonText="Login In"
+                buttonText="Log In"
                 path="/login"
             ></NavigateButton>
         </div>

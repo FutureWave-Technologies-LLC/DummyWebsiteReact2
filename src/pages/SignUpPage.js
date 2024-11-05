@@ -46,7 +46,7 @@ function SignUpPage() {
         <section>
         <div className="signup-container">
         <div className = "signup-form">
-            <h1 className = "logo">New Space</h1>
+            <h1>Register Here!</h1>
                 <input
                     type="text"
                     id="firstname"
