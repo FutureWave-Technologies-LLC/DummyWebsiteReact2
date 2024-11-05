@@ -2,7 +2,7 @@ import NavigateButton from '../components/NavigateButton.js';
 
 function DefaultPage () {
     return(
-        <div>
+        <section>
             <h1>New Space</h1>
             <NavigateButton
                 buttonText="Sign Up"
@@ -13,7 +13,7 @@ function DefaultPage () {
                 buttonText="Log In"
                 path="/login"
             ></NavigateButton>
-        </div>
+        </section>
     )
 }
 
