@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Navbar from "../components/Navbar"; 
 import SideBar from "../components/Sidebar";
 import NotificationBar from "../components/NotificationBar";
-import './CreatePostPage.css'; 
 import axios from 'axios';
+
+import "../css/pages/CreatePostPage.css"; 
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
@@ -77,7 +78,7 @@ const CreatePostPage = () => {
                     {notification && <div className="notification">{notification}</div>}
                 </div> 
             </div>
-            <NotificationBar /> 
+            
         </div>
     );
 };
