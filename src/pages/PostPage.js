@@ -17,6 +17,7 @@ function PostPage() {
     const [commentFeed, setCommentFeed] = useState([])
     const [showCommentModal, setShowCommentModal] = useState(false)
     const [comment, setComment] = useState("")
+    const [canComment, setCanComment] = useState(true)
     const [successPost, setSuccessPost] = useState()
 
     const token = JSON.parse(localStorage.getItem("future-token"))
@@ -52,6 +53,7 @@ function PostPage() {
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         if (comment.trim() != "") {
+            setCanComment(false)
             console.log(comment)
             try {
                 await axios.post('http://3.142.185.208:8000/api/comments/', {
@@ -62,9 +64,11 @@ function PostPage() {
                 setComment("")
                 getCommentFeed()
                 promptNotification(true)
+                
             } catch (error) { 
                 promptNotification(false)
             }
+            setCanComment(true)
         } else {
             promptNotification(false)
         }
@@ -83,7 +87,7 @@ function PostPage() {
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
                         />
-                        <button type="submit">Comment</button>
+                        <button disabled={!canComment} type="submit">Comment</button>
                         {successPost == false && <p className="error">Failed to submit your comment. Please try again.</p>}
                         {successPost == true && <p className="success">Your comment has been successfully posted!</p>}
                     </form>
