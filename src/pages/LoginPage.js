@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './LoginPage.css'; 
 import axios from 'axios';
 import { useAuth } from "../hooks/AuthProvider";
+
+import "../css/pages/LoginPage.css"; 
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');

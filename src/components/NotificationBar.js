@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import "./NotificationBar.css"
+import "../css/components/NotificationBar.css"
 
 function NotificationBar() {
     const [notificationFeed, setNotificationFeed] = useState([

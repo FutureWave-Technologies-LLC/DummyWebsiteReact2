@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import Post from "./Post"
 
-import "./PostFeed.css"
+import "../css/components/PostFeed.css"
 
 function PostFeed() {
   const [postFeed, setPostFeed] = useState([])

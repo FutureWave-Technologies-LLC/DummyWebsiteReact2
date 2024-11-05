@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import axios from "axios";
-import "./MessagesPage.css";
+
+import "../css/pages/MessagesPage.css";
 
 function MessagesPage() {
     const location = useLocation();

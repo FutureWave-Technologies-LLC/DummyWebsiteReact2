@@ -16,7 +16,7 @@ import ProfilePage from './pages/ProfilePage.js';
 import DefaultPage from './pages/DefaultPage.js';
 
 //css
-import './App.css'
+import './css/App.css'
 
 function App() {
   return (
