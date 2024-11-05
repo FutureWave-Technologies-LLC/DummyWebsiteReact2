@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import SideBar from "../components/Sidebar";
 import NotificationBar from "../components/NotificationBar";
 
-import './SearchPage.css';
+import '../css/pages/SearchPage.css';
 
 function Search() {
     const [searchParams] = useSearchParams();
@@ -83,13 +83,13 @@ function Search() {
             <div className="main-content">
                 {(!queryResult.error && queryResult.map(user => (
                     <div key={user.user_id} className="user-item">
-                        <button className="user-name border border-opacity-100" onClick={() => navigateToProfile(user.user_id)}>{user.username}</button>
+                        <button className="profile item-btn" onClick={() => navigateToProfile(user.user_id)}>{user.username}</button>
                         {user.username !== token.username && (
                             <>
-                                <button onClick={() => toggleFollow(user.username)}>
+                                <button className="item-btn" onClick={() => toggleFollow(user.username)}>
                                     {followingStatus.includes(user.username) ? 'Unfollow' : 'Follow'}
                                 </button>
-                                <button onClick={() => navigateToMessages(user)}>
+                                <button className="item-btn" onClick={() => navigateToMessages(user)}>
                                     Message
                                 </button>
                             </>
@@ -97,7 +97,6 @@ function Search() {
                     </div>
                 ))) || <p>{queryResult.Response}</p>}
             </div>
-            <NotificationBar></NotificationBar>
         </div>
     );
 }
