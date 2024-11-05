@@ -3,7 +3,7 @@ import React, {useEffect, useState } from 'react';
 import { useAuth } from "../hooks/AuthProvider"
 
 
-import './Navbar.css'
+import '../css/components/Navbar.css'
 
 function Navbar() {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -35,7 +35,7 @@ function Navbar() {
 
     return (
         <form className="navbar" onSubmit={handleSubmit}>
-            <h2 className = "logo">New Space</h2>
+            <h2 className = "patrick-font">New Space</h2>
             <input
                 className="search-bar"
                 placeholder="Search A User"
@@ -47,7 +47,7 @@ function Navbar() {
                 type="submit"
             >Search</button>
             { user && (
-                <h2>{greetings}, {token.username}!</h2>
+                <h2 className = "patrick-font"> {greetings}, {token.username}!</h2>
             )}
         </form>
     )
