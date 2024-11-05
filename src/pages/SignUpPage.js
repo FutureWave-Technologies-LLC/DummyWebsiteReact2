@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './SignUpPage.css'; 
+
+import "../css/pages/SignUpPage.css"; 
 
 function SignUpPage() {
     const [fname, setfName] = useState("")
@@ -25,12 +26,12 @@ function SignUpPage() {
                 last_name: lname,
             })
                 .then((response) => {
-                    if (response.data.error == true){
+                    if (response.data.error === true){
                         console.log(response.data.response)
                         setError(response.data.response)
                     }
                     else {
-                        window.location.href = 'http://18.222.224.80:3000/sign-in/?response=Created'
+                        window.location.href = 'http://18.222.224.80:3000/login/?response=Created'
                     }
                 })
                 .catch((error) => {
