@@ -3,7 +3,8 @@ import SideBar from "../components/Sidebar"
 import NotificationBar from "../components/NotificationBar"
 import PostFeed from "../components/PostFeed"
 
-import "./HomePage.css"
+
+import "../css/pages/HomePage.css"
 
 function HomePage() {
     return (
@@ -11,7 +12,6 @@ function HomePage() {
             <Navbar></Navbar>
             <SideBar></SideBar>
             <PostFeed></PostFeed>
-            <NotificationBar></NotificationBar>
         </div>
     )
 }

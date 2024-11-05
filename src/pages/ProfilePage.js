@@ -8,7 +8,7 @@ import Modal from '../components/Modal';
 import Post from '../components/Post';
 import NavigateButton from '../components/NavigateButton';
 
-import './ProfilePage.css';
+import '../css/pages/ProfilePage.css';
 
 function ProfilePage() {
     const { userId } = useParams();  // Get the userId from the route params if any
@@ -151,7 +151,6 @@ function ProfilePage() {
             ) : (
                 <p>Unable to get user data</p>
             )}
-            <NotificationBar />
         </div>
     );
 }
