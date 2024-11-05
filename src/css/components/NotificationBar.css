@@ -1,0 +1,25 @@
+.notification-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 15%; 
+    height: 90%;
+
+    position: absolute;
+    right: 0; 
+    bottom: 0;
+
+    overflow-y: auto;
+    border-left: 5px solid;
+    border-color: #ECD6FA;
+
+    background-color: white;
+}
+
+.notification {
+    text-align: center;
+    background: #ECD6FA;
+    padding: 10px;
+    border-radius: 15px;
+}

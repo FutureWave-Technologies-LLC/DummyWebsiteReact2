@@ -1,0 +1,41 @@
+.search-container {
+    height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* gap: 16px; */
+    
+    width: 80%;
+    height: 90%;
+    
+    position: absolute;
+
+    overflow-y: auto;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0);
+}
+
+.profile {
+    flex: 0.75;
+}
+
+.item-btn {
+    border-radius: 8px;
+    border: 0;
+    background: rgba(236, 214, 250, 0.75);
+}
+
+.item-btn:hover {
+    background: rgba(232, 196, 255, 0.75);
+}

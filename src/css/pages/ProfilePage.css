@@ -1,0 +1,62 @@
+/* Main profile container */
+.profile-page {    
+    height: 100vh;
+}
+
+.profile-container {
+    position: absolute;
+    left: 15%; 
+    bottom: 0;
+
+    width: 85%;
+    height: 90%;
+}
+
+/* Profile header section */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; 
+    margin-bottom: 20px;
+}
+
+
+.follow-info {
+    display: flex;
+    gap: 40px;
+    cursor: pointer;
+}
+
+.follower-count, .following-count {
+    font-weight: bold;
+    color: #101010; 
+    cursor: pointer;
+}
+
+.follower-count:hover, .following-count:hover {
+    text-decoration: underline;
+}
+
+.profile-posts {
+    z-index: 1; 
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    height: 330px;
+
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+
