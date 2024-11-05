@@ -9,7 +9,7 @@ import Post from "../components/Post"
 import CommentFeed from "../components/CommentFeed"
 import Modal from '../components/Modal'
 
-import "./PostPage.css"
+import "../css/pages/PostPage.css"
 
 function PostPage() {
     const { postId } = useParams()
@@ -32,6 +32,11 @@ function PostPage() {
         .catch(err => console.error('Error fetching followers data:', err));
         getCommentFeed()
     }, [postId]);
+
+    function promptNotification(boolean) {
+        setSuccessPost(boolean)
+        setTimeout(() => setSuccessPost(), 3000)
+    }
 
     function getCommentFeed() {
         //get comments for post based on postId
@@ -56,13 +61,13 @@ function PostPage() {
                 })
                 setComment("")
                 getCommentFeed()
-                setSuccessPost(true)
-                setTimeout(() => setSuccessPost(), 3000); 
-            } catch (error) { setSuccessPost(false)}
+                promptNotification(true)
+            } catch (error) { 
+                promptNotification(false)
+            }
         } else {
-            setSuccessPost(false)
+            promptNotification(false)
         }
-        
     };
 
     return (
@@ -73,7 +78,6 @@ function PostPage() {
                 <Modal onClose={() => setShowCommentModal(false)}>
                     <form className='comment-modal' onSubmit={handleCommentSubmit}>
                         <h2>Write Your Comment</h2>
-                        
                         <input 
                             placeholder="Type your comment here..."
                             value={comment}
@@ -100,7 +104,7 @@ function PostPage() {
                 commentFeed={commentFeed}
                 openModalSetter={() => setShowCommentModal(true)}
             ></CommentFeed>
-            <NotificationBar></NotificationBar>
+            
         </div>
     )
 }
