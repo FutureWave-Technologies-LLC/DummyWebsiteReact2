@@ -1,9 +1,0 @@
-.post-page {
-    height: 100vh;
-}
-
-.comment-modal {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
