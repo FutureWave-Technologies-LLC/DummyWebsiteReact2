@@ -25,7 +25,6 @@ function PostFeed() {
                   is_mini={true}
                   post_id={post.post_id}
                   username={post.username}
-                  media={post.media}
                   title={post.title}
                   description={post.text}
               ></Post>
