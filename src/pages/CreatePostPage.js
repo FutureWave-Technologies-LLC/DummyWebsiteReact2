@@ -41,9 +41,7 @@ const CreatePostPage = () => {
         <div className="create-post-page">
             <Navbar /> 
             <SideBar /> 
-            <div className="main-content">
-                
-                <div className="create-post-container">
+            <div className="create-post-container">
                     <h1>Create Post</h1>
                     <form className="create-post-form" onSubmit={handlePostSubmit}>
                         <input
@@ -76,8 +74,7 @@ const CreatePostPage = () => {
                     </form>
                     {error && <p className="error">{error}</p>}
                     {notification && <div className="notification">{notification}</div>}
-                </div> 
-            </div>
+            </div> 
             
         </div>
     );
