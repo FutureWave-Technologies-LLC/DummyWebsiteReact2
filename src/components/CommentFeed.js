@@ -5,14 +5,24 @@ import "../css/components/CommentFeed.css"
 function CommentFeed(props) {
     const {commentFeed, openModalSetter} = props
 
+    const options = {
+        timeZone: 'America/Los_Angeles',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+    };
+
     return (
         <div className="comments-container">
             <div className="comments-feed">
                 {commentFeed.length > 0 ? (commentFeed.map(comment => (
                     <div className="comment">
-                        <h5>
-                            <Link to={"/profile/"+comment.user_id}>{comment.username}</Link>
-                        </h5>
+                        <h5><Link to={"/profile/"+comment.user_id}>{comment.username}</Link></h5>
+                        <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(comment.creation_date))}</i>
                         <p>{comment.comment}</p>
                     </div>
                 )).reverse()) : (
