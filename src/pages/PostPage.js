@@ -102,6 +102,7 @@ function PostPage() {
                     media={post.media}
                     title={post.title}
                     description={post.text}
+                    date={post.creation_date}
                 ></Post>
             )}
             <CommentFeed
