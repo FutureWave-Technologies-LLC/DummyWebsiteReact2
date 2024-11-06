@@ -21,10 +21,13 @@ function CommentFeed(props) {
             <div className="comments-feed">
                 {commentFeed.length > 0 ? (commentFeed.map(comment => (
                     <div className="comment">
-                        <h5><Link to={"/profile/"+comment.user_id}>{comment.username}</Link></h5>
-                        <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(comment.creation_date))}</i>
-                        <p>{comment.comment}</p>
+                        <div className="comment-header">
+                            <h5><Link to={"/profile/"+comment.user_id}>{comment.username}</Link></h5>
+                            <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(comment.creation_date))}</i>
+                        </div>
+                        {comment.comment}
                     </div>
+                    
                 )).reverse()) : (
                     <p>No comments.</p>
                 )}
