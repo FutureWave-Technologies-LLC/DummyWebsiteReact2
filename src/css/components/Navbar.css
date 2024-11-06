@@ -30,5 +30,7 @@
 }
 
 .search-btn {
+    height: 80%;
     border-radius: 10px;
+    padding: 2px 15px 5px 15px;
 }
