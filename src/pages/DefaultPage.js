@@ -1,18 +1,24 @@
 import NavigateButton from '../components/NavigateButton.js';
 
+import "../css/pages/DefaultPage.css"
+
 function DefaultPage () {
     return(
         <section>
-            <h1>New Space</h1>
-            <NavigateButton
-                buttonText="Sign Up"
-                path="/sign-up"
-            ></NavigateButton>
+            <div className="default-page">
+                <h1>New Space</h1>
+                <div>
+                    <NavigateButton
+                        buttonText="Sign Up"
+                        path="/sign-up"
+                    ></NavigateButton>
 
-            <NavigateButton
-                buttonText="Log In"
-                path="/login"
-            ></NavigateButton>
+                    <NavigateButton
+                        buttonText="Log In"
+                        path="/login"
+                    ></NavigateButton>
+                </div>
+            </div>
         </section>
     )
 }
