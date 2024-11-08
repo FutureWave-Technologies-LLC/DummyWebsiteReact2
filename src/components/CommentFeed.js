@@ -23,7 +23,9 @@ function CommentFeed(props) {
                     <div className="comment">
                         <div className="comment-header">
                             <h5><Link to={"/profile/"+comment.user_id}>{comment.username}</Link></h5>
-                            <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(comment.creation_date))}</i>
+                            {comment.creation_date && (
+                                <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(comment.creation_date))}</i>)}
+                            
                         </div>
                         {comment.comment}
                     </div>
