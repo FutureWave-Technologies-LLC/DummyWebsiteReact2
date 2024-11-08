@@ -1,19 +1,11 @@
 import { useNavigate, Link } from 'react-router-dom';
 
 import "../css/components/Post.css"
-import { useState, useEffect } from 'react';
 
 function Post(props) {
     const {is_mini, post_id, username, user_id, media, title, description, date} = props
     const navigate = useNavigate();
-    const [dateString, setDateString] = useState(date)
 
-    useEffect(() => {
-        if (!date || !isNaN(new Date(dateString).getTime)) {
-            // Format the date as "MM-DD-YYYY HH:MM AM/PM"
-            setDateString('1234-12-30T01:02:03')
-        }
-    }, [])
     //Mini Post is a button
     if (is_mini) {
         var charLimit = 90;
@@ -50,13 +42,12 @@ function Post(props) {
             second: '2-digit',
             hour12: true
         };
-        
         return (
             <div>
                 <div className="normal post" id={post_id}>
                     <h2>{title}</h2>
                     {date && (
-                        <i>{new Intl.DateTimeFormat('en-US', options).format(new Date(dateString))}</i>
+                        <i>{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</i>
                     )}
                     <p>
                         Posted by:{' '}
