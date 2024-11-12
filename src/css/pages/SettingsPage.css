@@ -1,0 +1,38 @@
+.settings-page {    
+    height: 100vh;
+}
+
+.settings-form {
+    display: flex;
+    /* justify-content: flex-start; */
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: 80%;
+    height: 90%;
+    
+    position: absolute;
+    left: 20%; 
+    bottom: 0;
+
+    overflow-y: auto;
+}
+
+.settings-input {
+    height: 30%;
+    width: 800px;
+}
+
+.profile-image-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.submit-btn {
+    border: 0px;
+    border-radius: 10px;
+}
