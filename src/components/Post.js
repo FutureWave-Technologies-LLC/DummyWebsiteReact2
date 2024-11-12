@@ -8,7 +8,7 @@ function Post(props) {
 
     //Mini Post is a button
     if (is_mini) {
-        var charLimit = 90;
+        var charLimit = 120;
         
         //shorten description if it exceeds char limit
         function shortDescription(descriptionText) {
