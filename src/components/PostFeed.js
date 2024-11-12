@@ -9,7 +9,7 @@ function PostFeed() {
   const [postFeed, setPostFeed] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:8000/posts/all_posts/")  
+    axios.get("http://3.142.185.208:8000/posts/all_posts/")  
     .then((response) => {
       setPostFeed(response.data)
     })
