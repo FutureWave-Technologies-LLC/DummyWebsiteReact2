@@ -40,7 +40,7 @@ function ProfilePage() {
         }
 
         // Fetch user's data
-        axios.get("http://localhost:8000/users/get_user_data/", {
+        axios.get("http://3.142.185.208:8000/users/get_user_data/", {
             params: { user_id: profileUserId },
         })
         .then((response) => {
@@ -49,7 +49,7 @@ function ProfilePage() {
                 setProfileImage(response.data.profile_image)
 
                 // Fetch followers
-                axios.get("http://localhost:8000/profiles/get_followers/", {
+                axios.get("http://3.142.185.208:8000/profiles/get_followers/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then((response) => {
@@ -58,7 +58,7 @@ function ProfilePage() {
                 .catch(err => console.error('Error fetching followers data:', err));
 
                 // Fetch followees (users this user is following)
-                axios.get("http://localhost:8000/profiles/following/", {
+                axios.get("http://3.142.185.208:8000/profiles/following/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then(response => {
@@ -67,7 +67,7 @@ function ProfilePage() {
                 .catch(err => console.error("Error fetching followees data:", err));
 
                 // Fetch the user's posts using the id
-                axios.get("http://localhost:8000/profiles/profile_posts/", {
+                axios.get("http://3.142.185.208:8000/profiles/profile_posts/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then((response) => {
