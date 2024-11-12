@@ -33,6 +33,12 @@ function SideBar() {
                 bootstrap="border border-opacity-100"
                 iconClass="uil uil-plus-circle"
             />
+            <NavigateButton
+                buttonText="User Settings"
+                path="/settings"
+                bootstrap="border border-opacity-100"
+                iconClass="uil uil-cog"
+            />
             <button 
                 onClick={() => auth.logOut()} 
                 className="log-out border border-opacity-100"
