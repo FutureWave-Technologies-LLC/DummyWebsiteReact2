@@ -14,6 +14,7 @@ import MessagesPage from './pages/MessagesPage.js';
 import SearchPage from './pages/SearchPage.js';
 import ProfilePage from './pages/ProfilePage.js';
 import DefaultPage from './pages/DefaultPage.js';
+import SettingsPage from './pages/SettingsPage.js';
 
 //css
 import './css/App.css'
@@ -36,6 +37,7 @@ function App() {
               <Route path="/post/:postId" element={<PostPage />} />
               <Route path="/messages" element={<MessagesPage />} />
               <Route path="/search" element={<SearchPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
               <Route path="/dum" element={<DummyDataPage />} />
             </Route>
         </Routes>
