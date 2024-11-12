@@ -18,11 +18,11 @@ const CreatePostPage = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://3.142.185.208:8000/api/recieving_posts/', {
+            await axios.post('http://localhost:8000/posts/post/', {
                 title: title,
                 media: media,
-                postText: postText,
-                username: token.username
+                description: postText,
+                user_id: token.user_id
             })
 
             setTitle('');

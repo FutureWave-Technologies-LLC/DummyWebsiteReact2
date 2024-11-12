@@ -36,7 +36,7 @@ function ProfilePage() {
         }
 
         // Fetch user's data
-        axios.get("http://3.142.185.208:8000/api/get_user_data/", {
+        axios.get("http://localhost:8000/users/get_user_data/", {
             params: { user_id: profileUserId },
         })
         .then((response) => {
@@ -44,7 +44,7 @@ function ProfilePage() {
                 setUser(response.data);
 
                 // Fetch followers
-                axios.get("http://3.142.185.208:8000/api/get_followers/", {
+                axios.get("http://localhost:8000/profiles/get_followers/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then((response) => {
@@ -53,7 +53,7 @@ function ProfilePage() {
                 .catch(err => console.error('Error fetching followers data:', err));
 
                 // Fetch followees (users this user is following)
-                axios.get("http://3.142.185.208:8000/api/following/", {
+                axios.get("http://localhost:8000/profiles/following/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then(response => {
@@ -61,9 +61,9 @@ function ProfilePage() {
                 })
                 .catch(err => console.error("Error fetching followees data:", err));
 
-                // Fetch the user's posts using the username
-                axios.get("http://3.142.185.208:8000/api/profile_posts/", {
-                    params: { username: response.data.username },
+                // Fetch the user's posts using the id
+                axios.get("http://localhost:8000/profiles/profile_posts/", {
+                    params: { user_id: response.data.user_id },
                 })
                 .then((response) => {
                     setPosts(response.data);  // Store the posts in state
@@ -136,7 +136,7 @@ function ProfilePage() {
                                     username={post.username}
                                     media={post.media}
                                     title={post.title}
-                                    description={post.text}
+                                    description={post.description}
                                     is_mini={true}
                                 />
                             )).reverse()

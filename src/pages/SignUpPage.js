@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import "../css/pages/SignUpPage.css"; 
@@ -10,6 +10,7 @@ function SignUpPage() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
+    const navigate = useNavigate();
 
     function hasNoWhiteSpace(s) {
         return !(s.indexOf(' ') >= 0)
@@ -19,7 +20,7 @@ function SignUpPage() {
         
         if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
              && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
-            axios.post("http://3.142.185.208:8000/api/signup_user/", {
+            axios.post("http://localhost:8000/users/sign_up/", {
                 username: username,
                 password: password,
                 first_name: fname,
@@ -31,7 +32,8 @@ function SignUpPage() {
                         setError(response.data.response)
                     }
                     else {
-                        window.location.href = 'http://18.222.224.80:3000/login/?response=Created'
+                        navigate("/login");
+                        //window.location.href = 'http://18.222.224.80:3000/login/?response=Created'
                     }
                 })
                 .catch((error) => {

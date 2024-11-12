@@ -21,7 +21,7 @@ const LoginPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.get("http://3.142.185.208:8000/api/login/", {
+        axios.get("http://localhost:8000/users/login/", {
             params: {
                 username: username,
                 password: password,
@@ -75,8 +75,8 @@ const LoginPage = () => {
                 </button>
                 </div>
                 <div className = "register-link">
-                Don't have an account?{' '}
-                <Link to="/sign-up">Register</Link>
+                    Don't have an account?{' '}
+                    <Link to="/sign-up">Register</Link>
                 </div>
             </form>
         </div>

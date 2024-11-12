@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import Navbar from "../components/Navbar"
 import SideBar from "../components/Sidebar"
-import NotificationBar from "../components/NotificationBar"
 import Post from "../components/Post"
 import CommentFeed from "../components/CommentFeed"
 import Modal from '../components/Modal'
@@ -15,16 +14,17 @@ function PostPage() {
     const { postId } = useParams()
     const [post, setPost] = useState()
     const [commentFeed, setCommentFeed] = useState([])
-    const [showCommentModal, setShowCommentModal] = useState(false)
+    
     const [comment, setComment] = useState("")
     const [canComment, setCanComment] = useState(true)
+    const [showCommentModal, setShowCommentModal] = useState(false)
     const [successPost, setSuccessPost] = useState()
 
     const token = JSON.parse(localStorage.getItem("future-token"))
 
     useEffect(() => {
         //get post info based on postId
-        axios.get("http://3.142.185.208:8000/api/get_post/", {
+        axios.get("http://localhost:8000/posts/post/", {
             params: { post_id: postId },
         })
         .then((response) => {
@@ -41,7 +41,7 @@ function PostPage() {
 
     function getCommentFeed() {
         //get comments for post based on postId
-        axios.get("http://3.142.185.208:8000/api/comments/", {
+        axios.get("http://localhost:8000/posts/comments/", {
             params: { post_id: postId },
         })
         .then((response) => {
@@ -56,7 +56,7 @@ function PostPage() {
             setCanComment(false)
             console.log(comment)
             try {
-                await axios.post('http://3.142.185.208:8000/api/comments/', {
+                await axios.post('http://localhost:8000/posts/comments/', {
                     user_id: token.user_id,
                     post_id: postId,
                     comment: comment
@@ -101,7 +101,7 @@ function PostPage() {
                     user_id={post.user_id}
                     media={post.media}
                     title={post.title}
-                    description={post.text}
+                    description={post.description}
                     date={post.creation_date}
                 ></Post>
             )}

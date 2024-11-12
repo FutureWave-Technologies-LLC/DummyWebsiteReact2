@@ -9,7 +9,7 @@ function PostFeed() {
   const [postFeed, setPostFeed] = useState([])
 
   useEffect(() => {
-    axios.get("http://3.142.185.208:8000/api/posts/")  
+    axios.get("http://localhost:8000/posts/all_posts/")  
     .then((response) => {
       setPostFeed(response.data)
     })
@@ -26,7 +26,7 @@ function PostFeed() {
                   post_id={post.post_id}
                   username={post.username}
                   title={post.title}
-                  description={post.text}
+                  description={post.description}
               ></Post>
           )).reverse()}
       </div> 

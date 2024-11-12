@@ -20,14 +20,11 @@ function MessagesPage() {
         const fetchMessages = async () => {
             if (selectedUser) {
                 try {
-                    const response = await axios.get('http://3.142.185.208:8000/api/messages', {
+                    const response = await axios.get('http://localhost:8000/messaging/message', {
                         params: {
-                               user_id: token.user_id,
-                               reciever_id: selectedUser.user_id  // Ensure token is correctly formatted
+                               sender_id: token.user_id,
+                               receiver_id: selectedUser.user_id  // Ensure token is correctly formatted
                         }
-                        // params: {
-                        //     Authorization: `Bearer ${token}`,  // Ensure token is correctly formatted
-                        // }
                     });
                     const filteredMessages = response.data
                     console.log(filteredMessages)
@@ -40,28 +37,18 @@ function MessagesPage() {
         fetchMessages();
     }, [selectedUser, token]);
 
-    const handleMessageChange = (e) => {
-        setMessage(e.target.value);
-    };
-
     const handleSendMessage = async () => {
-       
         if (selectedUser && message.trim()) {
             setCanSendMessage(false)
             console.log("Sending message to:", selectedUser.user_id, "Message content:", message);  // Debug log
             try {
                 const response = await axios.post(
-                    'http://3.142.185.208:8000/api/messages/',
+                    'http://localhost:8000/messaging/message/',
                     {
-                        user_id: token.user_id,
-                        reciever_id: selectedUser.user_id,
-                        text: message,
+                        sender_id: token.user_id,
+                        receiver_id: selectedUser.user_id,
+                        message_text: message,
                     },
-                    // {
-                    //     headers: {
-                    //         Authorization: `Bearer ${token}`,  // Ensure token is correctly formatted
-                    //     }
-                    // }
                 );
                 console.log("Message sent successfully:", response.data);  // Debug log
                 setMessages([...messages, response.data])
@@ -104,16 +91,16 @@ function MessagesPage() {
                             </div>
                             <div className="chat-messages">
                                 {messages.length > 0 ? messages.map((msg, index) => (
-                                    <div key={index} className={`message ${msg.user_id === token.user_id ? 'sent' : 'received'}`}>
-                                        {msg.user_id === token.user_id ? "You:": selectedUser.username+":"} {msg.text}
+                                    <div key={index} className={`message ${msg.sender === token.user_id ? 'sent' : 'received'}`}>
+                                        {msg.sender === token.user_id ? "You:": selectedUser.username+":"} {msg.message_text}
                                     </div>
-                                )) : <p>No messages yet</p>}
+                                )).reverse() : <p>No messages yet</p>}
                             </div>
                             <div className="message-input">
                                 <input
                                     type="text"
                                     value={message}
-                                    onChange={handleMessageChange}
+                                    onChange={e=>setMessage(e.target.value)}
                                     placeholder="Type your message..."
                                 />
                                 <button disabled={!canSendMessage} onClick={handleSendMessage}>Send</button>
