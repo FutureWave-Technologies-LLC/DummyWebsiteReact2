@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 import "../css/components/CommentFeed.css"
 
@@ -14,15 +16,18 @@ function CommentFeed(props) {
         minute: '2-digit',
         second: '2-digit',
         hour12: true
-    };
+    }  
 
     return (
         <div className="comments-container">
             <div className="comments-feed">
                 {commentFeed.length > 0 ? (commentFeed.map(comment => (
                     <div className="comment">
-                        <div className="comment-header">
-                            <h5><Link to={"/profile/"+comment.user_id}>{comment.username}</Link></h5>
+                        <div>
+                            <div className="comment-header">
+                                <img className="comment-image" src={comment.profile_image}></img>
+                                <h5><Link to={"/profile/"+comment.user_id}>{comment.username}</Link></h5>
+                            </div>
                             {comment.creation_date && (
                                 <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(comment.creation_date))}</i>)}
                             
