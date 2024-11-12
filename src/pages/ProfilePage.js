@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from "../components/Navbar";
 import SideBar from "../components/Sidebar";
-import NotificationBar from "../components/NotificationBar";
 import Modal from '../components/Modal';
 import Post from '../components/Post';
 import NavigateButton from '../components/NavigateButton';
@@ -13,10 +12,15 @@ import '../css/pages/ProfilePage.css';
 function ProfilePage() {
     const { userId } = useParams();  // Get the userId from the route params if any
     const [loading, IsLoading] = useState(true);
+
+    //data
     const [user, setUser] = useState(null);
+    const [profileImage, setProfileImage] = useState("https://via.placeholder.com/300")
     const [followers, setFollowers] = useState([]);
     const [followees, setFollowees] = useState([]);
-    const [posts, setPosts] = useState([]);  // State to hold the posts
+    const [posts, setPosts] = useState([]);
+
+    //show/hide modals
     const [showFollowers, setShowFollowers] = useState(false);
     const [showFollowees, setShowFollowees] = useState(false);
 
@@ -41,7 +45,8 @@ function ProfilePage() {
         })
         .then((response) => {
             if (response.data.error === false) {
-                setUser(response.data);
+                setUser(response.data)
+                setProfileImage(response.data.profile_image)
 
                 // Fetch followers
                 axios.get("http://localhost:8000/profiles/get_followers/", {
@@ -88,6 +93,7 @@ function ProfilePage() {
             {user ? (
                 <div className="profile-container">
                     <div className="profile-header">
+                        <img className="profile-image" src={profileImage}></img>
                         <h1>{user.username}</h1>
                         <div className="follow-info">
                             <span onClick={() => setShowFollowers(true)} className="follower-count">
@@ -97,6 +103,7 @@ function ProfilePage() {
                                 {followees.length} Following
                             </span>
                         </div>
+                        <p>Joined on: {new Intl.DateTimeFormat('en-US').format(new Date(user.creation_date))}</p>
                     </div>
                     
                     {/* Followers Modal */}
