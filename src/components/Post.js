@@ -54,6 +54,16 @@ function Post(props) {
                         <Link to={"/profile/"+user_id}>{username}</Link>
                     </p>
                     <p>{description}</p>
+                    {media && media.indexOf("youtube") === -1 && (
+                        <img className="media-image" src={media}></img> 
+                    )}
+                    {media && media.indexOf("youtube") !== -1 && (
+                        <div>
+                            <p>*Youtube video here*</p>
+                            <img className="media-image" src={media}></img> 
+                        </div>
+                        
+                    )}
                 </div>
             </div>
             
