@@ -18,7 +18,7 @@ const CreatePostPage = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://3.142.185.208:8000/posts/post/', {
+            await axios.post('http://localhost:8000/posts/post/', {
                 title: title,
                 media: media,
                 description: postText,
@@ -53,11 +53,18 @@ const CreatePostPage = () => {
                             onChange={(e) => setTitle(e.target.value)}
                         />
 
-                        <input
+                        {/* <input
                             type="file"
                             id="media"
                             className="form-control rounded"
                             onChange={(e) => setMedia(e.target.files[0])}
+                        /> */}
+                        <input
+                            type="text"
+                            id="media"
+                            placeholder="URL of media"
+                            className="form-control rounded"
+                            onChange={(e) => setMedia(e.target.value)}
                         />
 
                         <textarea
