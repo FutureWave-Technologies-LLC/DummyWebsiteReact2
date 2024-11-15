@@ -19,6 +19,8 @@
 }
 
 .normal {
+    align-items: center;
+    
     width: 45%;
     height: 90%;
     padding: 20px;
@@ -28,5 +30,12 @@
     bottom: 0;
 
     overflow-y: auto;
+}
+
+.media-image {
+    max-width: 75%;    
+    max-height: 75%;  
+    width: auto;        
+    height: auto;
 }
 
