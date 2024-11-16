@@ -1,8 +1,4 @@
 .post {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
     width: 97%;
     background: rgba(236, 214, 250);
     padding: 10px;
@@ -10,6 +6,10 @@
 }
 
 .mini {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
     border: 0;
     margin-bottom: 10px;
 }
@@ -22,14 +22,46 @@
     align-items: center;
     
     width: 45%;
-    height: 90%;
+    height: 80%;
     padding: 20px;
 
     position: absolute;
     left: 18%; 
-    bottom: 0;
+    bottom: 10%;
 
     overflow-y: auto;
+
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.like-container {
+    display: flex;
+    justify-content: flex-start;
+
+    position: absolute;
+    left: 18%; 
+    bottom: 0%; 
+
+    width: 45%;
+    z-index: 1;
+
+    background: rgba(236, 214, 250);
+    padding: 10px;
+
+    border-radius: 25px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.like-container button {
+    border: 0;
+    border-radius: 20px;
+    background-color: rgb(225, 178, 255);
+}
+
+.like-container button:hover {
+    background-color: rgb(218, 159, 255);
 }
 
 .media-image {
@@ -37,5 +69,11 @@
     max-height: 75%;  
     width: auto;        
     height: auto;
+
+    border-radius:  10px;
+}
+
+.description {
+    text-align: start;
 }
 
