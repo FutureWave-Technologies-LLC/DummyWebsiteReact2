@@ -50,17 +50,6 @@
     align-items: end;
 }
 
-.comment-image {
-    max-width: 60px;    
-    max-height: 60px;  
-    width: auto;        
-    height: auto;
-
-    margin-right: 10px;
-       
-    border-radius: 100%;
-}
-
 .date {
     font-size: small;
 }
