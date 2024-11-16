@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -25,8 +25,7 @@ function Search() {
             }
         })
         .then((response) => {
-            setQueryResult(response.data);
-            setFollowingStatus([]);
+            setQueryResult(response.data)
 
             // Get users and their IDs that this user is following and set to followingStatus state
             axios.get("http://3.142.185.208:8000/profiles/following/", {
@@ -65,12 +64,6 @@ function Search() {
         });
     }
 
-    // Navigate to profile page
-    function navigateToProfile(id) {
-        navigate("/profile/" + id);
-        console.log(id);
-    }
-
     // Navigate to messages page to start a conversation
     function navigateToMessages(user) {
         navigate("/messages", { state: { userToMessage: user } });
@@ -83,17 +76,21 @@ function Search() {
             <div className="main-content">
                 {(!queryResult.error && queryResult.map(user => (
                     <div key={user.user_id} className="user-item">
-                        <button className="profile item-btn" onClick={() => navigateToProfile(user.user_id)}>{user.username}</button>
-                        {user.username !== token.username && (
-                            <>
-                                <button className="item-btn" onClick={() => toggleFollow(user.username)}>
-                                    {followingStatus.includes(user.username) ? 'Unfollow' : 'Follow'}
-                                </button>
-                                <button className="item-btn" onClick={() => navigateToMessages(user)}>
-                                    Message
-                                </button>
-                            </>
-                        )}
+                        <img className="small-profile-image" src={user.profile_image}/>
+                        <div className="right">
+                            <h5><Link to={"/profile/"+user.user_id}>{user.username}</Link></h5>
+                            {user.username !== token.username && (
+                                <div>
+                                    <button className="item-btn" onClick={() => toggleFollow(user.username)}>
+                                        {followingStatus.includes(user.username) ? 'Unfollow' : 'Follow'}
+                                    </button>
+                                    <button className="item-btn" onClick={() => navigateToMessages(user)}>
+                                        Message
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                        
                     </div>
                 ))) || <p>{queryResult.Response}</p>}
             </div>
