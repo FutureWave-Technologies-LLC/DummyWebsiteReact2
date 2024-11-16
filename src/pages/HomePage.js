@@ -3,7 +3,6 @@ import SideBar from "../components/Sidebar"
 import NotificationBar from "../components/NotificationBar"
 import PostFeed from "../components/PostFeed"
 
-
 import "../css/pages/HomePage.css"
 
 function HomePage() {
@@ -11,7 +10,7 @@ function HomePage() {
         <div className="home-container">
             <Navbar></Navbar>
             <SideBar></SideBar>
-            <PostFeed></PostFeed>
+            <PostFeed allPosts={true}></PostFeed>
         </div>
     )
 }
