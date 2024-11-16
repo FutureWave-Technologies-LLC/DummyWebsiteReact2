@@ -25,7 +25,7 @@ function CommentFeed(props) {
                     <div className="comment">
                         <div>
                             <div className="comment-header">
-                                <img className="comment-image" src={comment.profile_image}></img>
+                                <img className="small-profile-image" src={comment.profile_image}></img>
                                 <h5><Link to={"/profile/"+comment.user_id}>{comment.username}</Link></h5>
                             </div>
                             {comment.creation_date && (
