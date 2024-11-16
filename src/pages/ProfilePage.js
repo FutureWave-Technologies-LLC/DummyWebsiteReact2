@@ -4,8 +4,8 @@ import axios from 'axios';
 import Navbar from "../components/Navbar";
 import SideBar from "../components/Sidebar";
 import Modal from '../components/Modal';
-import Post from '../components/Post';
 import NavigateButton from '../components/NavigateButton';
+import PostFeed from "../components/PostFeed"
 
 import '../css/pages/ProfilePage.css';
 
@@ -65,15 +65,6 @@ function ProfilePage() {
                     setFollowees(response.data);
                 })
                 .catch(err => console.error("Error fetching followees data:", err));
-
-                // Fetch the user's posts using the id
-                axios.get("http://3.142.185.208:8000/profiles/profile_posts/", {
-                    params: { user_id: response.data.user_id },
-                })
-                .then((response) => {
-                    setPosts(response.data);  // Store the posts in state
-                })
-                .catch(err => console.error("Error fetching posts data:", err));
             } else {
                 console.log(response.data.response);
             }
@@ -134,24 +125,9 @@ function ProfilePage() {
                     )}
                     {/* Display User Posts */}
                     <h2>{user.username}'s Recent Posts</h2>
-                    <div className="profile-posts">
-                        {posts.length > 0 ? (
-                            posts.map((post) => (
-                                <Post
-                                    key={post.post_id}
-                                    post_id={post.post_id}
-                                    username={post.username}
-                                    media={post.media}
-                                    title={post.title}
-                                    description={post.description}
-                                    is_mini={true}
-                                />
-                            )).reverse()
-                        ) : (
-                            <p>{user.username} has not made any posts yet.</p>
-                        )}
+                    <div className='profile-posts'>
+                        <PostFeed userId={userId}></PostFeed>
                     </div>
-                    
                 </div>
             ) : loading ? (
                 <p>Loading data...</p>
