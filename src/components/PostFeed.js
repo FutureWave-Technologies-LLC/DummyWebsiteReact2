@@ -5,17 +5,28 @@ import Post from "./Post"
 
 import "../css/components/PostFeed.css"
 
-function PostFeed() {
+function PostFeed(props) {
+  const {allPosts, userId} = props
   const [postFeed, setPostFeed] = useState([])
 
   useEffect(() => {
-    axios.get("http://3.142.185.208:8000/posts/all_posts/")  
-    .then((response) => {
-      setPostFeed(response.data)
-    })
-    .catch((error) => {
-        console.error('Error fetching post data:', error);
-    })
+    if (allPosts === true) {
+      axios.get("http://3.142.185.208:8000/posts/all_posts/")
+      .then((response) => {
+        setPostFeed(response.data)
+      })
+      .catch((err) => console.error('Error fetching post data:', err))
+    } else {
+      // Fetch the user's posts using the id
+      axios.get("http://3.142.185.208:8000/profiles/profile_posts/", {
+        params: { user_id: userId },
+      })
+      .then((response) => {
+        setPostFeed(response.data)
+      })
+      .catch(err => console.error("Error fetching post data for user:", err));
+    }
+    
   }, [])
 
   return (
@@ -27,6 +38,7 @@ function PostFeed() {
                   username={post.username}
                   title={post.title}
                   description={post.description}
+                  date={post.creation_date}
               ></Post>
           )).reverse()}
       </div> 
