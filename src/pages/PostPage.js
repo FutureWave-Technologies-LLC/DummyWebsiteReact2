@@ -54,7 +54,6 @@ function PostPage() {
         e.preventDefault();
         if (comment.trim() != "") {
             setCanComment(false)
-            console.log(comment)
             try {
                 await axios.post('http://3.142.185.208:8000/posts/comments/', {
                     user_id: token.user_id,
