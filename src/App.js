@@ -17,7 +17,7 @@ import DefaultPage from './pages/DefaultPage/DefaultPage.js';
 import SettingsPage from './pages/SettingsPage/SettingsPage.js';
 
 //css
-import './css/App.css'
+import './App.css'
 
 function App() {
   return (
