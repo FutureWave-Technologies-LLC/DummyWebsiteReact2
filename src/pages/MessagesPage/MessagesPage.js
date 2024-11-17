@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import Navbar from "../../components/Navbar/Navbar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import axios from "axios";
 
-import "../css/pages/MessagesPage.css";
+import "./MessagesPage.css";
 
 function MessagesPage() {
     const location = useLocation();
@@ -20,7 +20,7 @@ function MessagesPage() {
         const fetchMessages = async () => {
             if (selectedUser) {
                 try {
-                    const response = await axios.get('http://3.142.185.208:8000/messaging/message', {
+                    const response = await axios.get('http://localhost:8000/messaging/message', {
                         params: {
                                sender_id: token.user_id,
                                receiver_id: selectedUser.user_id  // Ensure token is correctly formatted
@@ -43,7 +43,7 @@ function MessagesPage() {
             console.log("Sending message to:", selectedUser.user_id, "Message content:", message);  // Debug log
             try {
                 const response = await axios.post(
-                    'http://3.142.185.208:8000/messaging/message/',
+                    'http://localhost:8000/messaging/message/',
                     {
                         sender_id: token.user_id,
                         receiver_id: selectedUser.user_id,

@@ -1,4 +1,4 @@
-import "../css/components/Media.css"
+import "./Media.css"
 import React from "react"
 
 function Media({url}) {

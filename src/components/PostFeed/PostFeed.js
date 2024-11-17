@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
 
-import Post from "./Post"
+import Post from "../Post/Post"
 
-import "../css/components/PostFeed.css"
+import "./PostFeed.css"
 
 function PostFeed(props) {
   const {allPosts, userId} = props
@@ -11,14 +11,14 @@ function PostFeed(props) {
 
   useEffect(() => {
     if (allPosts === true) {
-      axios.get("http://3.142.185.208:8000/posts/all_posts/")
+      axios.get("http://localhost:8000/posts/all_posts/")
       .then((response) => {
         setPostFeed(response.data)
       })
       .catch((err) => console.error('Error fetching post data:', err))
     } else {
       // Fetch the user's posts using the id
-      axios.get("http://3.142.185.208:8000/profiles/profile_posts/", {
+      axios.get("http://localhost:8000/profiles/profile_posts/", {
         params: { user_id: userId },
       })
       .then((response) => {

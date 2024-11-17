@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import Navbar from "../components/Navbar"
-import SideBar from "../components/Sidebar"
-import Post from "../components/Post"
-import CommentFeed from "../components/CommentFeed"
-import Modal from '../components/Modal'
+import Navbar from "../../components/Navbar/Navbar"
+import SideBar from "../../components/Sidebar/Sidebar"
+import Post from "../../components/Post/Post"
+import CommentFeed from "../../components/CommentFeed/CommentFeed"
+import Modal from '../../components/Modal/Modal'
 
-import "../css/pages/PostPage.css"
+import "./PostPage.css"
 
 function PostPage() {
     const { postId } = useParams()
@@ -24,7 +24,7 @@ function PostPage() {
 
     useEffect(() => {
         //get post info based on postId
-        axios.get("http://3.142.185.208:8000/posts/post/", {
+        axios.get("http://localhost:8000/posts/post/", {
             params: { post_id: postId },
         })
         .then((response) => {
@@ -41,7 +41,7 @@ function PostPage() {
 
     function getCommentFeed() {
         //get comments for post based on postId
-        axios.get("http://3.142.185.208:8000/posts/comments/", {
+        axios.get("http://localhost:8000/posts/comments/", {
             params: { post_id: postId },
         })
         .then((response) => {
@@ -55,7 +55,7 @@ function PostPage() {
         if (comment.trim() != "") {
             setCanComment(false)
             try {
-                await axios.post('http://3.142.185.208:8000/posts/comments/', {
+                await axios.post('http://localhost:8000/posts/comments/', {
                     user_id: token.user_id,
                     post_id: postId,
                     comment: comment

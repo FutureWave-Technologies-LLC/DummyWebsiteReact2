@@ -1,7 +1,7 @@
-import NavigateButton from '../components/NavigateButton.js';
-import { useAuth } from "../hooks/AuthProvider";
+import NavigateButton from '../NavigateButton/NavigateButton';
+import { useAuth } from "../../hooks/AuthProvider";
 
-import '../css/components/Sidebar.css';
+import './Sidebar.css';
 
 function SideBar() {
     const token = JSON.parse(localStorage.getItem("future-token"));

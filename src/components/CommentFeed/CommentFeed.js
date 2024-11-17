@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-import "../css/components/CommentFeed.css"
+import "./CommentFeed.css"
 
 function CommentFeed(props) {
     const {commentFeed, openModalSetter} = props

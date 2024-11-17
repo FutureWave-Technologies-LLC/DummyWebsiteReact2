@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from "../components/Navbar";
-import SideBar from "../components/Sidebar";
-import Modal from '../components/Modal';
+import Navbar from "../../components/Navbar/Navbar";
+import SideBar from "../../components/Sidebar/Sidebar";
+// import Modal from '../../components/Modal/Modal';
 
-import '../css/pages/SettingsPage.css';
+import './SettingsPage.css';
 
 function SettingsPage() {
     const [image, setImage] = useState("")
@@ -16,7 +16,7 @@ function SettingsPage() {
 
     useEffect(() => {
         // Fetch user's data
-        axios.get("http://3.142.185.208:8000/users/get_user_data/", {
+        axios.get("http://localhost:8000/users/get_user_data/", {
             params: { user_id: token.user_id },
         })
         .then((response) => {
@@ -31,7 +31,7 @@ function SettingsPage() {
         e.preventDefault();
         console.log(image)
         try {
-            await axios.post('http://3.142.185.208:8000/users/update_settings/', {
+            await axios.post('http://localhost:8000/users/update_settings/', {
                 user_id: token.user_id,
                 profile_image: image,
             })

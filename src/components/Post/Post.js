@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { useNavigate, Link } from 'react-router-dom';
-import Media from './Media';
+import Media from '../Media/Media';
 
-import "../css/components/Post.css"
+import "./Post.css"
 
 function Post(props) {
     const {is_mini, post_id, username, user_id, media, title, description, date} = props

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import Navbar from "../components/Navbar"; 
-import SideBar from "../components/Sidebar";
-import NotificationBar from "../components/NotificationBar";
+import Navbar from "../../components/Navbar/Navbar"; 
+import SideBar from "../../components/Sidebar/Sidebar";
 import axios from 'axios';
 
-import "../css/pages/CreatePostPage.css"; 
+import "./CreatePostPage.css"; 
 
 const CreatePostPage = () => {
     const [title, setTitle] = useState('');
@@ -18,7 +17,7 @@ const CreatePostPage = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://3.142.185.208:8000/posts/post/', {
+            await axios.post('http://localhost:8000/posts/post/', {
                 title: title,
                 media: media,
                 description: postText,

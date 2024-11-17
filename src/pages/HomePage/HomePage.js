@@ -1,9 +1,8 @@
-import Navbar from "../components/Navbar"
-import SideBar from "../components/Sidebar"
-import NotificationBar from "../components/NotificationBar"
-import PostFeed from "../components/PostFeed"
+import Navbar from "../../components/Navbar/Navbar"
+import SideBar from "../../components/Sidebar/Sidebar"
+import PostFeed from "../../components/PostFeed/PostFeed"
 
-import "../css/pages/HomePage.css"
+import "./HomePage.css"
 
 function HomePage() {
     return (

@@ -1,9 +1,9 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import React, {useEffect, useState } from 'react';
-import { useAuth } from "../hooks/AuthProvider"
+import { useAuth } from "../../hooks/AuthProvider"
 
 
-import '../css/components/Navbar.css'
+import './Navbar.css'
 
 function Navbar() {
     const [searchParams, setSearchParams] = useSearchParams()

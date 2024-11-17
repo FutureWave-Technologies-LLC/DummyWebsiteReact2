@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-import "../css/pages/SignUpPage.css"; 
+import "./SignUpPage.css"; 
 
 function SignUpPage() {
     const [fname, setfName] = useState("")
@@ -20,7 +20,7 @@ function SignUpPage() {
         
         if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
              && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
-            axios.post("http://3.142.185.208:8000/users/sign_up/", {
+            axios.post("http://localhost:8000/users/sign_up/", {
                 username: username,
                 password: password,
                 first_name: fname,

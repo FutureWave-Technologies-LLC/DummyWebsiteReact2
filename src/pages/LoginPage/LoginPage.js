@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from "../hooks/AuthProvider";
+import { useAuth } from "../../hooks/AuthProvider"
 
-import "../css/pages/LoginPage.css"; 
+import "./LoginPage.css"; 
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -21,7 +21,7 @@ const LoginPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.get("http://3.142.185.208:8000/users/login/", {
+        axios.get("http://localhost:8000/users/login/", {
             params: {
                 username: username,
                 password: password,

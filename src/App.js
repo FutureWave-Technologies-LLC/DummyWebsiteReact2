@@ -4,17 +4,17 @@ import AuthProvider from './hooks/AuthProvider.js';
 import PrivateRoute from './router/PrivateRoute.js';
 
 //Pages
-import DummyDataPage from './pages/DummyDataPage.js';
-import SignUpPage from './pages/SignUpPage.js';
-import LoginPage from './pages/LoginPage.js';
-import HomePage from './pages/HomePage.js';
-import CreatePostPage from './pages/CreatePostPage.js';
-import PostPage from './pages/PostPage.js';
-import MessagesPage from './pages/MessagesPage.js';
-import SearchPage from './pages/SearchPage.js';
-import ProfilePage from './pages/ProfilePage.js';
-import DefaultPage from './pages/DefaultPage.js';
-import SettingsPage from './pages/SettingsPage.js';
+import DummyDataPage from './pages/DummyDataPage/DummyDataPage.js';
+import SignUpPage from './pages/SignUpPage/SignUpPage.js';
+import LoginPage from './pages/LoginPage/LoginPage.js';
+import HomePage from './pages/HomePage/HomePage.js';
+import CreatePostPage from './pages/CreatePostPage/CreatePostPage.js';
+import PostPage from './pages/PostsPage/PostPage.js';
+import MessagesPage from './pages/MessagesPage/MessagesPage.js';
+import SearchPage from './pages/SearchPage/SearchPage.js';
+import ProfilePage from './pages/ProfilePage/ProfilePage.js';
+import DefaultPage from './pages/DefaultPage/DefaultPage.js';
+import SettingsPage from './pages/SettingsPage/SettingsPage.js';
 
 //css
 import './css/App.css'

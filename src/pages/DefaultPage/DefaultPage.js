@@ -1,6 +1,6 @@
-import NavigateButton from '../components/NavigateButton.js';
+import NavigateButton from '../../components/NavigateButton/NavigateButton';
 
-import "../css/pages/DefaultPage.css"
+import "./DefaultPage.css"
 
 function DefaultPage () {
     return(
