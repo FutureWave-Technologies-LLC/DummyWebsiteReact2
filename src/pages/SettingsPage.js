@@ -16,7 +16,7 @@ function SettingsPage() {
 
     useEffect(() => {
         // Fetch user's data
-        axios.get("http://3.142.185.208:8000/users/get_user_data/", {
+        axios.get("http://3.17.148.157:8000/users/get_user_data/", {
             params: { user_id: token.user_id },
         })
         .then((response) => {
@@ -31,7 +31,7 @@ function SettingsPage() {
         e.preventDefault();
         console.log(image)
         try {
-            await axios.post('http://3.142.185.208:8000/users/update_settings/', {
+            await axios.post('http://3.17.148.157:8000/users/update_settings/', {
                 user_id: token.user_id,
                 profile_image: image,
             })
