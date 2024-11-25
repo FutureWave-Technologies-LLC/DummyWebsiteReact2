@@ -20,6 +20,8 @@ function PostPage() {
     const [showCommentModal, setShowCommentModal] = useState(false)
     const [successPost, setSuccessPost] = useState()
 
+    const [likeResponse, setLikeResponse] = useState("")
+
     const token = JSON.parse(localStorage.getItem("future-token"))
 
     useEffect(() => {
@@ -32,6 +34,7 @@ function PostPage() {
         })
         .catch(err => console.error('Error fetching followers data:', err));
         getCommentFeed()
+        getLikes()
     }, [postId]);
 
     function promptNotification(boolean) {
@@ -73,6 +76,34 @@ function PostPage() {
         }
     };
 
+    function getLikes() {
+        //get likes for post based on postId
+        axios.get("http://localhost:8000/posts/likes/", {
+            params: { post_id: postId,
+                    user_id: token.user_id
+             },
+        })
+        .then((response) => {
+            console.log(response.data)
+            setLikeResponse(response.data)
+        })
+        .catch(err => console.error('Error fetching like feed:', err));
+    }
+
+    const handleLike = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post('http://localhost:8000/posts/likes/', {
+                post_id: postId,
+                user_id: token.user_id
+            })
+            getLikes()
+        } catch (error) { 
+            promptNotification(false)
+        }
+        setCanComment(true)
+    }
+
     return (
         <div className="post-page">
             <Navbar></Navbar>
@@ -102,6 +133,9 @@ function PostPage() {
                     title={post.title}
                     description={post.description}
                     date={post.creation_date}
+                    likesCount = {likeResponse.total_likes}
+                    userLiked = {likeResponse.user_liked}
+                    LikeHandler = {handleLike}
                 ></Post>
             )}
             <CommentFeed
