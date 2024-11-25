@@ -1,0 +1,20 @@
+.post {
+    width: 97%;
+    background: rgba(236, 214, 250);
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.mini {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+    border: 0;
+    margin-bottom: 10px;
+}
+
+.mini:hover {
+    background-color: rgba(232, 196, 255);
+}
+
