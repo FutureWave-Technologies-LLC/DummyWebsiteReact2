@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
 
-import Post from "../Post/Post"
+import MiniPost from "../MiniPost/MiniPost"
 
 import "./PostFeed.css"
 
@@ -32,14 +32,13 @@ function PostFeed(props) {
   return (
       <div className="feed-container">
           {postFeed.map(post => (
-              <Post
-                  is_mini={true}
+              <MiniPost
                   post_id={post.post_id}
                   username={post.username}
                   title={post.title}
                   description={post.description}
                   date={post.creation_date}
-              ></Post>
+              ></MiniPost>
           )).reverse()}
       </div> 
   )
