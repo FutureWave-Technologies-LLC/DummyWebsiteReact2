@@ -1,12 +1,18 @@
-import React, { useState } from "react"
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Media from '../Media/Media';
 
 import "./Post.css"
 
 function Post(props) {
-    const {is_mini, post_id, username, user_id, media, title, description, date} = props
-    const navigate = useNavigate();
+    const {post_id,
+        username, 
+        user_id, title, 
+        description, 
+        date, 
+        media,
+        likesCount,
+        userLiked,
+        LikeHandler} = props
 
     const options = {
         timeZone: 'America/Los_Angeles',
@@ -19,59 +25,31 @@ function Post(props) {
         hour12: true
     }
 
-    //Mini Post is a button
-    if (is_mini) {
-        var charLimit = 120;
-        
-        //shorten description if it exceeds char limit
-        function shortDescription(descriptionText) {
-            let newDescriptionText = descriptionText
-            if (descriptionText.length > charLimit) {
-                newDescriptionText = descriptionText.substring(0, charLimit) + "..."
-            }
-            return newDescriptionText
-        }
-
-        function navigateToPost() {
-            navigate("/post/"+post_id);
-        }
-
-        return (
-            <button onClick={navigateToPost} className="mini post" id={post_id}>
+    return (
+        <div>
+            <div className="normal post" id={post_id}>
                 <h2>{title}</h2>
                 {date && (
                     <i>{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</i>
                 )}
-                <p>Posted by: {username}</p>
-                <p className="description">{shortDescription(description)}</p>
-            </button>
-        )
-    //Normal post is div container
-    } else {
-        
-        return (
-            <div>
-                <div className="normal post" id={post_id}>
-                    <h2>{title}</h2>
-                    {date && (
-                        <i>{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</i>
-                    )}
-                    <p>
-                        Posted by:{' '}
-                        <Link to={"/profile/"+user_id}>{username}</Link>
-                    </p>
-                    <p className="description">{description}</p>
-                    {media && (
-                        <Media url={media}></Media>
-                    )}
-                </div>
-                <div className="like-container">
-                    <button>Like</button>
-                </div>
+                <p>
+                    Posted by:{' '}
+                    <Link to={"/profile/"+user_id}>{username}</Link>
+                </p>
+                <p className="description">{description}</p>
+                {media && (
+                    <Media url={media}></Media>
+                )}
             </div>
-            
-        )
-    }
+            <div className="like-container">
+                <button onClick={LikeHandler}>
+                    {likesCount} Likes
+                    <i className= {userLiked ? "uil-thumbs-up" : "uil-thumbs-down"}></i>
+                </button>
+            </div>
+        </div>
+        
+    )
     
 }
 
