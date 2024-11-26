@@ -1,0 +1,36 @@
+.comment {
+    text-align: left;
+    word-wrap: break-word;
+
+    padding: 15px;
+    margin: 10px;
+
+    background-color: rgb(225, 178, 255);
+    border-radius: 20px;
+}
+
+.main {
+    border: solid;
+    border-color: rgb(180, 58, 255);
+}
+
+.comment-btn:hover {
+    background-color: rgb(218, 159, 255);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: end;
+}
+
+.date {
+    font-size: small;
+}
+
+.reply-btn {
+    height: 25%;
+    line-height: 25%;
+
+    border-radius: 10px !important;
+}
