@@ -22,6 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-local_to_ip.py
 node_modules/.cache
 
