@@ -54,14 +54,10 @@
     border-top-left-radius: 0px;
 }
 
-.like-container button {
+.not-liked {
     border: 0;
     border-radius: 20px;
-    background-color: rgb(225, 178, 255);
-}
-
-.like-container button:hover {
-    background-color: rgb(218, 159, 255);
+    
 }
 
 .media-image {
@@ -76,8 +72,3 @@
 .description {
     text-align: start;
 }
-
-.red {
-    color: red;
-}
-

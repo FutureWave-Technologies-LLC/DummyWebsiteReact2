@@ -42,9 +42,9 @@ function Post(props) {
                 )}
             </div>
             <div className="like-container">
-                <button onClick={LikeHandler}>
-                    {likesCount} Likes
-                    <i className= {userLiked ? "uil-thumbs-up" : "uil-thumbs-down"}></i>
+                <button className={userLiked ? "newspace-style-1" : "not-liked"} onClick={LikeHandler}>
+                    <i className= {"uil-thumbs-up"}></i>
+                    {likesCount} {likesCount == 1 ? "Like": "Likes"}
                 </button>
             </div>
         </div>
