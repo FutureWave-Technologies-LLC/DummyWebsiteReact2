@@ -75,7 +75,7 @@ function Search() {
             <div className="main-content">
                 {(!queryResult.error && queryResult.map(user => (
                     <div key={user.user_id} className="user-item">
-                        <img className="small-profile-image" src={user.profile_image}/>
+                        <img className="small-profile-image" src={user.profile_image ? user.profile_image : "https://via.placeholder.com/300"}/>
                         <div className="right">
                             <h5><Link to={"/profile/"+user.user_id}>{user.username}</Link></h5>
                             {user.username !== token.username && (

@@ -84,7 +84,7 @@ function ProfilePage() {
             {user ? (
                 <div className="profile-container">
                     <div className="profile-header">
-                        <img className="profile-image" src={profileImage}></img>
+                        <img className="profile-image" src={profileImage ? profileImage : "https://via.placeholder.com/300"}></img>
                         <h1>{user.username}</h1>
                         <div className="follow-info">
                             <span onClick={() => setShowFollowers(true)} className="follower-count">
