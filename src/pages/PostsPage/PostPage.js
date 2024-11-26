@@ -13,12 +13,6 @@ import "./PostPage.css"
 function PostPage() {
     const { postId, commentId } = useParams()
     const [post, setPost] = useState()
-    // const [commentFeed, setCommentFeed] = useState([])
-    
-    // const [comment, setComment] = useState("")
-    // const [canComment, setCanComment] = useState(true)
-    // const [showCommentModal, setShowCommentModal] = useState(false)
-    // const [successPost, setSuccessPost] = useState()
 
     const [likeResponse, setLikeResponse] = useState("")
 
