@@ -13,17 +13,17 @@ function DummyDataPage() {
       <h1>Dummy Data from Django</h1>
       <FetchDataButton
         buttonText="Fetch user data"
-        API_URL="http://localhost:8000/users/users/"
+        API_URL="http://3.17.148.157:8000/users/users/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
       <FetchDataButton
         buttonText="Fetch posts Data"
-        API_URL="http://localhost:8000/posts/all_posts/"
+        API_URL="http://3.17.148.157:8000/posts/all_posts/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
       <PostDataButton
         buttonText="Update Likes"
-        API_URL="http://localhost:8000/api/update_likes/"
+        API_URL="http://3.17.148.157:8000/api/update_likes/"
         dataToPost={{
           email: 'email@gmial.com'
         }}

@@ -19,7 +19,7 @@ function Search() {
 
     useEffect(() => {
         // Fetch users that match with query
-        axios.get("http://localhost:8000/users/search_users/", {
+        axios.get("http://3.17.148.157:8000/users/search_users/", {
             params: {
                 query: searchParams.get('q'),
             }
@@ -28,7 +28,7 @@ function Search() {
             setQueryResult(response.data)
 
             // Get users and their IDs that this user is following and set to followingStatus state
-            axios.get("http://localhost:8000/profiles/following/", {
+            axios.get("http://3.17.148.157:8000/profiles/following/", {
                 params: {
                     user_id: token.user_id,
                 }
@@ -48,7 +48,7 @@ function Search() {
 
     // Handles Follow and Unfollow
     function toggleFollow(usernameToFollow) {
-        axios.post("http://localhost:8000/profiles/following/", {
+        axios.post("http://3.17.148.157:8000/profiles/following/", {
             followee_username: usernameToFollow,
             follower_id: token.user_id,
         })

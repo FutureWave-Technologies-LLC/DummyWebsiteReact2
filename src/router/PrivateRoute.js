@@ -14,7 +14,7 @@ const PrivateRoute = () => {
   // useEffect(() => {
   //   if (user.token) {
   //     const token = JSON.parse(localStorage.getItem("future-token"))
-  //     axios.get("http://localhost:8000/users/compare_tokens/", {
+  //     axios.get("http://3.17.148.157:8000/users/compare_tokens/", {
   //       params: {
   //           user_id: token.user_id,
   //           token_id: token.token_id,
