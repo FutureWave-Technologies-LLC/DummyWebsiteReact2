@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+
+input {
+  background-color: #f7eaff;
+  border-color: #ECD6FA;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.newspace-style-1 {
+  border: 0;
+  border-radius: 20px;
+  background-color: rgb(225, 178, 255);
+}
+
+.newspace-style-1:hover {
+  background-color: rgb(218, 159, 255);
+}
+
+.newspace-style-2 {
+  border: 0;
+  border-radius: 20px;
+  background-color: rgb(216, 152, 255);
+}
+
+.newspace-style-2:hover {
+  background-color: rgb(207, 129, 255);
+}

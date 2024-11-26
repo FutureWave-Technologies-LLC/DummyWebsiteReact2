@@ -1,0 +1,18 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+
+    width: 15%;
+    height: 90%;
+    
+    position: absolute;
+    left: 0; 
+    bottom: 0;
+
+    overflow-y: auto;
+    border-right: 5px solid;
+    border-color: rgb(236, 214, 250);
+
+    background-color: white;
+}
+
