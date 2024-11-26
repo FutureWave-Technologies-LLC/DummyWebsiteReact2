@@ -6,6 +6,7 @@ import SideBar from "../../components/Sidebar/Sidebar"
 import PostFeed from "../../components/PostFeed/PostFeed"
 import Modal from '../../components/Modal/Modal';
 import NavigateButton from '../../components/NavigateButton/NavigateButton';
+import UserImage from '../../components/UserImage/UserImage';
 
 import './ProfilePage.css';
 
@@ -18,7 +19,6 @@ function ProfilePage() {
     const [profileImage, setProfileImage] = useState("https://via.placeholder.com/300")
     const [followers, setFollowers] = useState([]);
     const [followees, setFollowees] = useState([]);
-    const [posts, setPosts] = useState([]);
 
     //show/hide modals
     const [showFollowers, setShowFollowers] = useState(false);
@@ -84,7 +84,7 @@ function ProfilePage() {
             {user ? (
                 <div className="profile-container">
                     <div className="profile-header">
-                        <img className="profile-image" src={profileImage ? profileImage : "https://via.placeholder.com/300"}></img>
+                        <UserImage isSmall={false} src={profileImage}></UserImage>
                         <h1>{user.username}</h1>
                         <div className="follow-info">
                             <span onClick={() => setShowFollowers(true)} className="follower-count">

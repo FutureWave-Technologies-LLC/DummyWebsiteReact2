@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Navbar from "../../components/Navbar/Navbar";
 import SideBar from "../../components/Sidebar/Sidebar";
+import UserImage from "../../components/UserImage/UserImage";
 
 import './SearchPage.css';
 
@@ -75,7 +76,7 @@ function Search() {
             <div className="main-content">
                 {(!queryResult.error && queryResult.map(user => (
                     <div key={user.user_id} className="user-item">
-                        <img className="small-profile-image" src={user.profile_image ? user.profile_image : "https://via.placeholder.com/300"}/>
+                        <UserImage isSmall={true} src={user.profile_image}></UserImage>
                         <div className="right">
                             <h5><Link to={"/profile/"+user.user_id}>{user.username}</Link></h5>
                             {user.username !== token.username && (

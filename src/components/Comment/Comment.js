@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+import UserImage from '../UserImage/UserImage';
 import "./Comment.css"
 
 function Comment(props) {
@@ -35,7 +36,7 @@ function Comment(props) {
         <div className={is_main_comment == true ? "main comment": "comment"}>
             <div>
                 <div className="comment-header">
-                    <img className="small-profile-image" src={profile_image}></img>
+                    <UserImage isSmall={true} src={profile_image}></UserImage>
                     <h5><Link to={"/profile/"+user_id}>{username}</Link></h5>
                 </div>
                 {creation_date && (
