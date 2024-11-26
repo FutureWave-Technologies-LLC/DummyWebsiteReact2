@@ -21,26 +21,6 @@ input {
   margin: 20px;
 }
 
-.profile-image {
-  max-width: 150px;    
-  max-height: 150px;  
-  width: auto;        
-  height: auto;       
-
-  border-radius: 100%;
-}
-
-.small-profile-image {
-  max-width: 60px;    
-  max-height: 60px;  
-  width: auto;        
-  height: auto;
-
-  margin-right: 10px;
-     
-  border-radius: 100%;
-}
-
 .newspace-style-1 {
   border: 0;
   border-radius: 20px;
