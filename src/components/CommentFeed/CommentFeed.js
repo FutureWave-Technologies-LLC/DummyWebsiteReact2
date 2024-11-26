@@ -87,8 +87,6 @@ function CommentFeed(props) {
         }
     }
 
-    console.log(commentId)
-
     return (
         <div className="comments-container">
             {showModal && (
