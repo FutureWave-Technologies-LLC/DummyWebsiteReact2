@@ -11,14 +11,14 @@ import Modal from '../../components/Modal/Modal'
 import "./PostPage.css"
 
 function PostPage() {
-    const { postId } = useParams()
+    const { postId, commentId } = useParams()
     const [post, setPost] = useState()
-    const [commentFeed, setCommentFeed] = useState([])
+    // const [commentFeed, setCommentFeed] = useState([])
     
-    const [comment, setComment] = useState("")
-    const [canComment, setCanComment] = useState(true)
-    const [showCommentModal, setShowCommentModal] = useState(false)
-    const [successPost, setSuccessPost] = useState()
+    // const [comment, setComment] = useState("")
+    // const [canComment, setCanComment] = useState(true)
+    // const [showCommentModal, setShowCommentModal] = useState(false)
+    // const [successPost, setSuccessPost] = useState()
 
     const [likeResponse, setLikeResponse] = useState("")
 
@@ -32,49 +32,9 @@ function PostPage() {
         .then((response) => {
             setPost(response.data)
         })
-        .catch(err => console.error('Error fetching followers data:', err));
-        getCommentFeed()
+        .catch(err => console.error('Error fetching post data:', err));
         getLikes()
     }, [postId]);
-
-    function promptNotification(boolean) {
-        setSuccessPost(boolean)
-        setTimeout(() => setSuccessPost(), 3000)
-    }
-
-    function getCommentFeed() {
-        //get comments for post based on postId
-        axios.get("http://localhost:8000/posts/comments/", {
-            params: { post_id: postId },
-        })
-        .then((response) => {
-            setCommentFeed(response.data)
-        })
-        .catch(err => console.error('Error fetching comment feed:', err));
-    }
-
-    const handleCommentSubmit = async (e) => {
-        e.preventDefault();
-        if (comment.trim() != "") {
-            setCanComment(false)
-            try {
-                await axios.post('http://localhost:8000/posts/comments/', {
-                    user_id: token.user_id,
-                    post_id: postId,
-                    comment: comment
-                })
-                setComment("")
-                getCommentFeed()
-                promptNotification(true)
-                
-            } catch (error) { 
-                promptNotification(false)
-            }
-            setCanComment(true)
-        } else {
-            promptNotification(false)
-        }
-    };
 
     function getLikes() {
         //get likes for post based on postId
@@ -84,7 +44,6 @@ function PostPage() {
              },
         })
         .then((response) => {
-            console.log(response.data)
             setLikeResponse(response.data)
         })
         .catch(err => console.error('Error fetching like feed:', err));
@@ -99,50 +58,37 @@ function PostPage() {
             })
             getLikes()
         } catch (error) { 
-            promptNotification(false)
+            console.error('Error to like post:', error)
         }
-        setCanComment(true)
     }
 
     return (
         <div className="post-page">
             <Navbar></Navbar>
             <SideBar></SideBar>
-            {showCommentModal && (
-                <Modal onClose={() => setShowCommentModal(false)}>
-                    <form className='comment-modal' onSubmit={handleCommentSubmit}>
-                        <h2>Write Your Comment</h2>
-                        <input 
-                            placeholder="Type your comment here..."
-                            value={comment}
-                            onChange={(e) => setComment(e.target.value)}
-                        />
-                        <button disabled={!canComment} type="submit">Comment</button>
-                        {successPost == false && <p className="error">Failed to submit your comment. Please try again.</p>}
-                        {successPost == true && <p className="success">Your comment has been successfully posted!</p>}
-                    </form>
-                </Modal>
-            )}
+
             { post && (
-                <Post
-                    is_mini={false}
-                    post_id={post.post_id}
-                    username={post.username}
-                    user_id={post.user_id}
-                    media={post.media}
-                    title={post.title}
-                    description={post.description}
-                    date={post.creation_date}
-                    likesCount = {likeResponse.total_likes}
-                    userLiked = {likeResponse.user_liked}
-                    LikeHandler = {handleLike}
-                ></Post>
+                <div>
+                    <Post
+                        post_id={post.post_id}
+                        username={post.username}
+                        user_id={post.user_id}
+                        media={post.media}
+                        title={post.title}
+                        description={post.description}
+                        date={post.creation_date}
+                        likesCount = {likeResponse.total_likes}
+                        userLiked = {likeResponse.user_liked}
+                        LikeHandler = {handleLike}
+                    ></Post>
+
+                    <CommentFeed
+                        postId = {postId}
+                        commentId = {commentId}
+                    ></CommentFeed>
+                </div>
+                
             )}
-            <CommentFeed
-                commentFeed={commentFeed}
-                openModalSetter={() => setShowCommentModal(true)}
-            ></CommentFeed>
-            
         </div>
     )
 }
