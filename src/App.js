@@ -34,7 +34,7 @@ function App() {
               <Route path="/home" element={<HomePage />} />
               <Route path="/create-post" element={<CreatePostPage />} />
               <Route path="/profile/:userId" element={<ProfilePage/>}/>
-              <Route path="/post/:postId" element={<PostPage />} />
+              <Route path="/post/:postId/:commentId?" element={<PostPage />} />
               <Route path="/messages" element={<MessagesPage />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/settings" element={<SettingsPage />} />
