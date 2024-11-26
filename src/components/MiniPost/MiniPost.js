@@ -21,7 +21,7 @@ function Post(props) {
     //shorten description if it exceeds char limit
     function shortDescription(descriptionText) {
         let newDescriptionText = descriptionText
-        if (descriptionText.length > charLimit) {
+        if (descriptionText && descriptionText.length > charLimit) {
             newDescriptionText = descriptionText.substring(0, charLimit) + "..."
         }
         return newDescriptionText
