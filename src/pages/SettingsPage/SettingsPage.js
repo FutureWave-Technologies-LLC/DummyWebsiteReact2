@@ -8,6 +8,7 @@ import './SettingsPage.css';
 
 function SettingsPage() {
     const [image, setImage] = useState("")
+    const [disableInput, setDisabledInput] = useState(true)
 
     const [notification, setNotification] = useState("")
 
@@ -21,6 +22,8 @@ function SettingsPage() {
         })
         .then((response) => {
             setImage(response.data.profile_image)
+
+            setDisabledInput(false)
         })
         .catch((error) => {
             console.error('Error fetching user data:', error);
@@ -53,6 +56,7 @@ function SettingsPage() {
                         placeholder='"https://via.placeholder.com/300"'
                         onChange={e=>{setImage(e.target.value)}}
                         value={image}
+                        disabled={disableInput}
                     ></input>
                 </div>
                 <button className="submit-btn" type="form">Save</button>
