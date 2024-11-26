@@ -22,34 +22,3 @@
     overflow-y: auto;
     height: 80%;
 }
-
-.comment {
-    text-align: left;
-    word-wrap: break-word;
-
-    padding: 15px;
-    margin: 10px;
-
-    background-color: rgb(225, 178, 255);
-    border-radius: 20px;
-}
-
-.comment-btn {
-    border: 0;
-    border-radius: 20px;
-    background-color: rgb(225, 178, 255);
-}
-
-.comment-btn:hover {
-    background-color: rgb(218, 159, 255);
-}
-
-.comment-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: end;
-}
-
-.date {
-    font-size: small;
-}
