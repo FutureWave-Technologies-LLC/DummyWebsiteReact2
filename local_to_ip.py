@@ -38,7 +38,9 @@ def replace_substring_in_files(directory, target_substring, replacement_substrin
 
 if args.ip:
     for directory in directories:
-        replace_substring_in_files(directory, 'localhost', '3.142.185.208')
+        replace_substring_in_files(directory, 'localhost', '3.17.148.157')
 else:
     for directory in directories:
-        replace_substring_in_files(directory, '3.142.185.208', 'localhost')
+        replace_substring_in_files(directory, '3.17.148.157', 'localhost')
+
+    #Old: 3.142.185.208
