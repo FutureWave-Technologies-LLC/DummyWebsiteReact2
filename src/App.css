@@ -1,5 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&display=swap");
 .App {
   text-align: center;
+}
+
+.nunito-font {
+  font-family: "Cabin Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: #d9a1de;
+  
+  font-size: 2.7vmax;
 }
 
 button {
