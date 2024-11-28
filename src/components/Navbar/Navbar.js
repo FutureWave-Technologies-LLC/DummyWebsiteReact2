@@ -35,19 +35,21 @@ function Navbar() {
 
     return (
         <form className="navbar" onSubmit={handleSubmit}>
-            <h2 className = "patrick-font">New Space</h2>
-            <input
-                className="search-bar"
-                placeholder="Search A User"
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-            ></input>
-            <button 
-                className="search-btn border border-opacity-100" 
-                type="submit"
-            >Search</button>
+            <h2 className = "nunito-font">New Space</h2>
+            <div className = "search-container">
+                <input
+                    className="search-bar"
+                    placeholder="Search A User"
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                ></input>
+                <button 
+                    className="search-btn border border-opacity-100" 
+                    type="submit"
+                >Search</button>
+            </div>
             { user && (
-                <h2 className = "patrick-font"> {greetings}, {token.username}!</h2>
+                <h2 className = "nunito-font"> {greetings}, {token.username}!</h2>
             )}
         </form>
     )
