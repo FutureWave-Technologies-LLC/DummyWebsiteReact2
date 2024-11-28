@@ -101,26 +101,31 @@ function ProfilePage() {
                     {showFollowers && (
                         <Modal onClose={() => setShowFollowers(false)}>
                             <h2>Followers</h2>
-                            {followers.map((follower) => (
-                                <NavigateButton
-                                    buttonText={follower.username}
-                                    path= {"/profile/"+follower.user_id}
-                                    bootstrap="border border-opacity-100"
-                                ></NavigateButton>
-                            ))}
+                            <div class="modal-list">
+                                {followers.map((follower) => (
+                                    <NavigateButton
+                                        buttonText={follower.username}
+                                        path= {"/profile/"+follower.user_id}
+                                        bootstrap="border border-opacity-100"
+                                    ></NavigateButton>
+                                ))}
+                            </div>
+                            
                         </Modal>
                     )}
                     {/* Following Modal */}
                     {showFollowees && (
                         <Modal onClose={() => setShowFollowees(false)}>
                             <h2>Following</h2>
-                            {followees.map((followee) => (
-                                <NavigateButton
-                                    buttonText={followee.username}
-                                    path= {"/profile/"+followee.user_id}
-                                    bootstrap="border border-opacity-100"
-                                ></NavigateButton>
-                            ))}
+                            <div class="modal-list">
+                                {followees.map((followee) => (
+                                    <NavigateButton
+                                        buttonText={followee.username}
+                                        path= {"/profile/"+followee.user_id}
+                                        bootstrap="border border-opacity-100"
+                                    ></NavigateButton>
+                                ))}
+                            </div>
                         </Modal>
                     )}
                     {/* Display User Posts */}

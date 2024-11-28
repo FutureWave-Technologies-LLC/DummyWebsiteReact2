@@ -48,6 +48,12 @@
     right: 0%;
 }
 
+.modal-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
 
 
 
