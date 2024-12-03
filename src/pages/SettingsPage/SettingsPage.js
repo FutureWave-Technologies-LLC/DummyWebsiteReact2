@@ -60,18 +60,21 @@ function SettingsPage() {
                 <div className="settings-container">
                     <SettingsComponent
                         title={"Profile Image"}
+                        placeholder={'"https://via.placeholder.com/300"'}
                         onChange={e=>{setProfileImage(e.target.value)}}
                         value={profileImage}
                         disabled={disableInput}
                     ></SettingsComponent>
                     <SettingsComponent
                         title={"Banner Image"}
+                        placeholder={'"https://via.placeholder.com/300"'}
                         onChange={e=>{setBannerImage(e.target.value)}}
                         value={bannerImage}
                         disabled={disableInput}
                     ></SettingsComponent>
                     <SettingsComponent
                         title={"Profile Description"}
+                        placeholder={"Type your profile's description here"}
                         onChange={e=>{setProfileDesc(e.target.value)}}
                         value={profileDesc}
                         disabled={disableInput}
