@@ -11,8 +11,8 @@
 
     overflow-y: auto;
     border-right: 5px solid;
-    border-color: rgb(236, 214, 250);
 
-    background-color: white;
+    gap: 5px;
+    /* background-color: white; */
 }
 
