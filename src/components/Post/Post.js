@@ -46,7 +46,7 @@ function Post(props) {
                 )}
             </div>
             <div className="like-container post-bg">
-                <button className={`border sub1-button ui-shadow ${userLiked ? "" : "not-liked"}`} onClick={LikeHandler}>
+                <button className={`sub1-button ui-shadow ${userLiked ? "" : "not-liked"}`} onClick={LikeHandler}>
                     <i className= {"uil-thumbs-up"}></i>
                     {likesCount} {likesCount == 1 ? "Like": "Likes"}
                 </button>
