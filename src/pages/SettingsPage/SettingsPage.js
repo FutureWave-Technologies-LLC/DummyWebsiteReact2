@@ -12,7 +12,11 @@ function SettingsPage() {
     const [bannerImage, setBannerImage] = useState("")
     const [profileDesc, setProfileDesc] = useState("")
 
+    const [oldPassword, setOldPassword]= useState("")
+    const [newPassword, setNewPassword]= useState("")
+
     const [disableInput, setDisabledInput] = useState(true)
+    const [passwordSuccess, setPasswordSuccess] = useState()
     const [notification, setNotification] = useState("")
 
     // Retrieve the token from localStorage
@@ -35,6 +39,7 @@ function SettingsPage() {
         });
     }, []);
 
+    //submit user's settings through endpoint
     const submitSettingsChange = async (e) => {
         e.preventDefault();
         try {
@@ -43,12 +48,22 @@ function SettingsPage() {
                 profile_image: profileImage,
                 banner_image: bannerImage,
                 profile_description: profileDesc,
+                old_password: oldPassword,
+                new_password: newPassword
+            })
+            .then((response) => {
+                if (response.data.password_update == true) {
+                    setPasswordSuccess("Password updated.")
+                } else if (response.data.password_update == false) {
+                    setPasswordSuccess("Unable to update password; incorrect old password.")
+                }
             })
             setNotification('Settings successfully updated.');
         } catch (error) {
             setNotification('Failed to update settings.');
         }
         setTimeout(() => setNotification(''), 3000); 
+        setTimeout(() => setPasswordSuccess(''), 3000); 
     }
 
     return (
@@ -56,7 +71,6 @@ function SettingsPage() {
             <Navbar />
             <SideBar />
             <form className="settings-form" onSubmit={submitSettingsChange}>
-                {notification && <div className="notification">{notification}</div>}
                 <div className="settings-container">
                     <SettingsComponent
                         title={"Profile Image"}
@@ -80,7 +94,31 @@ function SettingsPage() {
                         disabled={disableInput}
                     ></SettingsComponent>
                 </div>
-                <button className="submit-btn" type="form">Save</button>
+                <div className="row-container">
+                        <SettingsComponent
+                            title={"Old Password"}
+                            placeholder={"Type your old password here"}
+                            onChange={e=>{setOldPassword(e.target.value)}}
+                            value={oldPassword}
+                            disabled={disableInput}
+                            isPassword={true}
+                            shortInput={true}
+                        ></SettingsComponent>
+                        <SettingsComponent
+                            title={"New Password"}
+                            placeholder={"Type your new password here"}
+                            onChange={e=>{setNewPassword(e.target.value)}}
+                            value={newPassword}
+                            disabled={disableInput}
+                            isPassword={true}
+                            shortInput={true}
+                        ></SettingsComponent>
+                    </div>
+                <div className='submit-notif-container'>
+                    <button className="submit-btn" type="form">Save</button>
+                    {notification && <div className="notification">{notification}</div>}
+                    {passwordSuccess && <div className="notification">{passwordSuccess}</div>}
+                </div>
             </form>
            
         </div>
