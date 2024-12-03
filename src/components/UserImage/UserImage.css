@@ -8,9 +8,14 @@
     height: auto;       
 
     border-radius: 100%;
+
+    background-color: #ffffff;
+        
+    border: 1.5px solid #ffffff;
+    border-radius: 100%;
 }
   
-.small-profile-image {
+.small-profile {
     max-width: 60px;    
     max-height: 60px;  
     min-width: 60px;
@@ -18,8 +23,4 @@
 
     width: auto;        
     height: auto;
-
-    margin-right: 10px;
-        
-    border-radius: 100%;
 }

@@ -5,7 +5,7 @@ function UserImage(props) {
     
     return (
         <img 
-            className={isSmall ? "small-profile-image" : "profile-image"} 
+            className={`profile-image ${isSmall ? "small-profile" : ""}`} 
             src={src ? src : "https://via.placeholder.com/300"}
         ></img>   
     )
