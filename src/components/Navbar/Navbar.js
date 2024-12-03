@@ -34,9 +34,9 @@ function Navbar() {
     
 
     return (
-        <form className="navbar" onSubmit={handleSubmit}>
-            <h2 className = "nunito-font">New Space</h2>
-            <div className = "search-container">
+        <form className="navbar newspace-border" onSubmit={handleSubmit}>
+            <h2 className = "cabin-font">New Space</h2>
+            <div className = "search-input-container">
                 <input
                     className="search-bar"
                     placeholder="Search A User"
@@ -44,12 +44,12 @@ function Navbar() {
                     onChange={(event) => setSearchQuery(event.target.value)}
                 ></input>
                 <button 
-                    className="search-btn border border-opacity-100" 
+                    className="search-btn" 
                     type="submit"
                 >Search</button>
             </div>
             { user && (
-                <h2 className = "nunito-font"> {greetings}, {token.username}!</h2>
+                <h2 className = "cabin-font"> {greetings}, {token.username}!</h2>
             )}
         </form>
     )

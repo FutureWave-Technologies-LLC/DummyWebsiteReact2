@@ -13,17 +13,18 @@
     top: 0;
 
     border-bottom: 5px solid;
-    background: #FFFFFF;
-    border-color: #ECD6FA;
+    /* background: #FFFFFF; */
 }
 
-.search-container {
+.search-input-container {
     display: flex;
     justify-content:space-evenly !important; 
     align-items: center;
     align-content: center;
     flex-direction: row;
     width: 50%;
+
+    height: 100vh;
 }
 
 .search-bar {
