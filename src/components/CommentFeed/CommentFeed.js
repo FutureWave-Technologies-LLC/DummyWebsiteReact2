@@ -34,7 +34,7 @@ function CommentFeed(props) {
         setCommentFeed([])
         if (commentId) {
             setIsReplyFeed(true)
-            axios.get("http://localhost:8000/posts/replies/", {
+            axios.get("http://3.17.148.157:8000/posts/replies/", {
                 params: { comment_id: commentId },
             })
             .then((response) => {
@@ -44,7 +44,7 @@ function CommentFeed(props) {
         //get comments for post based on postId
         } else {
             setIsReplyFeed(false)
-            axios.get("http://localhost:8000/posts/comments/", {
+            axios.get("http://3.17.148.157:8000/posts/comments/", {
                 params: { post_id: postId },
             })
             .then((response) => {
@@ -60,13 +60,13 @@ function CommentFeed(props) {
             setCanUseModal(false)
             try {
                 if (commentId) {
-                    await axios.post('http://localhost:8000/posts/replies/', {
+                    await axios.post('http://3.17.148.157:8000/posts/replies/', {
                         user_id: token.user_id,
                         comment_id: commentId,
                         reply: modalInput
                     })
                 } else {
-                    await axios.post('http://localhost:8000/posts/comments/', {
+                    await axios.post('http://3.17.148.157:8000/posts/comments/', {
                         user_id: token.user_id,
                         post_id: postId,
                         comment: modalInput
@@ -88,7 +88,7 @@ function CommentFeed(props) {
     }
 
     return (
-        <div className="comments-container">
+        <div className="comments-container main-color">
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <form className='comment-modal' onSubmit={handleCommentSubmit}>
@@ -105,7 +105,7 @@ function CommentFeed(props) {
                 </Modal>
             )}
 
-            <div className="comments-feed">
+            <div className="comments-feed fade-edge">
                 {commentFeed.length > 0 ? ((commentId ? commentFeed : [...commentFeed].reverse())
                 .map(comment => (
                     <Comment
@@ -124,7 +124,7 @@ function CommentFeed(props) {
                     <p>No {commentId ? "replies": "comments"} available.</p>
                 )}
             </div> 
-            <button className="newspace-style-1" onClick={() => setShowModal(true)}>{commentId ? "Reply": "Comment"}</button>
+            <button className="sub1-color ui-shadow" onClick={() => setShowModal(true)}>{commentId ? "Reply": "Comment"}</button>
         </div>
         
     )
