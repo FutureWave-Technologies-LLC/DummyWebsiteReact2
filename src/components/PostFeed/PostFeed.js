@@ -16,7 +16,6 @@ function PostFeed(props) {
         params: { sort_type: sortType },
       })
       .then((response) => {
-        console.log(response.data)
         setPostFeed(response.data)
       })
       .catch((err) => console.error('Error fetching post data:', err))
