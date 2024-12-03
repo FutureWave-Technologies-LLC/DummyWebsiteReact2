@@ -6,7 +6,7 @@ function DefaultPage () {
     return(
         <section>
             <div className="default-page">
-                <h1>New Space</h1>
+                <h1 className="text-white">New Space</h1>
                 <div>
                     <NavigateButton
                         buttonText="Sign Up"
