@@ -9,38 +9,59 @@ function PostFeed(props) {
   const {allPosts, userId} = props
   const [postFeed, setPostFeed] = useState([])
 
-  useEffect(() => {
+  function getPosts(sortType) {
+    setPostFeed([])
     if (allPosts === true) {
-      axios.get("http://3.17.148.157:8000/posts/all_posts/")
+      axios.get("http://3.17.148.157:8000/posts/all_posts/", {
+        params: { sort_type: sortType },
+      })
       .then((response) => {
+        console.log(response.data)
         setPostFeed(response.data)
       })
       .catch((err) => console.error('Error fetching post data:', err))
     } else {
       // Fetch the user's posts using the id
       axios.get("http://3.17.148.157:8000/profiles/profile_posts/", {
-        params: { user_id: userId },
+        params: { sort_type: sortType,
+            user_id: userId },
       })
       .then((response) => {
         setPostFeed(response.data)
       })
       .catch(err => console.error("Error fetching post data for user:", err));
     }
-    
-  }, [])
+  }
+
+  function sortBy(sortType) {
+    getPosts(sortType)
+  }
+
+  useEffect(() => { getPosts("recent")}, [])
 
   return (
+    <div>
+      <div class="dropdown">
+        <button class="main-button dropdown-btn">Sort By</button>
+        <div class="dropdown-content">
+          <button className="sub1-button" onClick={() => sortBy("recent")}>Recently Post</button>
+          <button className="sub1-button" onClick={() => sortBy("popular")}>Popular</button>
+        </div>
+      </div>
       <div className="feed-container">
-          {postFeed.map(post => (
+          {postFeed.sort((a, b) => a.popular_like_count - b.popular_like_count).map(post => (
               <MiniPost
                   post_id={post.post_id}
                   username={post.username}
                   title={post.title}
+                  like_count={post.popular_like_count || post.recent_like_count}
                   description={post.description}
                   date={post.creation_date}
               ></MiniPost>
           )).reverse()}
       </div> 
+    </div>
+      
   )
 }
 
