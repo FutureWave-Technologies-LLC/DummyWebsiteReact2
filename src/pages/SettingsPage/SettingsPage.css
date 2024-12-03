@@ -18,13 +18,6 @@
     overflow-y: auto;
 }
 
-.settings-input {
-    height: 30%;
-    width: 800px;
-
-    margin-left: 10px;
-}
-
 .settings-container {
     display: flex;
     justify-content: flex-start;
@@ -34,7 +27,24 @@
     gap: 10px;
 }
 
+.row-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    
+    gap: 10px;
+}
+
 .submit-btn {
     border: 0px;
     border-radius: 10px;
+}
+
+.submit-notif-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    gap: 15px;
 }
