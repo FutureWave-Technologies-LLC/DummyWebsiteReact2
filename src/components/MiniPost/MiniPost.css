@@ -1,20 +1,17 @@
-.post {
-    width: 97%;
-    background: rgba(236, 214, 250);
-    padding: 10px;
-    border-radius: 25px;
-}
-
-.mini {
+.mini-post {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     
     border: 0;
     margin-bottom: 10px;
+
+    width: 97%;
+    padding: 10px;
+    border-radius: 25px;
 }
 
-.mini:hover {
+/* .mini:hover {
     background-color: rgba(232, 196, 255);
-}
+} */
 

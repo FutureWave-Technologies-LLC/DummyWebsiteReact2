@@ -32,7 +32,7 @@ function Post(props) {
     }
 
     return (
-        <button onClick={navigateToPost} className="mini post" id={post_id}>
+        <button onClick={navigateToPost} className="mini-post" id={post_id}>
             <h2>{title}</h2>
             {date && (
                 <i>{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</i>
