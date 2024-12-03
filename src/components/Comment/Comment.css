@@ -4,33 +4,46 @@
 
     padding: 15px;
     margin: 10px;
-
-    background-color: rgb(225, 178, 255);
-    border-radius: 20px;
 }
 
 .main {
-    border: solid;
-    border-color: rgb(180, 58, 255);
-}
-
-.comment-btn:hover {
-    background-color: rgb(218, 159, 255);
+    border: solid !important;
+    border-color: rgb(123, 115, 196) !important;
 }
 
 .comment-header {
     display: flex;
     justify-content: flex-start;
     align-items: end;
+
+    height: 30px;
 }
 
 .date {
     font-size: small;
 }
 
-.reply-btn {
+.comment-profile {
     height: 30px;
     line-height: 25%;
 
+    text-align: left;
+    font-weight: bold;
+    
+    width: 100%;
+
+    border: 0;
+
+    padding: 0px !important;
+    border-radius: 10px !important;
+}
+
+.reply-btn {
+    height: 30px;
+    line-height: 25%;
+    
+    width: 100%;
+
+    border: 0;
     border-radius: 10px !important;
 }

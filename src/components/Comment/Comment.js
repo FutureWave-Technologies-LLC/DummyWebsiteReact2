@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import NavigateButton from '../NavigateButton/NavigateButton';
 
 import UserImage from '../UserImage/UserImage';
 import "./Comment.css"
@@ -26,25 +27,24 @@ function Comment(props) {
         minute: '2-digit',
         second: '2-digit',
         hour12: true
-    }  
-
-    function handleNavigateReply() {
-        navigate("/post/"+post_id+"/"+comment_id)
-    }
+    } 
 
     return (
-        <div className={is_main_comment == true ? "main comment": "comment"}>
+        <div className={`${is_main_comment == true ? "main": ""} comment sub1-color ui-shadow`}>
             <div>
                 <div className="comment-header">
                     <UserImage isSmall={true} src={profile_image}></UserImage>
-                    <h5><Link to={"/profile/"+user_id}>{username}</Link></h5>
+                    <button 
+                        className="sub1-button comment-profile"
+                        onClick={() => {navigate("/profile/"+user_id)}}
+                    >{username}</button>
                 </div>
                 {creation_date && (
                     <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(creation_date))}</i>)}
             </div>
-            <div>{comment}</div>
+            <p>{comment}</p>
             { is_reply == false && (
-                <button className="newspace-style-2 reply-btn" onClick={handleNavigateReply}>Replies</button>
+                <button className="newspace-style-2 reply-btn" onClick={() => {navigate("/post/"+post_id+"/"+comment_id)}}>Replies</button>
             )}
             
         </div>
