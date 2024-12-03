@@ -10,7 +10,5 @@
     position: absolute;
     left: 15%; 
     
-    overflow-y: auto;
-    border-radius: 10px;
-    border-color: #ECD6FA;
+    overflow-y: auto; 
 }   
