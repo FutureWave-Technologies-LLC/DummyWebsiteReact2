@@ -1,11 +1,13 @@
 import './SettingsComponent.css';
 
 function SettingsComponent(props) {
-    const {title, onChange, value, disabled, placeholder} = props
+    const {title, onChange, value, disabled, placeholder, isPassword, shortInput} = props
     return (
         <div className="setting">
             <h3>{title}</h3>
-            <input className="settings-input" 
+            <input 
+                type={isPassword ? "password": "text"}
+                className={shortInput ? "short-input" : ""}
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
