@@ -7,6 +7,8 @@ import PostFeed from "../../components/PostFeed/PostFeed"
 import Modal from '../../components/Modal/Modal';
 import NavigateButton from '../../components/NavigateButton/NavigateButton';
 import UserImage from '../../components/UserImage/UserImage';
+import FollowButton from '../../components/FollowButton/FollowButton';
+import MessageButton from '../../components/MessageButton/MessageButton';
 
 import './ProfilePage.css';
 
@@ -62,7 +64,7 @@ function ProfilePage() {
                 .catch(err => console.error('Error fetching followers data:', err));
 
                 // Fetch followees (users this user is following)
-                axios.get("http://3.17.148.157:8000/profiles/following/", {
+                axios.get("http://3.17.148.157:8000/profiles/get_followees/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then(response => {
@@ -81,6 +83,22 @@ function ProfilePage() {
         });
     }, [userId, loggedInUserId]);
 
+
+    function isValidImageUrl(url) {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false); // Failed to load
+          img.src = url;
+        });
+      }
+      
+    isValidImageUrl(bannerImage).then((isValid) => {
+    if (!isValid) {
+        setBannerImage("https://via.placeholder.com/300")
+    }
+    });
+
     return (
         <div className="profile-page">
             <Navbar />
@@ -90,7 +108,9 @@ function ProfilePage() {
                     <div className="profile-header">
                         <div className="customized-container">
                             <div className="img-profile"><UserImage isSmall={false} src={profileImage}></UserImage></div>
-                            <img className="img-banner newspace-border" src={bannerImage}></img>
+                            <img className="img-banner newspace-border" 
+                            src={bannerImage}
+                            ></img>
                         </div>
                         <div className="username-follow-container">
                             <div className="fs-2 fw-bold">{user.username}</div>
@@ -105,6 +125,20 @@ function ProfilePage() {
                         <div className="bio">{user.profile_description}</div>
                         
                     </div>
+
+                    {/*Follow and Messag Button*/}
+                    {loggedInUserId != user.user_id && (
+                        <div className="follow-message-btn-container">
+                            <FollowButton
+                                user_id={loggedInUserId}
+                                followee_username={user.username}
+                                followee_id={user.user_id}
+                            ></FollowButton>
+                            <MessageButton
+                                userToMessage={user}
+                            ></MessageButton>
+                        </div>
+                    )}
                     
                     {/* Followers Modal */}
                     {showFollowers && (
