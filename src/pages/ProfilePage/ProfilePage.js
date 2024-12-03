@@ -171,7 +171,7 @@ function ProfilePage() {
                         </Modal>
                     )}
                     {/* Display User Posts */}
-                    <h2>{user.username}'s Recent Posts</h2>
+                    <h2>{user.username}'s Posts</h2>
                     <div className='profile-posts'>
                         <PostFeed userId={userId}></PostFeed>
                     </div>
