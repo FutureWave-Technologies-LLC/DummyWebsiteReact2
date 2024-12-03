@@ -124,7 +124,7 @@ function CommentFeed(props) {
                     <p>No {commentId ? "replies": "comments"} available.</p>
                 )}
             </div> 
-            <button className="sub1-color ui-shadow" onClick={() => setShowModal(true)}>{commentId ? "Reply": "Comment"}</button>
+            <button className="sub1-button ui-shadow" onClick={() => setShowModal(true)}>{commentId ? "Reply": "Comment"}</button>
         </div>
         
     )

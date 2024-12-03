@@ -16,6 +16,8 @@
     justify-content: flex-start;
     align-items: end;
 
+    gap: 10px;
+
     height: 30px;
 }
 
@@ -29,8 +31,6 @@
 
     text-align: left;
     font-weight: bold;
-    
-    width: 100%;
 
     border: 0;
 
