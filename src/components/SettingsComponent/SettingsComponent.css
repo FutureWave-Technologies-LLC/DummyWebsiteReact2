@@ -4,3 +4,15 @@
     align-items: flex-start;
     flex-direction: column;
 }
+
+.setting input {
+    height: 30%;
+    width: 800px;
+
+    margin-left: 10px;
+}
+
+.short-input {
+    width: 300px !important;
+}
+
