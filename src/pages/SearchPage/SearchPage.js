@@ -5,6 +5,7 @@ import axios from 'axios';
 import Navbar from "../../components/Navbar/Navbar";
 import SideBar from "../../components/Sidebar/Sidebar";
 import UserImage from "../../components/UserImage/UserImage";
+import ProfileButton from "../../components/ProfileButton/ProfileButton";
 
 import './SearchPage.css';
 
@@ -19,7 +20,7 @@ function Search() {
 
     useEffect(() => {
         // Fetch users that match with query
-        axios.get("http://localhost:8000/users/search_users/", {
+        axios.get("http://3.17.148.157:8000/users/search_users/", {
             params: {
                 query: searchParams.get('q'),
             }
@@ -28,7 +29,7 @@ function Search() {
             setQueryResult(response.data)
 
             // Get users and their IDs that this user is following and set to followingStatus state
-            axios.get("http://localhost:8000/profiles/following/", {
+            axios.get("http://3.17.148.157:8000/profiles/following/", {
                 params: {
                     user_id: token.user_id,
                 }
@@ -48,7 +49,7 @@ function Search() {
 
     // Handles Follow and Unfollow
     function toggleFollow(usernameToFollow) {
-        axios.post("http://localhost:8000/profiles/following/", {
+        axios.post("http://3.17.148.157:8000/profiles/following/", {
             followee_username: usernameToFollow,
             follower_id: token.user_id,
         })
@@ -73,18 +74,22 @@ function Search() {
         <div className="search-container">
             <Navbar></Navbar>
             <SideBar></SideBar>
-            <div className="main-content">
+            <div className="search-content">
                 {(!queryResult.error && queryResult.map(user => (
-                    <div key={user.user_id} className="user-item">
+                    <div key={user.user_id} className="user-item main-color">
                         <UserImage isSmall={true} src={user.profile_image}></UserImage>
                         <div className="right">
-                            <h5><Link to={"/profile/"+user.user_id}>{user.username}</Link></h5>
+                            <ProfileButton
+                                username={user.username}
+                                user_id={user.user_id}
+                                classNames={"main-color"}
+                            ></ProfileButton> 
                             {user.username !== token.username && (
                                 <div>
-                                    <button className="item-btn" onClick={() => toggleFollow(user.username)}>
+                                    <button className="border sub1-button" onClick={() => toggleFollow(user.username)}>
                                         {followingStatus.includes(user.username) ? 'Unfollow' : 'Follow'}
                                     </button>
-                                    <button className="item-btn" onClick={() => navigateToMessages(user)}>
+                                    <button className="border sub1-button" onClick={() => navigateToMessages(user)}>
                                         Message
                                     </button>
                                 </div>
