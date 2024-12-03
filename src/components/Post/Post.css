@@ -1,29 +1,15 @@
+.post-bg {
+    background-color: #DFDBFF;
+}
+
 .post {
-    width: 97%;
-    background: rgba(236, 214, 250);
-    padding: 10px;
-    border-radius: 25px;
-}
-
-.mini {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    
-    border: 0;
-    margin-bottom: 10px;
-}
-
-.mini:hover {
-    background-color: rgba(232, 196, 255);
-}
-
-.normal {
     align-items: center;
-    
-    width: 45%;
+
     height: 80%;
+    width: 45%;
+
     padding: 20px;
+    border-radius: 25px;
 
     position: absolute;
     left: 18%; 
@@ -46,7 +32,6 @@
     width: 45%;
     z-index: 1;
 
-    background: rgba(236, 214, 250);
     padding: 10px;
 
     border-radius: 25px;
@@ -55,9 +40,7 @@
 }
 
 .not-liked {
-    border: 0;
-    border-radius: 20px;
-    
+    background-color: rgb(255, 255, 255) !important;
 }
 
 .media-image {

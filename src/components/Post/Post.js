@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import Media from '../Media/Media';
+import ProfileButton from '../ProfileButton/ProfileButton';
 
 import "./Post.css"
 
@@ -27,22 +27,26 @@ function Post(props) {
 
     return (
         <div>
-            <div className="normal post" id={post_id}>
+            <div className="post post-bg" id={post_id}>
                 <h2>{title}</h2>
                 {date && (
                     <i>{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</i>
                 )}
                 <p>
                     Posted by:{' '}
-                    <Link to={"/profile/"+user_id}>{username}</Link>
+                    <ProfileButton
+                        username={username}
+                        user_id={user_id}
+                        classNames={"main-color"}
+                    ></ProfileButton>                    
                 </p>
                 <p className="description">{description}</p>
                 {media && (
                     <Media url={media}></Media>
                 )}
             </div>
-            <div className="like-container">
-                <button className={userLiked ? "newspace-style-1" : "not-liked"} onClick={LikeHandler}>
+            <div className="like-container post-bg">
+                <button className={`border sub1-button ui-shadow ${userLiked ? "" : "not-liked"}`} onClick={LikeHandler}>
                     <i className= {"uil-thumbs-up"}></i>
                     {likesCount} {likesCount == 1 ? "Like": "Likes"}
                 </button>
