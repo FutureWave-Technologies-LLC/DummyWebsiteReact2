@@ -19,15 +19,46 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px; 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+
 }
 
+.customized-container {
+    width: 100%;
+    margin-bottom: 70px;
+    overflow: hidden;
+}
 
-.follow-info {
+.img-profile {
+    position: absolute;
+    left: 8%;
+    top: 160px;
+    z-index: 100;
+}
+
+.img-banner {
+    min-width: 100%;
+    max-width: 100%;
+    transform: scale(1, 2);
+    transform-origin: 50% 50%;
+    /* Focus 50% from left, 50% top */
+
+    /* border: 2px solid; */
+    
+    height: 250px;
+}
+
+.username-follow-container {
     display: flex;
-    gap: 40px;
-    cursor: pointer;
+    justify-content: flex-start;
+
+    align-items: center;
+    gap: 10%;
+
+    position: absolute;
+    left: 30%;
+    top: 260px;
+    z-index: 100;
 }
 
 .follower-count, .following-count {
@@ -40,6 +71,15 @@
     text-decoration: underline;
 }
 
+.bio {
+    width: 100%;
+    font-style: italic;
+    font-size: large;
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
 .profile-posts {
     width: 118%;
     height: 70%;
@@ -48,10 +88,14 @@
     right: 0%;
 }
 
-.modal-list {
+.follow-list {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+
+    padding: 20px 15px 20px 15px;
+
+    gap: 10px;
 }
 
 

@@ -17,6 +17,7 @@ function ProfilePage() {
     //data
     const [user, setUser] = useState(null);
     const [profileImage, setProfileImage] = useState("https://via.placeholder.com/300")
+    const [bannerImage, setBannerImage] = useState("https://via.placeholder.com/300")
     const [followers, setFollowers] = useState([]);
     const [followees, setFollowees] = useState([]);
 
@@ -40,16 +41,19 @@ function ProfilePage() {
         }
 
         // Fetch user's data
-        axios.get("http://localhost:8000/users/get_user_data/", {
+        axios.get("http://3.17.148.157:8000/users/get_user_data/", {
             params: { user_id: profileUserId },
         })
         .then((response) => {
             if (response.data.error === false) {
                 setUser(response.data)
-                setProfileImage(response.data.profile_image)
+                if (response.data.profile_image)
+                    setProfileImage(response.data.profile_image)
+                if (response.data.banner_image)
+                    setBannerImage(response.data.banner_image)  
 
                 // Fetch followers
-                axios.get("http://localhost:8000/profiles/get_followers/", {
+                axios.get("http://3.17.148.157:8000/profiles/get_followers/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then((response) => {
@@ -58,7 +62,7 @@ function ProfilePage() {
                 .catch(err => console.error('Error fetching followers data:', err));
 
                 // Fetch followees (users this user is following)
-                axios.get("http://localhost:8000/profiles/following/", {
+                axios.get("http://3.17.148.157:8000/profiles/following/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then(response => {
@@ -84,40 +88,44 @@ function ProfilePage() {
             {user ? (
                 <div className="profile-container">
                     <div className="profile-header">
-                        <UserImage isSmall={false} src={profileImage}></UserImage>
-                        <h1>{user.username}</h1>
-                        <div className="follow-info">
+                        <div className="customized-container">
+                            <div className="img-profile"><UserImage isSmall={false} src={profileImage}></UserImage></div>
+                            <img className="img-banner newspace-border" src={bannerImage}></img>
+                        </div>
+                        <div className="username-follow-container">
+                            <div className="fs-2 fw-bold">{user.username}</div>
                             <span onClick={() => setShowFollowers(true)} className="follower-count">
                                 {followers.length} Followers
                             </span>
                             <span onClick={() => setShowFollowees(true)} className="following-count">
                                 {followees.length} Following
                             </span>
+                            Joined on: {new Intl.DateTimeFormat('en-US').format(new Date(user.creation_date))}
                         </div>
-                        <p>Joined on: {new Intl.DateTimeFormat('en-US').format(new Date(user.creation_date))}</p>
+                        <div className="bio">{user.profile_description}</div>
+                        
                     </div>
                     
                     {/* Followers Modal */}
                     {showFollowers && (
                         <Modal onClose={() => setShowFollowers(false)}>
                             <h2>Followers</h2>
-                            <div class="modal-list">
+                            <div class="follow-list">
                                 {followers.map((follower) => (
                                     <NavigateButton
                                         buttonText={follower.username}
                                         path= {"/profile/"+follower.user_id}
-                                        bootstrap="border border-opacity-100"
+                                        bootstrap="shadow border border-opacity-100"
                                     ></NavigateButton>
                                 ))}
                             </div>
-                            
                         </Modal>
                     )}
                     {/* Following Modal */}
                     {showFollowees && (
                         <Modal onClose={() => setShowFollowees(false)}>
                             <h2>Following</h2>
-                            <div class="modal-list">
+                            <div class="follow-list">
                                 {followees.map((followee) => (
                                     <NavigateButton
                                         buttonText={followee.username}
