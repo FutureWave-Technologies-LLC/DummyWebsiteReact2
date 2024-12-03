@@ -13,7 +13,7 @@ section{
     width: 100%;
     height: 100vh;
     background-position: top;
-    background: url(../../../public/images/login.png) no-repeat center center fixed;
+    background: url(../../../public/images/space.jpg) no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     animation: animateBg 5s linear infinite;
@@ -61,7 +61,7 @@ section{
     border: none;
     outline: none;
     font-size: 1em;
-    color: #000000;
+    color: #ffffff;
     padding: 0 35px 0 5px;
     border-bottom: 2px solid #fff;
 
@@ -92,7 +92,7 @@ section{
 }
 .login-link {
     font-size: .9em;
-    color: #fff;
+    color: #000000;
     text-align: center;
     margin: 25px 0 10px;
 }

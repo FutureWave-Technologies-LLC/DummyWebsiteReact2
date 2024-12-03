@@ -20,7 +20,7 @@ function SignUpPage() {
         
         if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
              && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
-            axios.post("http://localhost:8000/users/sign_up/", {
+            axios.post("http://3.17.148.157:8000/users/sign_up/", {
                 username: username,
                 password: password,
                 first_name: fname,
@@ -49,7 +49,7 @@ function SignUpPage() {
         <section>
         <div className="signup-container">
         <div className = "signup-form">
-            <h1>Register Here!</h1>
+            <h1 className="text-white">Register Here!</h1>
                 <input
                     type="text"
                     id="firstname"
