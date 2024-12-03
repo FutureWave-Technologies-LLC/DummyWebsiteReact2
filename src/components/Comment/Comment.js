@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import NavigateButton from '../NavigateButton/NavigateButton';
 
+import ProfileButton from '../ProfileButton/ProfileButton'
+
 import UserImage from '../UserImage/UserImage';
 import "./Comment.css"
 
@@ -34,10 +36,11 @@ function Comment(props) {
             <div>
                 <div className="comment-header">
                     <UserImage isSmall={true} src={profile_image}></UserImage>
-                    <button 
-                        className="sub1-button comment-profile"
-                        onClick={() => {navigate("/profile/"+user_id)}}
-                    >{username}</button>
+                    <ProfileButton
+                        username={username}
+                        user_id={user_id}
+                        classNames={"sub1-button comment-profile"}
+                    ></ProfileButton>
                 </div>
                 {creation_date && (
                     <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(creation_date))}</i>)}
