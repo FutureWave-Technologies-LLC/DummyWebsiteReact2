@@ -21,7 +21,7 @@ const LoginPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.get("http://localhost:8000/users/login/", {
+        axios.get("http://3.17.148.157:8000/users/login/", {
             params: {
                 username: username,
                 password: password,
@@ -52,8 +52,9 @@ const LoginPage = () => {
         <div className="signin-container">
             {term &&<h3>User Created!</h3>}
             <form className="signin-form">
-            <h2>Welcome Back!</h2>
+            <h2 className="text-white">Welcome Back!</h2>
                 <input
+                    className='credential-input'
                     type="text"
                     id="username"
                     value={username}
@@ -62,6 +63,7 @@ const LoginPage = () => {
                 />
 
                 <input
+                    className='credential-input'
                     type="password"
                     id="password"
                     value={password}
