@@ -1,52 +1,77 @@
 @import url("https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&display=swap");
 .App {
   text-align: center;
+  background-color: #817F94;
 }
 
-.nunito-font {
+.cabin-font {
   font-family: "Cabin Condensed", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  color: #d9a1de;
+
+  color: #2B2759;
   
   font-size: 2.7vmax;
 }
+
 
 button {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  background-color: #DFDBFF;
 }
 
 button:hover {
-  background-color: rgb(212, 212, 212);
+  background-color: rgb(183, 179, 209)
 }
 
 
 input {
-  background-color: #f7eaff;
-  border-color: #ECD6FA;
+  background-color: #A4A0CC;
   padding: 10px 20px;
   border-radius: 5px;
   margin: 20px;
+
+  box-shadow: -5px 6px 4px #5e5c6a;
 }
 
-.newspace-style-1 {
+.ui-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fade-edge {
+    --mask: linear-gradient(to bottom, 
+      rgba(0,0,0, 0) 0,   rgba(0,0,0, 1) 4%, rgba(0,0,0, 1) 96%, 
+      rgba(0,0,0, 0) 100%, rgba(0,0,0, 0) 0
+    ) 100% 50% / 100% 100% repeat-x;
+    
+    -webkit-mask: var(--mask); 
+    mask: var(--mask);
+}
+
+.newspace-border {
+  border-color: #2B2759;
+}
+
+.main-color {
   border: 0;
   border-radius: 20px;
-  background-color: rgb(225, 178, 255);
+  background-color: #DFDBFF;
 }
 
-.newspace-style-1:hover {
-  background-color: rgb(218, 159, 255);
-}
-
-.newspace-style-2 {
+.sub1-color {
   border: 0;
   border-radius: 20px;
-  background-color: rgb(216, 152, 255);
+  background-color: #A4A0CC;
 }
 
-.newspace-style-2:hover {
-  background-color: rgb(207, 129, 255);
+.sub1-button {
+  border-radius: 20px;
+  background-color: #A4A0CC;
+}
+
+.sub1-button:hover {
+  background-color: #8683a9;
+  
 }
