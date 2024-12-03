@@ -11,7 +11,9 @@
     border-radius: 25px;
 }
 
-/* .mini:hover {
-    background-color: rgba(232, 196, 255);
-} */
+.username-like-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
 

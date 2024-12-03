@@ -4,7 +4,7 @@ import "./MiniPost.css"
 
 function Post(props) {
     var charLimit = 120;
-    const {post_id, username, title, description, date} = props
+    const {post_id, username, title, description, date, like_count} = props
     const navigate = useNavigate();
 
     const options = {
@@ -37,8 +37,14 @@ function Post(props) {
             {date && (
                 <i>{new Intl.DateTimeFormat('en-US', options).format(new Date(date))}</i>
             )}
-            <p>Posted by: {username}</p>
+            <div className='username-like-container'>
+                <p>Posted by: {username}</p>
+                <i className= {"uil-thumbs-up"}></i> 
+                {like_count ? like_count : 0}
+            </div>
+            
             <p className="description">{shortDescription(description)}</p>
+            
         </button>
     )
     
