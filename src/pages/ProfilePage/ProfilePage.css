@@ -41,6 +41,8 @@
     max-width: 100%;
     transform: scale(1, 2);
     transform-origin: 50% 50%;
+
+    
     /* Focus 50% from left, 50% top */
 
     /* border: 2px solid; */
@@ -59,6 +61,16 @@
     left: 30%;
     top: 260px;
     z-index: 100;
+}
+
+.follow-message-btn-container {
+    display: flex;
+    justify-content: flex-start;
+
+    padding-left: 100px;
+    gap: 10px;
+
+    align-items: center;
 }
 
 .follower-count, .following-count {
