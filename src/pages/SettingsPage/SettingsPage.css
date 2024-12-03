@@ -4,7 +4,6 @@
 
 .settings-form {
     display: flex;
-    /* justify-content: flex-start; */
     align-items: flex-start;
     flex-direction: column;
     justify-content: space-evenly;
@@ -22,14 +21,17 @@
 .settings-input {
     height: 30%;
     width: 800px;
+
+    margin-left: 10px;
 }
 
-.profile-image-container {
+.settings-container {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    justify-content: space-around;
+    
+    gap: 10px;
 }
 
 .submit-btn {
