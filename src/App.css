@@ -1,17 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&display=swap");
 .App {
   text-align: center;
-  background-color: #817F94;
+  background-color: #DFDBFF;
 }
 
 .cabin-font {
   font-family: "Cabin Condensed", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-
   color: #2B2759;
-  
-  font-size: 2.7vmax;
+  font-size: 2.6vmax;
 }
 
 
@@ -19,11 +17,11 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #DFDBFF;
+  background-color: #9d98c4;
 }
 
 button:hover {
-  background-color: rgb(183, 179, 209)
+  background-color: #c9c5e6;
 }
 
 
@@ -44,24 +42,35 @@ input {
   border-color: #2B2759;
 }
 
-.main-color {
+.main-color, .sub1-color, .sub2-color {
   border: 0;
   border-radius: 20px;
-  background-color: #DFDBFF;
+}
+
+.main-color {
+  /* background-color: #DFDBFF; */
+  background-color: #9d98c4;
 }
 
 .sub1-color {
-  border: 0;
-  border-radius: 20px;
   background-color: #A4A0CC;
+}
+
+.sub2-color {
+  background-color: #DFDBFF;
+}
+
+.main-button {
+  border-radius: 20px;
+  background-color: #9d98c4;
 }
 
 .sub1-button {
   border-radius: 20px;
-  background-color: #A4A0CC;
+  background-color: #DFDBFF;
 }
 
-.sub1-button:hover {
-  background-color: #8683a9;
-  
+.main-button:hover, .sub1-button:hover {
+  background-color: #c9c5e6;
 }
+
