@@ -6,7 +6,7 @@ import SideBar from "../../components/Sidebar/Sidebar"
 import PostFeed from "../../components/PostFeed/PostFeed"
 import Modal from '../../components/Modal/Modal';
 import NavigateButton from '../../components/NavigateButton/NavigateButton';
-import UserImage from '../../components/UserImage/UserImage';
+import ProfileImage from '../../components/ProfileImage/ProfileImage';
 import FollowButton from '../../components/FollowButton/FollowButton';
 import MessageButton from '../../components/MessageButton/MessageButton';
 
@@ -119,7 +119,7 @@ function ProfilePage() {
                 <div className="profile-container">
                     <div className="profile-header">
                         <div className="customized-container">
-                            <div className="img-profile"><UserImage isSmall={false} src={profileImage}></UserImage></div>
+                            <div className="img-profile"><ProfileImage isSmall={false} src={profileImage}></ProfileImage></div>
                             <img className="img-banner newspace-border" 
                             src={bannerImage}
                             ></img>

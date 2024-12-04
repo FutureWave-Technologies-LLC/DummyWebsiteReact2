@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Navbar from "../../components/Navbar/Navbar";
 import SideBar from "../../components/Sidebar/Sidebar";
-import UserImage from "../../components/UserImage/UserImage";
+import ProfileImage from "../../components/ProfileImage/ProfileImage";
 import ProfileButton from "../../components/ProfileButton/ProfileButton";
 import FollowButton from '../../components/FollowButton/FollowButton';
 import MessageButton from "../../components/MessageButton/MessageButton";
@@ -58,7 +58,7 @@ function Search() {
                                 user_id={user.user_id}
                                 classNames={"main-color"}
                             ></ProfileButton>
-                            <UserImage isSmall={true} src={user.profile_image}></UserImage>
+                            <ProfileImage isSmall={true} src={user.profile_image}></ProfileImage>
                         </div>
                         {user.username !== token.username && (
                             <div className="action-side">
