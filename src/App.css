@@ -33,21 +33,11 @@ input {
   border-radius: 5px;
   margin: 20px;
 
-  box-shadow: -5px 6px 4px #5e5c6a;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .ui-shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.fade-edge {
-    --mask: linear-gradient(to bottom, 
-      rgba(0,0,0, 0) 0,   rgba(0,0,0, 1) 4%, rgba(0,0,0, 1) 96%, 
-      rgba(0,0,0, 0) 100%, rgba(0,0,0, 0) 0
-    ) 100% 50% / 100% 100% repeat-x;
-    
-    -webkit-mask: var(--mask); 
-    mask: var(--mask);
 }
 
 .newspace-border {
