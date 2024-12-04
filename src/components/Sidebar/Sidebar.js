@@ -39,7 +39,7 @@ function SideBar() {
                 bootstrap="rounded"
                 iconClass="uil uil-cog"
             />
-            <button onClick={() => auth.logOut()} className="log-out rounded sub1-button">
+            <button onClick={() => auth.logOut()} className="log-out rounded main-button">
                 <i className="uil uil-sign-out-alt"></i> Log Out
             </button>
             <NavigateButton

@@ -15,7 +15,7 @@ function NavigateButton(props) {
   };
 
   return (
-    <button className={`${bootstrap} sub1-button ui-shadow`} onClick={handleClick}>
+    <button className={`${bootstrap} main-button ui-shadow`} onClick={handleClick}>
       {iconClass && <i className={iconClass}></i>} {/* Render the icon if iconClass is provided */}
       {buttonText}
     </button>
