@@ -9,6 +9,7 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    
 
     const navigate = useNavigate()
     const auth = useAuth()
@@ -31,6 +32,7 @@ const LoginPage = () => {
             if (response.data.error === true){
                 console.log(response.data.response)
                 setError(response.data.response)
+                setTimeout(() => setError(''), 3000); 
             }
             else {
                 //login successful

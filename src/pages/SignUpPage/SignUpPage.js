@@ -40,6 +40,7 @@ function SignUpPage() {
                     console.error('Error posting data:', error);
                     setError('Unable to create user')
                 });
+            setTimeout(() => setError(''), 3000); 
         } else {
             alert ("no whitespace")
         }
