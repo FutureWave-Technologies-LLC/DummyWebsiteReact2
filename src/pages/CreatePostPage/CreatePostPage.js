@@ -25,7 +25,7 @@ const CreatePostPage = () => {
             })
 
             setTitle('');
-            setMedia(null);
+            setMedia('');
             setPostText('');
 
         
@@ -61,6 +61,7 @@ const CreatePostPage = () => {
                         <input
                             type="text"
                             id="media"
+                            value={media}
                             placeholder="URL of media"
                             className="form-control rounded"
                             onChange={(e) => setMedia(e.target.value)}
