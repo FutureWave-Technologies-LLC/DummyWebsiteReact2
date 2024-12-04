@@ -1,6 +1,6 @@
-import './UserImage.css';
+import './ProfileImage.css';
 
-function UserImage(props) {
+function ProfileImage(props) {
     const {isSmall, src} = props
     
     return (
@@ -11,4 +11,4 @@ function UserImage(props) {
     )
 }
 
-export default UserImage
+export default ProfileImage
