@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import NavigateButton from '../NavigateButton/NavigateButton';
 
 import ProfileButton from '../ProfileButton/ProfileButton'
 
-import UserImage from '../UserImage/UserImage';
+import ProfileImage from '../ProfileImage/ProfileImage';
 import "./Comment.css"
 
 function Comment(props) {
@@ -32,10 +30,10 @@ function Comment(props) {
     } 
 
     return (
-        <div className={`${is_main_comment == true ? "main": ""} comment sub1-color ui-shadow`}>
+        <div className={`${is_main_comment == true ? "main": ""} comment sub2-color ui-shadow`}>
             <div>
                 <div className="comment-header">
-                    <UserImage isSmall={true} src={profile_image}></UserImage>
+                    <ProfileImage isSmall={true} src={profile_image}></ProfileImage>
                     <ProfileButton
                         username={username}
                         user_id={user_id}
