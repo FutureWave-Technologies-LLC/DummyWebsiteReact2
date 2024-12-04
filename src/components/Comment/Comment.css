@@ -15,10 +15,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: end;
-
     gap: 10px;
-
-    height: 30px;
+    height: 20px;
 }
 
 .date {
@@ -40,10 +38,9 @@
 
 .reply-btn {
     height: 30px;
-    line-height: 25%;
-    
+    line-height: 10px;
+    margin-top: 5px;
     width: 100%;
-
     border: 0;
     border-radius: 10px !important;
 }
