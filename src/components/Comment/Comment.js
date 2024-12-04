@@ -45,7 +45,7 @@ function Comment(props) {
                 {creation_date && (
                     <i className='date'>{new Intl.DateTimeFormat('en-US', options).format(new Date(creation_date))}</i>)}
             </div>
-            <p>{comment}</p>
+            {comment}
             { is_reply == false && (
                 <button className="newspace-style-2 reply-btn" onClick={() => {navigate("/post/"+post_id+"/"+comment_id)}}>Replies</button>
             )}
