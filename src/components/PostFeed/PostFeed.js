@@ -43,8 +43,8 @@ function PostFeed(props) {
       <div class="dropdown">
         <button class="main-button dropdown-btn">Sort By</button>
         <div class="dropdown-content">
-          <button className="sub1-button" onClick={() => sortBy("recent")}>Recently Post</button>
-          <button className="sub1-button" onClick={() => sortBy("popular")}>Popular</button>
+          <button className="main-button" onClick={() => sortBy("recent")}>Recently Post</button>
+          <button className="main-button" onClick={() => sortBy("popular")}>Popular</button>
         </div>
       </div>
       <div className="feed-container">
