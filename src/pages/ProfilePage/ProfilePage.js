@@ -16,6 +16,9 @@ function ProfilePage() {
     const { userId } = useParams();  // Get the userId from the route params if any
     const [loading, IsLoading] = useState(true);
 
+    //is messagable
+    const [messagableUsers, setMessageableUsers] = useState([]);
+
     //data
     const [user, setUser] = useState(null);
     const [profileImage, setProfileImage] = useState("https://via.placeholder.com/300")
@@ -74,6 +77,15 @@ function ProfilePage() {
             } else {
                 console.log(response.data.response);
             }
+
+            //get messagable users
+            axios.get("http://3.17.148.157:8000/messaging/messagable_users/", {
+                params: { user_id: token.user_id },
+            })
+            .then((response) => {
+            setMessageableUsers(response.data)
+            })
+            .catch((err) => console.error('Error fetching post data:', err))
 
             IsLoading(false);
         })
@@ -134,9 +146,11 @@ function ProfilePage() {
                                 followee_username={user.username}
                                 followee_id={user.user_id}
                             ></FollowButton>
-                            <MessageButton
-                                userToMessage={user}
-                            ></MessageButton>
+                            {messagableUsers.find((messagableUser) => messagableUser.user_id === user.user_id) && (
+                                <MessageButton
+                                    userToMessage={user}
+                                ></MessageButton>
+                            )}
                         </div>
                     )}
                     

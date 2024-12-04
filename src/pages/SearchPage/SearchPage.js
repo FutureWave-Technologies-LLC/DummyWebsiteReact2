@@ -14,8 +14,7 @@ import './SearchPage.css';
 function Search() {
     const [searchParams] = useSearchParams();
     const [queryResult, setQueryResult] = useState([]);
-
-    const navigate = useNavigate();
+    const [messagableUsers, setMessageableUsers] = useState([]);
 
     const token = JSON.parse(localStorage.getItem("future-token"));
 
@@ -32,12 +31,19 @@ function Search() {
         .catch((error) => {
             console.error('Error fetching query result:', error);
         });
+
+        //get messagable users
+        axios.get("http://3.17.148.157:8000/messaging/messagable_users/", {
+            params: { user_id: token.user_id },
+        })
+        .then((response) => {
+        setMessageableUsers(response.data)
+        })
+        .catch((err) => console.error('Error fetching post data:', err))
     }, []);
 
-    // Navigate to messages page to start a conversation
-    function navigateToMessages(user) {
-        navigate("/messages", { state: { userToMessage: user } });
-    }
+    console.log(messagableUsers)
+    console.log(queryResult)
 
     return (
         <div className="search-container">
@@ -46,27 +52,30 @@ function Search() {
             <div className="search-content">
                 {(!queryResult.error && queryResult.map(user => (
                     <div key={user.user_id} className="user-item main-color">
-                        <UserImage isSmall={true} src={user.profile_image}></UserImage>
-                        <div className="right">
+                        <div className="profile-side">
                             <ProfileButton
                                 username={user.username}
                                 user_id={user.user_id}
                                 classNames={"main-color"}
-                            ></ProfileButton> 
-                            {user.username !== token.username && (
+                            ></ProfileButton>
+                            <UserImage isSmall={true} src={user.profile_image}></UserImage>
+                        </div>
+                        {user.username !== token.username && (
+                            <div className="action-side">
                                 <div>
                                     <FollowButton
                                         user_id={token.user_id}
                                         followee_username={user.username}
                                         followee_id={user.user_id}
                                     ></FollowButton>
-                                    <MessageButton
-                                        userToMessage={user}
-                                    ></MessageButton>
+                                    {messagableUsers.find((messagableUser) => messagableUser.user_id === user.user_id) && (
+                                        <MessageButton
+                                            userToMessage={user}
+                                        ></MessageButton>
+                                    )}
                                 </div>
-                            )}
-                        </div>
-                        
+                            </div>
+                        ) || (<p>This is you</p>) } 
                     </div>
                 ))) || <p>{queryResult.Response}</p>}
             </div>
