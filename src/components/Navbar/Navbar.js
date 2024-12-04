@@ -37,6 +37,7 @@ function Navbar() {
         <form className="navbar newspace-border" onSubmit={handleSubmit}>
             <h2 className = "cabin-font">New Space</h2>
             <div className = "search-input-container">
+                
                 <input
                     className="search-bar"
                     placeholder="Search A User"
@@ -49,7 +50,7 @@ function Navbar() {
                 >Search</button>
             </div>
             { user && (
-                <h2 className = "cabin-font"> {greetings}, {token.username}!</h2>
+                <h2 className = "cabin-font greetings"> {greetings}, {token.username}!</h2>
             )}
         </form>
     )

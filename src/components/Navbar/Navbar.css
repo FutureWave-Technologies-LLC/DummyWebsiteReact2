@@ -5,7 +5,6 @@
     align-content: center;
     flex-direction: row;
 
-    width: 100%;
     height: 10%; 
     
     position: absolute;
@@ -13,15 +12,17 @@
     top: 0;
 
     border-bottom: 5px solid;
-    /* background: #FFFFFF; */
 }
 
 .search-input-container {
     display: flex;
-    justify-content:space-evenly !important; 
+    
     align-items: center;
     align-content: center;
     flex-direction: row;
+
+    gap:10px;
+
     width: 50%;
 
     height: 100vh;
