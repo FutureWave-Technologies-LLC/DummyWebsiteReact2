@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import ProfileImage from '../../components/ProfileImage/ProfileImage';
 import axios from "axios";
 
 import "./MessagesPage.css";
@@ -21,7 +22,10 @@ function MessagesPage() {
 
     const token = JSON.parse(localStorage.getItem("future-token"));
 
+    const divRef = useRef(null);
+
     useEffect(() => {
+        if (divRef.current) { divRef.current.scrollIntoView({ behavior: 'smooth' }) }
         //Get list of users that follow each other
         axios.get("http://3.17.148.157:8000/messaging/messagable_users/", {
             params: { user_id: token.user_id },
@@ -30,15 +34,16 @@ function MessagesPage() {
             setUsers(response.data)
           })
           .catch((err) => console.error('Error fetching post data:', err))
-    }, []);
+    });
 
+    //fetchMessages  whenever these values in the array is changed.
     useEffect(() => {
         fetchMessages()
-    }, [selectedUser, token]);
+    }, [selectedUser, canSendMessage]);
 
      // Fetch messages when a user is selected or userToMessage is passed
      const fetchMessages = async () => {
-        // console.log(selectedUser)
+        console.log(selectedUser)
         if (selectedUser) {
             try {
                 // setIsLoading(true)
@@ -56,7 +61,8 @@ function MessagesPage() {
         // setIsLoading(false)
     };
 
-    const handleSendMessage = async () => {
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
         if (selectedUser && inputMessage.trim()) {
             setCanSendMessage(false)
             console.log("Sending message to:", selectedUser.user_id, "Message content:", inputMessage);  // Debug log
@@ -86,39 +92,44 @@ function MessagesPage() {
         setMessages("")
         setSelectedUser(user)
     };
-
     return (
         <div className="messages-page">
             <Navbar />
             <Sidebar />
-            
             <div className="messaging-content">
                 {/* Userlist to have a conversation */}
                 <div className="conversation-list">
                     <div className="conversation-list-header">Conversations</div>
                     {/* Render available users for conversation here if applicable */}
-                    {users.map((user) => (
+                    {users ? users.map((user) => (
                         <button 
-                            className="sub1-button conversation-item" 
+                            className="main-button conversation-user-btn" 
                             onClick={() => handleUserClick(user)}
-                            disabled={isLoading}
-                        > {user.username}</button>
-                     ))}
+                            disabled={isLoading}> 
+                            <div className="conversation-item">
+                                <ProfileImage isSmall={true} src={user.profile_image}></ProfileImage>
+                                <p>{user.username}</p>
+                            </div>
+                            
+                        </button>
+                     )) : ( <p>You must have mutual following to message a user.</p> )}
                 </div>
 
                 {/* The actual conversation */}
                 <div className="chat-area">
                     {selectedUser ? (
-                        <>
+                        <form onSubmit={handleSendMessage}>
                             <div className="chat-header">
                                 <span>{selectedUser.username}</span>
                             </div>
                             <div className="chat-messages ui-shadow">
+                               
                                 {messages.length > 0 ? messages.map((msg, index) => (
                                     <div key={index} className={`message ${msg.sender === token.user_id ? 'sent' : 'received'}`}>
                                         {msg.sender === token.user_id ? "You:": selectedUser.username+":"} {msg.message_text}
                                     </div>
                                 )) : <p>No messages in this conversation.</p>}
+                                <div ref={divRef} />
                             </div>
                             <div className="message-input">
                                 <input
@@ -128,12 +139,10 @@ function MessagesPage() {
                                     onChange={e=>setInputMessage(e.target.value)}
                                     placeholder="Type your message..."
                                 />
-                                <button className="ui shadow" disabled={!canSendMessage || isLoading} onClick={handleSendMessage}>Send</button>
+                                <button type="submit" className="ui shadow send-btn" disabled={!canSendMessage || isLoading}>Send</button>
                             </div>
-                        </>
-                    ) : (
-                        <h1>Select a user to start messaging</h1>
-                    )}
+                        </form>
+                    ) : (<h1>Select a user to message</h1>)}
                 </div>
             </div>
         </div>
