@@ -11,8 +11,10 @@ function MessagesPage() {
     const location = useLocation();
     const userToMessage = location.state?.userToMessage;
     
+    const [socket, setSocket] = useState(null)
+
     const [users, setUsers] = useState([])
-    const [selectedUser, setSelectedUser] = useState(userToMessage || null);
+    const [selectedUser, setSelectedUser] = useState(userToMessage || -1);
 
     const [inputMessage, setInputMessage] = useState("");
     const [messages, setMessages] = useState([]);
@@ -25,58 +27,60 @@ function MessagesPage() {
     const divRef = useRef(null);
 
     useEffect(() => {
+        //scroll to the bottom, latest message
         if (divRef.current) { divRef.current.scrollIntoView({ behavior: 'smooth' }) }
+        
         //Get list of users that follow each other
-        axios.get("http://3.17.148.157:8000/messaging/messagable_users/", {
+        axios.get("http://localhost:8000/messaging/messagable_users/", {
             params: { user_id: token.user_id },
           })
           .then((response) => {
             setUsers(response.data)
           })
           .catch((err) => console.error('Error fetching post data:', err))
-    });
+        
+    }, []);
 
-    //fetchMessages  whenever these values in the array is changed.
     useEffect(() => {
-        fetchMessages()
-    }, [selectedUser, canSendMessage]);
+        //socket
+        if (selectedUser != -1) {
+            console.log(token.user_id, selectedUser.user_id)
+            const wsUrl = `ws://localhost:8000/ws/chat/${token.user_id}/${selectedUser.user_id}/`;
+            //const wsUrl = `ws://${window.location.host}/ws/chat/${token.user_id}/${selectedUser.user_id}/`;
+            const chatSocket = new WebSocket(wsUrl);
 
-     // Fetch messages when a user is selected or userToMessage is passed
-     const fetchMessages = async () => {
-        console.log(selectedUser)
-        if (selectedUser) {
-            try {
-                // setIsLoading(true)
-                const response = await axios.get('http://3.17.148.157:8000/messaging/message', {
-                    params: {
-                           sender_id: token.user_id,
-                           receiver_id: selectedUser.user_id  // Ensure token is correctly formatted
-                    }
-                });
-                setMessages(response.data)
-            } catch (error) {
-                console.error("Error fetching messages:", error);
+            if (chatSocket.readyState === 0) {
+                console.log("WebSocket is connecting", selectedUser.user_id);
             }
+
+            chatSocket.onopen = () => {
+                console.log("WebSocket connection opened.", selectedUser.user_id);
+            };
+
+            chatSocket.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                setMessages((prevMessages) => [...prevMessages, data]);
+            };
+    
+            chatSocket.onclose = () => {
+                console.log("WebSocket connection closed.", selectedUser.user_id);
+            };
+    
+            setSocket(chatSocket)
+    
+            // Cleanup on component unmount
+            return () => chatSocket.close();
         }
-        // setIsLoading(false)
-    };
+    }, [token.user_id, selectedUser.user_id]);
 
     const handleSendMessage = async (e) => {
         e.preventDefault();
-        if (selectedUser && inputMessage.trim()) {
+        if (socket && selectedUser && inputMessage.trim()) {
             setCanSendMessage(false)
-            console.log("Sending message to:", selectedUser.user_id, "Message content:", inputMessage);  // Debug log
+            console.log("Sending to ID", selectedUser.user_id, "MESSAGE:", inputMessage);  // Debug log
             try {
-                const response = await axios.post(
-                    'http://3.17.148.157:8000/messaging/message/',
-                    {
-                        sender_id: token.user_id,
-                        receiver_id: selectedUser.user_id,
-                        message_text: inputMessage,
-                    },
-                );
-                console.log("Message sent successfully:", response.data);  // Debug log
-                setMessages([...messages, response.data])
+                socket.send(JSON.stringify({ inputMessage }));
+                console.log("Message sent successfully!");  
                 setInputMessage("")
             } catch (error) {
                 console.error("Error sending message:", error)
@@ -84,7 +88,7 @@ function MessagesPage() {
             }
             setCanSendMessage(true)
         } else {
-            console.log("Selected user or message is missing");  // Debug log
+            console.log("Selected user or message is missing");
         }
     };
 
@@ -128,7 +132,7 @@ function MessagesPage() {
                                     <div key={index} className={`message ${msg.sender === token.user_id ? 'sent' : 'received'}`}>
                                         {msg.sender === token.user_id ? "You:": selectedUser.username+":"} {msg.message_text}
                                     </div>
-                                )) : <p>No messages in this conversation.</p>}
+                                )) : (<p>No messages in this conversation.</p>)}
                                 <div ref={divRef} />
                             </div>
                             <div className="message-input">
