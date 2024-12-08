@@ -20,7 +20,7 @@ function SignUpPage() {
         
         if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
              && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
-            axios.post("http://3.17.148.157:8000/users/sign_up/", {
+            axios.post("http://localhost:8000/users/sign_up/", {
                 username: username,
                 password: password,
                 first_name: fname,
@@ -81,7 +81,7 @@ function SignUpPage() {
                 />
             {error && <h3 style = {{color:"red"}}>{error}</h3>}
             <div className = "signup-form">
-            <button type ="signup-button" onClick={submitCredentials}>Sign Up</button>
+            <button className ="signup-button" onClick={submitCredentials}>Sign Up</button>
             </div>
             <div className = "login-link">
                 Already have an account?{' '}

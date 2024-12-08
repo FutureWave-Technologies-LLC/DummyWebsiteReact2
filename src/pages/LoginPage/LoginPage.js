@@ -22,7 +22,7 @@ const LoginPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.get("http://3.17.148.157:8000/users/login/", {
+        axios.get("http://localhost:8000/users/login/", {
             params: {
                 username: username,
                 password: password,
@@ -74,7 +74,7 @@ const LoginPage = () => {
                 />
                 {error && <h3 style = {{color:"red"}}>{error}</h3>}
                 <div className='signin-form'>
-                <button type="signin-button" onClick={handleSignIn}>
+                <button className="signin-button" onClick={handleSignIn}>
                     Sign In
                 </button>
                 </div>
