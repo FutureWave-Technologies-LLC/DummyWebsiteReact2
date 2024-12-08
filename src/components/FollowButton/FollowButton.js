@@ -7,7 +7,7 @@ function FollowButton(props) {
 
     useEffect(() => {
        //find if user is following the user to profile
-        axios.get("http://3.17.148.157:8000/profiles/following/", {
+        axios.get("http://localhost:8000/profiles/following/", {
             params: {
                 user_id: user_id,
                 followee_id: followee_id,
@@ -21,7 +21,7 @@ function FollowButton(props) {
 
     // Handles Follow and Unfollow
     function toggleFollow() {
-        axios.post("http://3.17.148.157:8000/profiles/following/", {
+        axios.post("http://localhost:8000/profiles/following/", {
             followee_username: followee_username,
             follower_id: user_id,
         })

@@ -12,7 +12,7 @@ function PostFeed(props) {
   function getPosts(sortType) {
     setPostFeed([])
     if (allPosts === true) {
-      axios.get("http://3.17.148.157:8000/posts/all_posts/", {
+      axios.get("http://localhost:8000/posts/all_posts/", {
         params: { sort_type: sortType },
       })
       .then((response) => {
@@ -21,7 +21,7 @@ function PostFeed(props) {
       .catch((err) => console.error('Error fetching post data:', err))
     } else {
       // Fetch the user's posts using the id
-      axios.get("http://3.17.148.157:8000/profiles/profile_posts/", {
+      axios.get("http://localhost:8000/profiles/profile_posts/", {
         params: { sort_type: sortType,
             user_id: userId },
       })
