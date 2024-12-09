@@ -6,7 +6,6 @@ import Navbar from "../../components/Navbar/Navbar"
 import SideBar from "../../components/Sidebar/Sidebar"
 import Post from "../../components/Post/Post"
 import CommentFeed from "../../components/CommentFeed/CommentFeed"
-import Modal from '../../components/Modal/Modal'
 
 import "./PostPage.css"
 
