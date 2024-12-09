@@ -32,10 +32,6 @@ function PostFeed(props) {
     }
   }
 
-  function sortBy(sortType) {
-    getPosts(sortType)
-  }
-
   useEffect(() => { getPosts("recent")}, [])
 
   return (
@@ -43,8 +39,8 @@ function PostFeed(props) {
       <div class="dropdown">
         <button class="main-button dropdown-btn">Sort By</button>
         <div class="dropdown-content">
-          <button className="main-button" onClick={() => sortBy("recent")}>Recently Post</button>
-          <button className="main-button" onClick={() => sortBy("popular")}>Popular</button>
+          <button className="main-button" onClick={() => getPosts("recent")}>Recently Post</button>
+          <button className="main-button" onClick={() => getPosts("popular")}>Popular</button>
         </div>
       </div>
       <div className="feed-container">
