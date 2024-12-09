@@ -128,7 +128,7 @@ function MessagesPage() {
                     {/* Render available users for conversation here if applicable */}
                     {users ? users.map((user) => (
                         <button 
-                            className="main-button conversation-user-btn" 
+                            className="main-button conversation-user-btn ui-shadow" 
                             onClick={() => handleUserClick(user)}
                             disabled={!canSendMessage}> 
                             <div className="conversation-item">
