@@ -7,8 +7,8 @@
 }
 
 .main {
-    border: solid !important;
-    border-color: rgb(123, 115, 196) !important;
+    border: solid 5px !important;
+    border-color: rgb(76, 67, 153) !important;
 }
 
 .comment-header {
