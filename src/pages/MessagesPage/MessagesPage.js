@@ -20,8 +20,6 @@ function MessagesPage() {
     const [messages, setMessages] = useState([]);
     const [canSendMessage, setCanSendMessage] = useState(true)
 
-    const [isLoading, setIsLoading]= useState(false)
-
     const token = JSON.parse(localStorage.getItem("future-token"));
 
     const divRef = useRef(null);
@@ -29,7 +27,6 @@ function MessagesPage() {
     useEffect(() => {
         //scroll to the bottom, latest message
         if (divRef.current) { divRef.current.scrollIntoView({ behavior: 'smooth' }) }
-        
         //Get list of users that follow each other
         axios.get("http://localhost:8000/messaging/messagable_users/", {
             params: { user_id: token.user_id },
@@ -38,10 +35,21 @@ function MessagesPage() {
             setUsers(response.data)
           })
           .catch((err) => console.error('Error fetching post data:', err))
-        
     }, []);
 
     useEffect(() => {
+        //get message history
+        axios.get("http://localhost:8000/messaging/message/", {
+            params: { 
+                sender_id: token.user_id,
+                receiver_id: selectedUser.user_id
+             },
+        })
+        .then((response) => {
+            setMessages(response.data)
+        })
+        .catch((err) => console.error('Error fetching post data:', err))
+
         //socket
         if (selectedUser != -1) {
             console.log(token.user_id, selectedUser.user_id)
@@ -58,14 +66,17 @@ function MessagesPage() {
             };
 
             chatSocket.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                setMessages((prevMessages) => [...prevMessages, data]);
+                const data = JSON.parse(event.data)
+                console.log("Update message feed", [...messages, data])
+                setMessages((prevMessages) => [...prevMessages, data])
             };
     
             chatSocket.onclose = () => {
                 console.log("WebSocket connection closed.", selectedUser.user_id);
             };
     
+            
+
             setSocket(chatSocket)
     
             // Cleanup on component unmount
@@ -79,7 +90,12 @@ function MessagesPage() {
             setCanSendMessage(false)
             console.log("Sending to ID", selectedUser.user_id, "MESSAGE:", inputMessage);  // Debug log
             try {
-                socket.send(JSON.stringify({ inputMessage }));
+                //send JSON string for consumer to take
+                socket.send(JSON.stringify({
+                    sender_id: token.user_id,
+                    receiver_id: selectedUser.user_id,
+                    message_text: inputMessage
+                }))
                 console.log("Message sent successfully!");  
                 setInputMessage("")
             } catch (error) {
@@ -90,7 +106,8 @@ function MessagesPage() {
         } else {
             console.log("Selected user or message is missing");
         }
-    };
+    }
+    
 
     const handleUserClick = (user) => {
         setMessages("")
@@ -109,7 +126,7 @@ function MessagesPage() {
                         <button 
                             className="main-button conversation-user-btn" 
                             onClick={() => handleUserClick(user)}
-                            disabled={isLoading}> 
+                            disabled={!canSendMessage}> 
                             <div className="conversation-item">
                                 <ProfileImage isSmall={true} src={user.profile_image}></ProfileImage>
                                 <p>{user.username}</p>
@@ -129,8 +146,8 @@ function MessagesPage() {
                             <div className="chat-messages ui-shadow">
                                
                                 {messages.length > 0 ? messages.map((msg, index) => (
-                                    <div key={index} className={`message ${msg.sender === token.user_id ? 'sent' : 'received'}`}>
-                                        {msg.sender === token.user_id ? "You:": selectedUser.username+":"} {msg.message_text}
+                                    <div key={index} className={`message ${msg.sender_id === token.user_id ? 'sent' : 'received'}`}>
+                                        {msg.sender_id === token.user_id ? "You:": selectedUser.username+":"} {msg.message_text}
                                     </div>
                                 )) : (<p>No messages in this conversation.</p>)}
                                 <div ref={divRef} />
@@ -139,11 +156,11 @@ function MessagesPage() {
                                 <input
                                     type="text"
                                     value={inputMessage}
-                                    disabled={isLoading}
+                                    disabled={!canSendMessage}
                                     onChange={e=>setInputMessage(e.target.value)}
                                     placeholder="Type your message..."
                                 />
-                                <button type="submit" className="ui shadow send-btn" disabled={!canSendMessage || isLoading}>Send</button>
+                                <button type="submit" className="ui shadow send-btn" disabled={!canSendMessage}>Send</button>
                             </div>
                         </form>
                     ) : (<h1>Select a user to message</h1>)}
