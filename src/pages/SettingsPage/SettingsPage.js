@@ -53,17 +53,17 @@ function SettingsPage() {
             })
             .then((response) => {
                 if (response.data.password_update == true) {
-                    setPasswordSuccess("Password updated.")
+                    setPasswordSuccess("Password updated successfully.")
                 } else if (response.data.password_update == false) {
-                    setPasswordSuccess("Unable to update password; incorrect old password.")
+                    setPasswordSuccess("Failed to update password: "+response.data.error)
                 }
             })
             setNotification('Settings successfully updated.');
         } catch (error) {
             setNotification('Failed to update settings.');
         }
-        setTimeout(() => setNotification(''), 3000); 
-        setTimeout(() => setPasswordSuccess(''), 3000); 
+        setTimeout(() => setNotification(''), 5000); 
+        setTimeout(() => setPasswordSuccess(''), 5000); 
     }
 
     return (
