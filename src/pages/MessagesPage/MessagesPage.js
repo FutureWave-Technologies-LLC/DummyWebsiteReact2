@@ -18,15 +18,13 @@ function MessagesPage() {
 
     const [inputMessage, setInputMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const [canSendMessage, setCanSendMessage] = useState(true)
+    const [canSendMessage, setCanSendMessage] = useState(false)
 
     const token = JSON.parse(localStorage.getItem("future-token"));
 
     const divRef = useRef(null);
 
     useEffect(() => {
-        //scroll to the bottom, latest message
-        if (divRef.current) { divRef.current.scrollIntoView({ behavior: 'smooth' }) }
         //Get list of users that follow each other
         axios.get("http://localhost:8000/messaging/messagable_users/", {
             params: { user_id: token.user_id },
@@ -38,6 +36,7 @@ function MessagesPage() {
     }, []);
 
     useEffect(() => {
+        setCanSendMessage(false)
         //get message history
         axios.get("http://localhost:8000/messaging/message/", {
             params: { 
@@ -47,14 +46,14 @@ function MessagesPage() {
         })
         .then((response) => {
             setMessages(response.data)
+            setCanSendMessage(true)
         })
         .catch((err) => console.error('Error fetching post data:', err))
 
-        //socket
+        //Websocket implementation
         if (selectedUser != -1) {
             console.log(token.user_id, selectedUser.user_id)
             const wsUrl = `ws://localhost:8000/ws/chat/${token.user_id}/${selectedUser.user_id}/`;
-            //const wsUrl = `ws://${window.location.host}/ws/chat/${token.user_id}/${selectedUser.user_id}/`;
             const chatSocket = new WebSocket(wsUrl);
 
             if (chatSocket.readyState === 0) {
@@ -67,8 +66,10 @@ function MessagesPage() {
 
             chatSocket.onmessage = (event) => {
                 const data = JSON.parse(event.data)
-                console.log("Update message feed", [...messages, data])
+                // console.log("Update message feed", [...messages, data])
+                
                 setMessages((prevMessages) => [...prevMessages, data])
+                setCanSendMessage(true)
             };
     
             chatSocket.onclose = () => {
@@ -80,6 +81,11 @@ function MessagesPage() {
             return () => chatSocket.close();
         }
     }, [token.user_id, selectedUser.user_id]);
+
+    //scroll to the bottom, latest message 
+    useEffect(() => {
+        if (divRef.current) { divRef.current.scrollIntoView({ behavior: 'smooth' }) }
+    }, [canSendMessage])
     
     const handleSendMessage = async (e) => {
         e.preventDefault();
@@ -99,17 +105,18 @@ function MessagesPage() {
                 console.error("Error sending message:", error)
                 alert("Failed to send the message. Please try again.")
             }
-            setCanSendMessage(true)
         } else {
             console.log("Selected user or message is missing");
         }
     }
     
-
     const handleUserClick = (user) => {
-        setMessages("")
-        setSelectedUser(user)
-    };
+        if (user != selectedUser) {
+            setMessages("")
+            setSelectedUser(user)
+        }
+    }
+
     return (
         <div className="messages-page">
             <Navbar />
@@ -135,7 +142,7 @@ function MessagesPage() {
 
                 {/* The actual conversation */}
                 <div className="chat-area">
-                    {selectedUser ? (
+                    {selectedUser != -1 ? (
                         <form onSubmit={handleSendMessage}>
                             <div className="chat-header">
                                 <span>{selectedUser.username}</span>
@@ -155,9 +162,9 @@ function MessagesPage() {
                                     value={inputMessage}
                                     disabled={!canSendMessage}
                                     onChange={e=>setInputMessage(e.target.value)}
-                                    placeholder="Type your message..."
+                                    placeholder="Type your message"
                                 />
-                                <button type="submit" className="ui shadow send-btn" disabled={!canSendMessage}>Send</button>
+                                <button type="submit" className="ui-shadow send-btn" disabled={!canSendMessage}>Send</button>
                             </div>
                         </form>
                     ) : (<h1>Select a user to message</h1>)}
