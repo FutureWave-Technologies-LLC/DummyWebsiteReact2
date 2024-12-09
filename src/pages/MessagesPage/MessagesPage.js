@@ -74,16 +74,13 @@ function MessagesPage() {
             chatSocket.onclose = () => {
                 console.log("WebSocket connection closed.", selectedUser.user_id);
             };
-    
-            
-
             setSocket(chatSocket)
     
             // Cleanup on component unmount
             return () => chatSocket.close();
         }
     }, [token.user_id, selectedUser.user_id]);
-
+    
     const handleSendMessage = async (e) => {
         e.preventDefault();
         if (socket && selectedUser && inputMessage.trim()) {
