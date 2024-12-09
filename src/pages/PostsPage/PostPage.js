@@ -19,7 +19,7 @@ function PostPage() {
 
     useEffect(() => {
         //get post info based on postId
-        axios.get("http://localhost:8000/posts/post/", {
+        axios.get("http://3.17.148.157:8000/posts/post/", {
             params: { post_id: postId },
         })
         .then((response) => {
@@ -31,7 +31,7 @@ function PostPage() {
 
     function getLikes() {
         //get likes for post based on postId
-        axios.get("http://localhost:8000/posts/likes/", {
+        axios.get("http://3.17.148.157:8000/posts/likes/", {
             params: { post_id: postId,
                     user_id: token.user_id
              },
@@ -45,7 +45,7 @@ function PostPage() {
     const handleLike = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:8000/posts/likes/', {
+            await axios.post('http://3.17.148.157:8000/posts/likes/', {
                 post_id: postId,
                 user_id: token.user_id
             })

@@ -46,7 +46,7 @@ function ProfilePage() {
         }
 
         // Fetch user's data
-        axios.get("http://localhost:8000/users/get_user_data/", {
+        axios.get("http://3.17.148.157:8000/users/get_user_data/", {
             params: { user_id: profileUserId },
         })
         .then((response) => {
@@ -58,7 +58,7 @@ function ProfilePage() {
                     setBannerImage(response.data.banner_image)  
 
                 // Fetch followers
-                axios.get("http://localhost:8000/profiles/get_followers/", {
+                axios.get("http://3.17.148.157:8000/profiles/get_followers/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then((response) => {
@@ -67,7 +67,7 @@ function ProfilePage() {
                 .catch(err => console.error('Error fetching followers data:', err));
 
                 // Fetch followees (users this user is following)
-                axios.get("http://localhost:8000/profiles/get_followees/", {
+                axios.get("http://3.17.148.157:8000/profiles/get_followees/", {
                     params: { user_id: response.data.user_id },
                 })
                 .then(response => {
@@ -79,7 +79,7 @@ function ProfilePage() {
             }
 
             //get messagable users
-            axios.get("http://localhost:8000/messaging/messagable_users/", {
+            axios.get("http://3.17.148.157:8000/messaging/messagable_users/", {
                 params: { user_id: token.user_id },
             })
             .then((response) => {
