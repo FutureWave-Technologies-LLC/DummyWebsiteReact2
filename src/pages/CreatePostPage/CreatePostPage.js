@@ -28,7 +28,6 @@ const CreatePostPage = () => {
             setMedia('');
             setPostText('');
 
-        
             setNotification('Posted!');
             setTimeout(() => setNotification(''), 3000); 
         } catch (error) {
@@ -52,12 +51,6 @@ const CreatePostPage = () => {
                             onChange={(e) => setTitle(e.target.value)}
                         />
 
-                        {/* <input
-                            type="file"
-                            id="media"
-                            className="form-control rounded"
-                            onChange={(e) => setMedia(e.target.files[0])}
-                        /> */}
                         <input
                             type="text"
                             id="media"
@@ -70,8 +63,8 @@ const CreatePostPage = () => {
                         <textarea
                             id="postText"
                             value={postText}
-                            placeholder="Post Text"
-                            className="form-control rounded"
+                            placeholder="Post Description"
+                            className="form-control rounded ui-shadow"
                             onChange={(e) => setPostText(e.target.value)}
                         />
 
