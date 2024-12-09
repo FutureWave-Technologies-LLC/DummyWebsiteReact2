@@ -34,7 +34,7 @@ function CommentFeed(props) {
         setCommentFeed([])
         if (commentId) {
             setIsReplyFeed(true)
-            axios.get("http://3.17.148.157:8000/posts/replies/", {
+            axios.get("http://localhost:8000/posts/replies/", {
                 params: { comment_id: commentId },
             })
             .then((response) => {
@@ -44,7 +44,7 @@ function CommentFeed(props) {
         //get comments for post based on postId
         } else {
             setIsReplyFeed(false)
-            axios.get("http://3.17.148.157:8000/posts/comments/", {
+            axios.get("http://localhost:8000/posts/comments/", {
                 params: { post_id: postId },
             })
             .then((response) => {
@@ -60,13 +60,13 @@ function CommentFeed(props) {
             setCanUseModal(false)
             try {
                 if (commentId) {
-                    await axios.post('http://3.17.148.157:8000/posts/replies/', {
+                    await axios.post('http://localhost:8000/posts/replies/', {
                         user_id: token.user_id,
                         comment_id: commentId,
                         reply: modalInput
                     })
                 } else {
-                    await axios.post('http://3.17.148.157:8000/posts/comments/', {
+                    await axios.post('http://localhost:8000/posts/comments/', {
                         user_id: token.user_id,
                         post_id: postId,
                         comment: modalInput
@@ -98,7 +98,7 @@ function CommentFeed(props) {
                             value={modalInput}
                             onChange={(e) => setModalInput(e.target.value)}
                         />
-                        <button disabled={!canUseModal} type="submit">{commentId ? "Reply": "Comment"}</button>
+                        <button className="main-button my-3 ui-shadow" disabled={!canUseModal} type="submit">{commentId ? "Reply": "Comment"}</button>
                         {successPost == false && <p className="error">Failed to submit your {commentId ? "reply": "comment"}. Please try again.</p>}
                         {successPost == true && <p className="success">Your {commentId ? "reply": "comment"} has been successfully posted!</p>}
                     </form>
