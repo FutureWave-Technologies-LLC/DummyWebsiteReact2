@@ -73,11 +73,9 @@ function CommentFeed(props) {
                     })
                     
                 }
-                
                 setModalInput("")
                 getCommentFeed()
                 promptNotification(true)
-                
             } catch (error) { 
                 promptNotification(false)
             }
