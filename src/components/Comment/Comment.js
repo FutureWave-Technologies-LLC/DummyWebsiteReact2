@@ -15,7 +15,7 @@ function Comment(props) {
         creation_date, 
         comment_id, 
         post_id,
-        setCommentFeed} = props
+    } = props
 
     const navigate = useNavigate();
     const options = {
