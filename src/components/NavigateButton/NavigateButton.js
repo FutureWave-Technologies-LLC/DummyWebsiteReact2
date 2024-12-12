@@ -6,12 +6,8 @@ function NavigateButton(props) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (path.includes("https://")) {
-      window.location.href = path;
-    } else {
-      navigate(path);
-      window.location.reload();
-    }
+    navigate(path);
+    indow.location.reload();
   };
 
   return (
