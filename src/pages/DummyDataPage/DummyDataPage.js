@@ -21,6 +21,55 @@ function DummyDataPage() {
         API_URL="http://3.17.148.157:8000/posts/all_posts/"
         setDataMethod={setDisplayedData}
       ></FetchDataButton>
+      <FetchDataButton
+        buttonText="Get Posts for UserId: 1"
+        API_URL="http://3.17.148.157:8000/profiles/profile_posts/"
+        setDataMethod={setDisplayedData}
+        params = {
+          { sort_type: "recent",
+            user_id: "1" }
+        }
+      ></FetchDataButton>
+      <FetchDataButton
+        buttonText="Get Comments for PostId: 904014"
+        API_URL="http://3.17.148.157:8000/posts/comments/"
+        setDataMethod={setDisplayedData}
+        params = {
+          { post_id: 904014 }
+        }
+      ></FetchDataButton>
+      <FetchDataButton
+        buttonText="Get Replies for CommentId: 3"
+        API_URL="http://3.17.148.157:8000/posts/replies/"
+        setDataMethod={setDisplayedData}
+        params = {
+          { comment_id: 3 }
+        }
+      ></FetchDataButton>
+      <FetchDataButton
+        buttonText="Get users with query 'bryce'"
+        API_URL="http://3.17.148.157:8000/users/search_users/"
+        setDataMethod={setDisplayedData}
+        params = {
+          { query: "bryce" }
+        }
+      ></FetchDataButton>
+      <FetchDataButton
+        buttonText="Get followers of userid 1"
+        API_URL="http://3.17.148.157:8000/profiles/get_followers/"
+        setDataMethod={setDisplayedData}
+        params = {
+          { user_id: 1 }
+        }
+      ></FetchDataButton>
+      <FetchDataButton
+        buttonText="Get followees of userid 1"
+        API_URL="http://3.17.148.157:8000/profiles/get_followees/"
+        setDataMethod={setDisplayedData}
+        params = {
+          { user_id: 1 }
+        }
+      ></FetchDataButton>
       <PostDataButton
         buttonText="Update Likes"
         API_URL="http://3.17.148.157:8000/api/update_likes/"
