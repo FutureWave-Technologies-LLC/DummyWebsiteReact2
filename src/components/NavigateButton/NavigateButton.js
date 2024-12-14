@@ -7,7 +7,7 @@ function NavigateButton(props) {
 
   const handleClick = () => {
     navigate(path);
-    indow.location.reload();
+    window.location.reload();
   };
 
   return (
