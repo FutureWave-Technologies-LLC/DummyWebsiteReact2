@@ -25,7 +25,7 @@
 
     width: 50%;
 
-    height: 100vh;
+    height: 100%;
 }
 
 .search-bar {
@@ -35,8 +35,8 @@
 }
 
 .search-btn {
-    height: 5%;
-    line-height: 5%;
+    height: 75%;
+    line-height: 75%;
 
     border-radius: 10px;
     padding: 2px 15px 5px 15px;
