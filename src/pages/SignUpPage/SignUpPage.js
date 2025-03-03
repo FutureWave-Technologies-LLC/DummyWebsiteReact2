@@ -20,7 +20,7 @@ function SignUpPage() {
         
         if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
              && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
-            axios.post("http://127.0.0.1:8000/users/sign_up/", {
+            axios.post("http://0.0.0.0:8000/users/sign_up/", {
                 username: username,
                 password: password,
                 first_name: fname,
