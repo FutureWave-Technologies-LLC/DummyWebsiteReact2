@@ -20,7 +20,7 @@ function Search() {
 
     useEffect(() => {
         // Fetch users that match with query
-        axios.get("http://18.219.191.19:8000/users/search_users/", {
+        axios.get("https://d1ls0cg8xyipo0.cloudfront.net/users/search_users/", {
             params: {
                 query: searchParams.get('q'),
             }
@@ -33,7 +33,7 @@ function Search() {
         });
 
         //get messagable users
-        axios.get("http://18.219.191.19:8000/messaging/messagable_users/", {
+        axios.get("https://d1ls0cg8xyipo0.cloudfront.net/messaging/messagable_users/", {
             params: { user_id: token.user_id },
         })
         .then((response) => {

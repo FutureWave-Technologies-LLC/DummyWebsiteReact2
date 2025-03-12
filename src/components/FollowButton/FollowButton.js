@@ -7,7 +7,7 @@ function FollowButton(props) {
 
     useEffect(() => {
        //find if user is following the user to profile
-        axios.get("http://18.219.191.19:8000/profiles/following/", {
+        axios.get("https://d1ls0cg8xyipo0.cloudfront.net/profiles/following/", {
             params: {
                 user_id: user_id,
                 followee_id: followee_id,
@@ -21,7 +21,7 @@ function FollowButton(props) {
 
     // Handles Follow and Unfollow
     function toggleFollow() {
-        axios.post("http://18.219.191.19:8000/profiles/following/", {
+        axios.post("https://d1ls0cg8xyipo0.cloudfront.net/profiles/following/", {
             followee_username: followee_username,
             follower_id: user_id,
         })

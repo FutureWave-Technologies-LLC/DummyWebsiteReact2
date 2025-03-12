@@ -17,7 +17,7 @@ const CreatePostPage = () => {
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://18.219.191.19:8000/posts/post/', {
+            await axios.post('https://d1ls0cg8xyipo0.cloudfront.net/posts/post/', {
                 title: title,
                 media: media,
                 description: postText,

@@ -26,7 +26,7 @@ function MessagesPage() {
 
     useEffect(() => {
         //Get list of users that follow each other
-        axios.get("http://18.219.191.19:8000/messaging/messagable_users/", {
+        axios.get("https://d1ls0cg8xyipo0.cloudfront.net/messaging/messagable_users/", {
             params: { user_id: token.user_id },
           })
           .then((response) => {
@@ -38,7 +38,7 @@ function MessagesPage() {
     useEffect(() => {
         setCanSendMessage(false)
         //get message history
-        axios.get("http://18.219.191.19:8000/messaging/message/", {
+        axios.get("https://d1ls0cg8xyipo0.cloudfront.net/messaging/message/", {
             params: { 
                 sender_id: token.user_id,
                 receiver_id: selectedUser.user_id
@@ -53,7 +53,7 @@ function MessagesPage() {
         //Websocket implementation
         if (selectedUser != -1) {
             console.log(token.user_id, selectedUser.user_id)
-            const wsUrl = `ws://18.219.191.19:8000/ws/chat/${token.user_id}/${selectedUser.user_id}/`;
+            const wsUrl = `ws://d1ls0cg8xyipo0.cloudfront.net/ws/chat/${token.user_id}/${selectedUser.user_id}/`;
             const chatSocket = new WebSocket(wsUrl);
 
             if (chatSocket.readyState === 0) {
