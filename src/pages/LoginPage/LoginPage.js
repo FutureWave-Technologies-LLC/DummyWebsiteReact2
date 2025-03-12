@@ -22,7 +22,7 @@ const LoginPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.get("http://3.148.108.99:8000/users/login/", {
+        axios.get("http://d1ls0cg8xyipo0.cloudfront.net/users/login/", {
             params: {
                 username: username,
                 password: password,

@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const loginAction = (input) => {
       //use username and password to authenticate
-      axios.post("http://3.148.108.99/:8000/users/authenticate_user/", {
+      axios.post("http://d1ls0cg8xyipo0.cloudfront.net/users/authenticate_user/", {
         username: input.username,
         password: input.password
       })
