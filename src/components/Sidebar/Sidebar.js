@@ -42,12 +42,12 @@ function SideBar() {
             <button onClick={() => auth.logOut()} className="log-out rounded main-button ui-shadow">
                 <i className="uil uil-sign-out-alt"></i> Log Out
             </button>
-            <NavigateButton
+            {/* <NavigateButton
                 buttonText="Dummy page"
                 path="/dum"
                 bootstrap="bg-danger rounded"
                 iconClass="uil uil-page"
-            />
+            /> */}
         </div>
     );
 }
