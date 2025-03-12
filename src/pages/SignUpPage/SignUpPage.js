@@ -20,7 +20,7 @@ function SignUpPage() {
         
         if (hasNoWhiteSpace(username) && hasNoWhiteSpace(password)
              && hasNoWhiteSpace(fname) && hasNoWhiteSpace(lname)) {
-            axios.post("http://d1ls0cg8xyipo0.cloudfront.net/users/sign_up/", {
+            axios.post("https://d1ls0cg8xyipo0.cloudfront.net/users/sign_up/", {
                 username: username,
                 password: password,
                 first_name: fname,

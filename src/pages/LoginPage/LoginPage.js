@@ -22,7 +22,7 @@ const LoginPage = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault()
-        axios.get("http://d1ls0cg8xyipo0.cloudfront.net/users/login/", {
+        axios.get("https://d1ls0cg8xyipo0.cloudfront.net/users/login/", {
             params: {
                 username: username,
                 password: password,
