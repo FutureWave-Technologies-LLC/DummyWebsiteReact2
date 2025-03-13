@@ -53,7 +53,7 @@ function MessagesPage() {
         //Websocket implementation
         if (selectedUser != -1) {
             console.log(token.user_id, selectedUser.user_id)
-            const wsUrl = `ws://d1ls0cg8xyipo0.cloudfront.net/ws/chat/${token.user_id}/${selectedUser.user_id}/`;
+            const wsUrl = `wss://d1ls0cg8xyipo0.cloudfront.net/ws/chat/${token.user_id}/${selectedUser.user_id}/`;
             const chatSocket = new WebSocket(wsUrl);
 
             if (chatSocket.readyState === 0) {
